@@ -1,3 +1,7 @@
 :root{
---main-color : green;
+  --green : green ;
+--main-color : var(--green);
+}
+body[data-theme='dark']{
+  --main-color : orange;
 }
