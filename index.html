@@ -13,224 +13,110 @@
       href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-
-    <link rel="stylesheet" href="./styles/normalize.css" />
+    <link rel="stylesheet" href="./styles/variables.css" />
+    <link rel="stylesheet" href="./styles/normalize-reset.css" />
     <link rel="stylesheet" href="./styles/style.css" />
     <script defer src="./scripts/main.js"></script>
   </head>
 
   <body data-theme="light">
     <main>
-      <header>
-        <div class="header-logo-container">
-          <a href="#"><span>Fashion</span><span>Era</span></a>
-        </div>
-        <nav class="header-navbar-container">
-          <ul class="header-nav-list">
-            <li class="nav-list-item">Men</li>
-            <li class="nav-list-item">Women</li>
-            <li class="nav-list-item">Kids</li>
-            <li class="nav-list-item new">Winter</li>
-            <li class="nav-list-item">Lifestyle</li>
-          </ul>
-        </nav>
-        <div class="header-search-container">
-          <div class="search-box">
-            <input type="text" name="product_name" id="product_name" />
-            <span class="search-icom"
-              ><svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g opacity="0.6">
-                  <circle
-                    cx="11"
-                    cy="11"
-                    r="7"
-                    stroke="#323232"
-                    stroke-width="2"
-                  />
-                  <path
-                    d="M11 8C10.606 8 10.2159 8.0776 9.85195 8.22836C9.48797 8.37913 9.15726 8.6001 8.87868 8.87868C8.6001 9.15726 8.37913 9.48797 8.22836 9.85195C8.0776 10.2159 8 10.606 8 11"
-                    stroke="#323232"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                  <path
-                    d="M20 20L17 17"
-                    stroke="#323232"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                  />
-                </g></svg
-            ></span>
+      <header class="center">
+        <section class="header-content">
+          <div class="header-logo-container">
+            <a href="#"><span>Fashion</span><span>Era</span></a>
           </div>
-        </div>
-        <div class="header-user-info-container">
-          <span class="user-info-icon-container cart">
-            <svg
-              width="25"
-              height="27"
-              viewBox="0 0 25 27"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g opacity="0.5">
-                <path
-                  d="M3.78227 5.87339C11.0327 4.05315 20.0466 4.16475 22.1299 6.53701C24.2131 8.90926 24.1702 16.8415 21.735 19.0181C19.3012 21.1946 8.73155 21.4015 5.38303 19.0181C1.8453 16.4985 3.89797 8.74789 3.78227 4.05315C3.85169 1.42605 1 1 1 1"
-                  stroke="#323232"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+          <nav class="header-navbar-container">
+            <ul class="header-nav-list">
+              <li class="nav-list-item">Men</li>
+              <li class="nav-list-item">Women</li>
+              <li class="nav-list-item">Kids</li>
+              <li class="nav-list-item new">Winter</li>
+              <li class="nav-list-item">Lifestyle</li>
+            </ul>
+          </nav>
+          <div class="header-search-container">
+            <div class="search-box">
+              <label for="product_name-header">
+                <input
+                  placeholder="search product"
+                  type="text"
+                  name="product_name-header"
+                  id="product_name-header"
                 />
-                <path
-                  d="M15.3008 11.7119H19.0754"
-                  stroke="#323232"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+              </label>
+              <svg class="svg button">
+                <use href="assets/svg-icon.svg#icon-Search"></use>
+              </svg>
+            </div>
+          </div>
+          <div class="header-user-info-container">
+            <span class="user-info-icon-container button with-badge cart">
+              <svg class="svg">
+                <use href="assets/svg-icon.svg#icon-Buy"></use>
+              </svg>
+              <span class="badge cart-badge">35</span>
+            </span>
+            <span class="user-info-icon-container button with-badge favorite">
+              <svg class="svg">
+                <use href="assets/svg-icon.svg#icon-Heart"></use>
+              </svg>
+              <span class="badge favorite-badge">45</span>
+            </span>
+            <span class="user-info-icon-container button user">
+              <svg class="svg">
+                <use href="assets/svg-icon.svg#icon-Add-user"></use>
+              </svg>
+            </span>
+          </div>
+          <div class="header-menu-container">
+            <span class="menu button">
+              <svg class="svg show">
+                <use href="assets/svg-icon.svg#icon-Menu"></use>
+              </svg>
+              <svg class="svg hide">
+                <use href="assets/svg-icon.svg#icon-Close"></use>
+              </svg>
+            </span>
+          </div>
+        </section>
+        <aside class="sidebar-content hide">
+          <div class="sidebar-search-container">
+            <div class="search-box">
+              <label for="product_name-sidebar">
+                <input
+                  placeholder="search product"
+                  type="text"
+                  name="product_name-sidebar"
+                  id="product_name-sidebar"
                 />
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M5.91861 24.5176C6.32696 24.5176 6.65909 24.8497 6.65909 25.2581C6.65909 25.6678 6.32696 25.9999 5.91861 25.9999C5.50889 25.9999 5.17676 25.6678 5.17676 25.2581C5.17676 24.8497 5.50889 24.5176 5.91861 24.5176Z"
-                  fill="black"
-                  stroke="#323232"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
-                  d="M19.9827 24.5176C20.3924 24.5176 20.7245 24.8497 20.7245 25.2581C20.7245 25.6678 20.3924 25.9999 19.9827 25.9999C19.5743 25.9999 19.2422 25.6678 19.2422 25.2581C19.2422 24.8497 19.5743 24.5176 19.9827 24.5176Z"
-                  fill="black"
-                  stroke="#323232"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </g>
-            </svg>
-            <span class="badge cart-badge"></span> </span
-          ><span class="user-info-icon-container favorite">
-            <svg
-              width="25"
-              height="24"
-              viewBox="0 0 25 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M1.45022 11.6191C0.151129 7.56319 1.66936 2.92737 5.92743 1.55564C8.16725 0.832843 10.6395 1.25901 12.5016 2.65981C14.2632 1.29776 16.8262 0.837686 19.0636 1.55564C23.3217 2.92737 24.8496 7.56319 23.5517 11.6191C21.5299 18.0479 12.5016 22.9998 12.5016 22.9998C12.5016 22.9998 3.53991 18.123 1.45022 11.6191Z"
-                stroke="#323232"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                opacity="0.4"
-                d="M17.3447 5.68848C18.6402 6.10738 19.5555 7.26361 19.6657 8.62082"
-                stroke="#323232"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-
-            <span class="badge favorite-badge"></span> </span
-          ><span class="user-info-icon-container user">
-            <svg
-              width="20"
-              height="24"
-              viewBox="0 0 20 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M9.57018 15.9785C4.94779 15.9785 1 16.6772 1 19.4766C1 22.276 4.92374 22.9999 9.57018 22.9999C14.1938 22.9999 18.1404 22.3 18.1404 19.5018C18.1404 16.7036 14.2178 15.9785 9.57018 15.9785Z"
-                stroke="#323232"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                opacity="0.4"
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M9.56999 11.986C12.6039 11.986 15.063 9.52689 15.063 6.493C15.063 3.4591 12.6039 1 9.56999 1C6.5373 1 4.07816 3.4591 4.07816 6.493C4.06737 9.51607 6.50844 11.9752 9.53271 11.986H9.56999Z"
-                stroke="#323232"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </span>
-        </div>
-        <div class="header-menu-container">
-          <span class="open-menu"
-            ><svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M3 7H21"
-                stroke="#292D32"
-                stroke-width="1.5"
-                stroke-linecap="round"
-              />
-              <path
-                opacity="0.34"
-                d="M3 12H21"
-                stroke="#292D32"
-                stroke-width="1.5"
-                stroke-linecap="round"
-              />
-              <path
-                d="M3 17H21"
-                stroke="#292D32"
-                stroke-width="1.5"
-                stroke-linecap="round"
-              /></svg
-          ></span>
-          <span class="close-menu"
-            ><svg
-              width="26"
-              height="26"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <g id="style=doutone">
-                <g id="close">
-                  <path
-                    id="vector (Stroke)"
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M6.21991 6.21479C6.51281 5.92189 6.98768 5.92189 7.28057 6.21479L17.7854 16.7196C18.0783 17.0125 18.0783 17.4874 17.7854 17.7803C17.4925 18.0732 17.0177 18.0732 16.7248 17.7803L6.21991 7.27545C5.92702 6.98255 5.92702 6.50768 6.21991 6.21479Z"
-                    fill="#BFBFBF"
-                  />
-                  <path
-                    id="vector (Stroke)_2"
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M17.7853 6.21479C18.0782 6.50769 18.0782 6.98256 17.7853 7.27545L7.28038 17.7802C6.98749 18.0731 6.51261 18.0731 6.21972 17.7802C5.92683 17.4873 5.92683 17.0124 6.21973 16.7195L16.7247 6.21478C17.0176 5.92189 17.4924 5.9219 17.7853 6.21479Z"
-                    fill="#000000"
-                  />
-                </g>
-              </g></svg
-          ></span>
-        </div>
+              </label>
+              <svg class="svg button">
+                <use href="assets/svg-icon.svg#icon-Search"></use>
+              </svg>
+            </div>
+          </div>
+          <div class="sidebar-toggle-theme button">
+            <span><span>Dark</span> theme</span>
+            <span class="icons">
+              <svg class="svg hide">
+                <use href="assets/svg-icon.svg#icon-Light"></use>
+              </svg>
+              <svg class="svg show">
+                <use href="assets/svg-icon.svg#icon-Dark"></use>
+              </svg>
+            </span>
+          </div>
+          <nav class="sidebar-navbar-container">
+            <ul class="sidebar-nav-list">
+              <li class="nav-list-item"><a href="#">Men</a></li>
+              <li class="nav-list-item"><a href="#">Women</a></li>
+              <li class="nav-list-item"><a href="#">Kids</a></li>
+              <li class="nav-list-item new"><a href="#">Winter</a></li>
+              <li class="nav-list-item"><a href="#">Lifestyle</a></li>
+            </ul>
+          </nav>
+        </aside>
       </header>
     </main>
   </body>
