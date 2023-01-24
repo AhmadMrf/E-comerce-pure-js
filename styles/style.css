@@ -1,4 +1,3 @@
-@import url(variables.css);
 /* 
 -480
 480-768
@@ -6,6 +5,132 @@
 1024-1200
 1200-
 */
-body {
-  color: var(--main-color);
+
+/* global styles */
+.center {
+  padding: 0.5rem 0.5rem;
+}
+.badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: var(--yellow-1-opacity);
+  width: 1.2rem;
+  height: 1.2rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  position: absolute;
+  top: -40%;
+  left: 40%;
+}
+.with-badge {
+  position: relative;
+}
+.button {
+  cursor: pointer;
+}
+.svg {
+  display: inline-block;
+  width: 1.5em;
+  height: 1.5em;
+  /* border: 1px solid red; */
+}
+.hide {
+  display: none;
+}
+.show {
+}
+.border {
+  border: 1px solid red;
+}
+/* main styles */
+main {
+  width: 100%;
+  color: var(--main-font-color);
+  background-color: var(--main-color);
+}
+header {
+  background-color: var(--section-100-color);
+  border-bottom: 1px solid var(--gray-4);
+}
+.header-content {
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header-navbar-container {
+  display: none;
+}
+.header-search-container {
+  display: none;
+}
+
+.header-logo-container {
+  flex-basis: 50%;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.header-logo-container span:first-of-type {
+  color: var(--yellow-1);
+}
+.header-logo-container span:last-of-type {
+  color: var(--green-1);
+}
+
+.header-user-info-container {
+  flex-basis: 30%;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 0.8rem;
+}
+
+.sidebar-content {
+  margin: 0 auto;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 90%;
+}
+.sidebar-content.hide {
+  /* display: none; */
+}
+.search-box {
+  background-color: var(--gray-4);
+  border-radius: 100rem;
+  padding-right: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.search-box label {
+  width: 100%;
+}
+.search-box input {
+  all: unset;
+  padding: 0.5rem 0.5rem;
+  color: var(--gray-1);
+  font-size: 0.9rem;
+  font-weight: 400;
+  width: 95%;
+}
+
+.sidebar-toggle-theme {
+  margin: 0 auto;
+  border: 1px solid var(--gray-2);
+  border-radius: 100rem;
+  padding: 0.2rem 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  min-width: 50%;
+}
+.sidebar-navbar-container .nav-list-item {
+  margin: 0 auto;
+  margin-bottom: 0.5rem;
+  text-align: center;
 }

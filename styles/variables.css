@@ -1,7 +1,27 @@
-:root{
-  --green : green ;
---main-color : var(--green);
+:root {
+  /* colors */
+  --white: #ffffff;
+  --black-1: #000000;
+
+  --gray-1: #323232;
+  --gray-2: #c4c4c4;
+  --gray-3: #c2c2c2;
+  --gray-4: #e5e5e5;
+  --gray-5: #f7f7f7;
+
+  --yellow-1: #fbd103;
+  --yellow-1-opacity: hsla(50, 98%, 50%, 0.8);
+  --yellow-2: #ff7d1e;
+
+  --green-1: #004743;
+  --green-2: #78c750;
+
+  --main-color: var(--white);
+  --section-100-color: var(--gray-5);
+
+  /* fonts */
+  --main-font-color: var(--gray-1);
 }
-body[data-theme='dark']{
-  --main-color : orange;
+body[data-theme="dark"] {
+  --main-color: orange;
 }
