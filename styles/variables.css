@@ -21,6 +21,7 @@
 
   /* fonts */
   --main-font-color: var(--gray-1);
+  --main-font-hover: var(--green-1);
 }
 body[data-theme="dark"] {
   --main-color: orange;

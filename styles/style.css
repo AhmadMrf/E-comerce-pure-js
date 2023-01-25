@@ -6,10 +6,18 @@
 1200-
 */
 
-/* global styles */
+/********** global styles **********/
+/***********************************/
+main {
+  width: 100%;
+  color: var(--main-font-color);
+  background-color: var(--main-color);
+}
+
 .center {
   padding: 0.5rem 0.5rem;
 }
+
 .badge {
   display: inline-flex;
   justify-content: center;
@@ -24,6 +32,7 @@
   top: -40%;
   left: 40%;
 }
+
 .with-badge {
   position: relative;
 }
@@ -34,22 +43,15 @@
   display: inline-block;
   width: 1.5em;
   height: 1.5em;
-  /* border: 1px solid red; */
 }
-.hide {
-  display: none;
-}
-.show {
-}
+
 .border {
   border: 1px solid red;
 }
-/* main styles */
-main {
-  width: 100%;
-  color: var(--main-font-color);
-  background-color: var(--main-color);
-}
+
+/************ header styles **********/
+/*************************************/
+
 header {
   background-color: var(--section-100-color);
   border-bottom: 1px solid var(--gray-4);
@@ -87,6 +89,20 @@ header {
   gap: 0.8rem;
 }
 
+/* toggle menu icon */
+.header-menu-container .menu > svg:last-child {
+  display: none;
+}
+.header-menu-container .menu.active > svg:first-child {
+  display: none;
+}
+.header-menu-container .menu.active > svg:last-child {
+  display: initial;
+}
+/* toggle menu icon end */
+
+/************ sidebar styles ***************/
+
 .sidebar-content {
   margin: 0 auto;
   margin-top: 1rem;
@@ -107,6 +123,7 @@ header {
 }
 
 .search-box label {
+  cursor: text;
   width: 100%;
 }
 .search-box input {
@@ -129,8 +146,37 @@ header {
   gap: 0.4rem;
   min-width: 50%;
 }
+
+/* toggle theme icon */
+.sidebar-toggle-theme .theme > svg:last-child {
+  display: none;
+}
+.sidebar-toggle-theme.active .theme > svg:first-child {
+  display: none;
+}
+.sidebar-toggle-theme.active .theme > svg:last-child {
+  display: initial;
+}
+
+.sidebar-toggle-theme .title::before {
+  content: "light";
+}
+.sidebar-toggle-theme.active .title::before {
+  content: "dark";
+}
+/* toggle theme icon end */
+
+.sidebar-toggle-theme:hover {
+  color: var(--green-1);
+}
+.sidebar-navbar-container {
+  margin-top: 0.4rem;
+}
 .sidebar-navbar-container .nav-list-item {
   margin: 0 auto;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.7rem;
   text-align: center;
+}
+.sidebar-navbar-container .nav-list-item:hover {
+  color: var(--main-font-hover);
 }
