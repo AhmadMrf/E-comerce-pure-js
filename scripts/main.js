@@ -11,7 +11,13 @@ const toggleIcon = (e) => {
   e.currentTarget.classList.toggle("active");
 };
 
+const toggleSideBar = (e) => {
+  aside.classList.toggle("active");
+};
 // ----------  listeners  ----------
 
-toggleMenuIcon.addEventListener("click", toggleIcon);
+toggleMenuIcon.addEventListener("click", (e) => {
+  toggleIcon(e);
+  toggleSideBar(e);
+});
 toggleThemeIcon.addEventListener("click", toggleIcon);
