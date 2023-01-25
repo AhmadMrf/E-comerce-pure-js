@@ -21,6 +21,9 @@
 
   <body data-theme="light">
     <main>
+      <!--******** header tags *********-->
+      <!--******************************-->
+
       <header class="center">
         <section class="header-content">
           <div class="header-logo-container">
@@ -46,40 +49,44 @@
                 />
               </label>
               <svg class="svg button">
-                <use href="assets/svg-icon.svg#icon-Search"></use>
+                <use href="assets/icons/svg-icon.svg#icon-Search"></use>
               </svg>
             </div>
           </div>
           <div class="header-user-info-container">
             <span class="user-info-icon-container button with-badge cart">
               <svg class="svg">
-                <use href="assets/svg-icon.svg#icon-Buy"></use>
+                <use href="assets/icons/svg-icon.svg#icon-Buy"></use>
               </svg>
               <span class="badge cart-badge">35</span>
             </span>
             <span class="user-info-icon-container button with-badge favorite">
               <svg class="svg">
-                <use href="assets/svg-icon.svg#icon-Heart"></use>
+                <use href="assets/icons/svg-icon.svg#icon-Heart"></use>
               </svg>
               <span class="badge favorite-badge">45</span>
             </span>
             <span class="user-info-icon-container button user">
               <svg class="svg">
-                <use href="assets/svg-icon.svg#icon-Add-user"></use>
+                <use href="assets/icons/svg-icon.svg#icon-Add-user"></use>
               </svg>
             </span>
           </div>
           <div class="header-menu-container">
+            <!-- add class 'active' to toggle icon -->
             <span class="menu button">
-              <svg class="svg show">
-                <use href="assets/svg-icon.svg#icon-Menu"></use>
+              <svg class="svg">
+                <use href="assets/icons/svg-icon.svg#icon-Menu"></use>
               </svg>
-              <svg class="svg hide">
-                <use href="assets/svg-icon.svg#icon-Close"></use>
+              <svg class="svg">
+                <use href="assets/icons/svg-icon.svg#icon-Close"></use>
               </svg>
             </span>
           </div>
         </section>
+
+        <!--********* sidebar tags*********-->
+
         <aside class="sidebar-content hide">
           <div class="sidebar-search-container">
             <div class="search-box">
@@ -92,18 +99,19 @@
                 />
               </label>
               <svg class="svg button">
-                <use href="assets/svg-icon.svg#icon-Search"></use>
+                <use href="assets/icons/svg-icon.svg#icon-Search"></use>
               </svg>
             </div>
           </div>
-          <div class="sidebar-toggle-theme button">
-            <span><span>Dark</span> theme</span>
-            <span class="icons">
-              <svg class="svg hide">
-                <use href="assets/svg-icon.svg#icon-Light"></use>
+          <!-- add class 'active' to toggle icon -->
+          <div class="sidebar-toggle-theme active button">
+            <span class="title"> theme</span>
+            <span class="theme">
+              <svg class="svg">
+                <use href="assets/icons/svg-icon.svg#icon-Light"></use>
               </svg>
-              <svg class="svg show">
-                <use href="assets/svg-icon.svg#icon-Dark"></use>
+              <svg class="svg">
+                <use href="assets/icons/svg-icon.svg#icon-Dark"></use>
               </svg>
             </span>
           </div>
