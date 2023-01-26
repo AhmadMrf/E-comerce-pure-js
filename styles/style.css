@@ -8,10 +8,32 @@
 
 /********** global styles **********/
 /***********************************/
+body {
+  position: relative;
+  overflow-x: hidden;
+  background-color: var(--main-light-color);
+}
+body::before {
+  content: "";
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-color: var(--main-dark-color);
+  z-index: -100;
+  position: fixed;
+  top: -55px;
+  left: -55px;
+  border-radius: 50%;
+  transform: scale(60, 60);
+  transition: all 0.7s, background-color 0.7s;
+}
+body[data-theme="light"]::before {
+  transform: scale(1);
+}
+
 main {
   width: 100%;
   color: var(--main-font-color);
-  background-color: var(--main-color);
 }
 
 .center {
@@ -31,6 +53,7 @@ main {
   position: absolute;
   top: -40%;
   left: 40%;
+  color: var(--gray-1);
 }
 
 .with-badge {
@@ -44,6 +67,7 @@ main {
   width: 1.5em;
   height: 1.5em;
   user-select: none;
+  /* border: 1px solid red; */
 }
 
 .border {
@@ -55,21 +79,29 @@ main {
 
 header {
   background-color: var(--section-100-color);
-  border-bottom: 1px solid var(--gray-4);
+  /* border-bottom: 1px solid var(--main-color); */
   min-height: 5rem;
+  transition: background-color 0.7s;
 }
 .header-content {
   padding: 1rem 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 0 auto;
+  width: 95%;
 }
 
 .header-navbar-container {
   display: none;
 }
 .header-search-container {
-  display: none;
+  overflow: hidden;
+  display: flex;
+  width: 0%;
+  opacity: 0;
+  flex-basis: 0%;
+  transition: all 0.3s;
 }
 
 .header-logo-container {
@@ -87,18 +119,19 @@ header {
 .header-user-info-container {
   flex-basis: 30%;
   display: flex;
+  align-items: center;
   justify-content: space-evenly;
   gap: 0.8rem;
 }
 
 /* toggle menu icon */
-.header-menu-container .menu > svg:last-child {
+.header-menu-container .menu .close {
   display: none;
 }
-.header-menu-container .menu.active > svg:first-child {
+.header-menu-container .menu.active .open {
   display: none;
 }
-.header-menu-container .menu.active > svg:last-child {
+.header-menu-container .menu.active .close {
   display: initial;
 }
 /* toggle menu icon end */
@@ -106,6 +139,7 @@ header {
 /************ sidebar styles ***************/
 
 .sidebar-content {
+  overflow: hidden;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -118,17 +152,19 @@ header {
 .sidebar-content.active {
   margin-top: 1rem;
   display: flex;
-  gap: 0.8rem;
+  gap: 1rem;
   height: calc(100vh - 6rem);
   opacity: 1;
 }
 
 .search-box {
-  background-color: var(--gray-4);
+  caret-color: var(--main-font-color);
+  background-color: var(--search-box-color);
   border-radius: 100rem;
   padding-right: 0.5rem;
   display: flex;
   align-items: center;
+  transition: background-color 0.7s;
 }
 
 .search-box label {
@@ -137,14 +173,15 @@ header {
 }
 .search-box input {
   all: unset;
-  padding: 0.5rem 0.5rem;
+  padding: 0.7rem 0.5rem;
   color: var(--gray-1);
   font-size: 0.9rem;
   font-weight: 400;
   width: 95%;
 }
 
-.sidebar-toggle-theme {
+.sidebar-toggle-theme,
+.header-toggle-theme {
   margin: 0 auto;
   border: 1px solid var(--gray-2);
   border-radius: 100rem;
@@ -156,37 +193,126 @@ header {
   min-width: 50%;
   user-select: none;
 }
-
-/* toggle theme icon */
-.sidebar-toggle-theme .theme > svg:last-child {
+.header-toggle-theme {
   display: none;
 }
-.sidebar-toggle-theme.active .theme > svg:first-child {
+
+/* toggle theme icon and title */
+body[data-theme="dark"] .sidebar-toggle-theme .dark {
   display: none;
 }
-.sidebar-toggle-theme.active .theme > svg:last-child {
-  display: initial;
+body[data-theme="light"] .sidebar-toggle-theme .light {
+  display: none;
+}
+body[data-theme="dark"] .header-toggle-theme .dark {
+  display: none;
+}
+body[data-theme="light"] .header-toggle-theme .light {
+  display: none;
 }
 
-.sidebar-toggle-theme .title::before {
-  content: "light";
-}
-.sidebar-toggle-theme.active .title::before {
+body[data-theme="light"] .sidebar-toggle-theme .title::before {
   content: "dark";
 }
-/* toggle theme icon end */
+body[data-theme="dark"] .sidebar-toggle-theme .title::before {
+  content: "light";
+}
+/* toggle theme icon and title end */
 
 .sidebar-toggle-theme:hover {
-  color: var(--green-1);
+  color: var(--main-font-hover);
 }
 .sidebar-navbar-container {
   margin-top: 0.4rem;
 }
 .sidebar-navbar-container .nav-list-item {
   margin: 0 auto;
-  margin-bottom: 0.7rem;
+  margin-bottom: 1rem;
   text-align: center;
+  font-size: 1.25rem;
 }
-.sidebar-navbar-container .nav-list-item:hover {
+.sidebar-navbar-container .nav-list-item:hover,
+.header-navbar-container .nav-list-item:hover {
   color: var(--main-font-hover);
+}
+/**************************************/
+/************ medium size *************/
+/**************************************/
+@media screen and (min-width: 769px) {
+  .header-logo-container {
+    flex-basis: content;
+  }
+  .header-search-container {
+    opacity: 1;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-basis: 50%;
+  }
+  .sidebar-search-container {
+    display: none;
+  }
+}
+/*************************************/
+/************ large size *************/
+/*************************************/
+@media screen and (min-width: 1024px) {
+  body::before {
+    transform: scale(130, 110);
+  }
+
+  /*********** header ***********/
+  /******************************/
+  .header-content {
+    width: 90%;
+  }
+  .header-logo-container {
+    flex-basis: content;
+  }
+  .header-navbar-container {
+    display: flex;
+    flex-basis: 45%;
+  }
+  .header-nav-list {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .header-nav-list {
+    display: flex;
+    font-size: 1.25rem;
+  }
+  .header-search-container {
+    display: flex;
+    flex-basis: 25%;
+  }
+  .header-user-info-container {
+    flex-basis: 20%;
+    gap: 0.4rem;
+  }
+  .header-toggle-theme {
+    display: flex;
+    border: none;
+    margin: 0;
+    padding: 0.2rem;
+    min-width: initial;
+  }
+
+  .header-menu-container {
+    display: none;
+  }
+
+  .sidebar-content {
+    display: none !important;
+  }
+}
+
+/*************************************/
+/************ extra large size *************/
+/*************************************/
+@media screen and (min-width: 2500px) {
+  body::before {
+    transform: scale(250, 190);
+  }
 }
