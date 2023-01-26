@@ -24,8 +24,8 @@ body::before {
   top: -55px;
   left: -55px;
   border-radius: 50%;
-  transform: scale(60, 60);
-  transition: all 0.7s, background-color 0.7s;
+  transform: scale(70, 90);
+  transition: transform 0.7s;
 }
 body[data-theme="light"]::before {
   transform: scale(1);
