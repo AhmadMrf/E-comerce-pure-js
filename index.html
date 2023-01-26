@@ -31,11 +31,11 @@
           </div>
           <nav class="header-navbar-container">
             <ul class="header-nav-list">
-              <li class="nav-list-item">Men</li>
-              <li class="nav-list-item">Women</li>
-              <li class="nav-list-item">Kids</li>
-              <li class="nav-list-item new">Winter</li>
-              <li class="nav-list-item">Lifestyle</li>
+              <li class="nav-list-item"><a href="#">Men</a></li>
+              <li class="nav-list-item"><a href="#">Women</a></li>
+              <li class="nav-list-item"><a href="#">Kids</a></li>
+              <li class="nav-list-item new"><a href="#">Winter</a></li>
+              <li class="nav-list-item"><a href="#">Lifestyle</a></li>
             </ul>
           </nav>
           <div class="header-search-container">
@@ -49,37 +49,48 @@
                 />
               </label>
               <svg class="svg button">
-                <use href="assets/icons/svg-icon.svg#icon-Search"></use>
+                <use href="assets/icons/svg-icons.svg#icon-Search"></use>
               </svg>
             </div>
           </div>
           <div class="header-user-info-container">
-            <span class="user-info-icon-container button with-badge cart">
+            <div class="toggle-theme header-toggle-theme button">
+              <span class="theme">
+                <svg class="svg light">
+                  <use href="assets/icons/svg-icons.svg#icon-Light"></use>
+                </svg>
+                <svg class="svg dark">
+                  <use href="assets/icons/svg-icons.svg#icon-Dark"></use>
+                </svg>
+              </span>
+            </div>
+
+            <span class="user-info-icons-container button with-badge cart">
               <svg class="svg">
-                <use href="assets/icons/svg-icon.svg#icon-Buy"></use>
+                <use href="assets/icons/svg-icons.svg#icon-Buy"></use>
               </svg>
               <span class="badge cart-badge">35</span>
             </span>
-            <span class="user-info-icon-container button with-badge favorite">
+            <span class="user-info-icons-container button with-badge favorite">
               <svg class="svg">
-                <use href="assets/icons/svg-icon.svg#icon-Heart"></use>
+                <use href="assets/icons/svg-icons.svg#icon-Heart"></use>
               </svg>
               <span class="badge favorite-badge">45</span>
             </span>
-            <span class="user-info-icon-container button user">
+            <span class="user-info-icons-container button user">
               <svg class="svg">
-                <use href="assets/icons/svg-icon.svg#icon-Add-user"></use>
+                <use href="assets/icons/svg-icons.svg#icon-Add-user"></use>
               </svg>
             </span>
           </div>
           <div class="header-menu-container">
             <!-- add class 'active' to toggle icon -->
             <span class="menu button">
-              <svg class="svg">
-                <use href="assets/icons/svg-icon.svg#icon-Menu"></use>
+              <svg class="svg open">
+                <use href="assets/icons/svg-icons.svg#icon-Menu"></use>
               </svg>
-              <svg class="svg">
-                <use href="assets/icons/svg-icon.svg#icon-Close"></use>
+              <svg class="svg close">
+                <use href="assets/icons/svg-icons.svg#icon-Close"></use>
               </svg>
             </span>
           </div>
@@ -99,19 +110,18 @@
                 />
               </label>
               <svg class="svg button">
-                <use href="assets/icons/svg-icon.svg#icon-Search"></use>
+                <use href="assets/icons/svg-icons.svg#icon-Search"></use>
               </svg>
             </div>
           </div>
-          <!-- add class 'active' to toggle icon -->
-          <div class="sidebar-toggle-theme active button">
+          <div class="toggle-theme sidebar-toggle-theme button">
             <span class="title"> theme</span>
             <span class="theme">
-              <svg class="svg">
-                <use href="assets/icons/svg-icon.svg#icon-Light"></use>
+              <svg class="svg light">
+                <use href="assets/icons/svg-icons.svg#icon-Light"></use>
               </svg>
-              <svg class="svg">
-                <use href="assets/icons/svg-icon.svg#icon-Dark"></use>
+              <svg class="svg dark">
+                <use href="assets/icons/svg-icons.svg#icon-Dark"></use>
               </svg>
             </span>
           </div>
