@@ -203,7 +203,9 @@ sup {
 img {
   border-style: none;
 }
-
+button{
+  border: none;
+}
 button,
 input,
 optgroup,
@@ -254,7 +256,7 @@ fieldset {
   padding: 0.35em 0.75em 0.625em;
 }
 
-/ legend {
+ legend {
   box-sizing: border-box; /* 1 */
   color: inherit; /* 2 */
   display: table; /* 1 */
