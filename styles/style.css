@@ -76,6 +76,21 @@ main {
   letter-spacing: 2px;
   text-transform: uppercase;
 }
+
+.button-dark {
+  color: var(--white);
+  background-color: var(--green-1);
+  font-weight: 500;
+  padding: 0.6rem 1.5rem;
+  border-radius: 1000px;
+}
+.button-light {
+  color: var(--main-color);
+  background-color: var(--white);
+  font-weight: 500;
+  padding: 0.6rem 1.5rem;
+  border-radius: 1000px;
+}
 .border {
   border: 1px solid red;
 }
@@ -298,6 +313,23 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
   padding: 0.6rem 1.5rem;
   border-radius: 1000px;
   background-color: var(--green-1);
+}
+
+.futures-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.futures-container .future {
+  flex-basis: 50%;
+  display: flex;
+  gap: 0.5rem;
+}
+.future .info {
+  display: flex;
+  flex-direction: column;
+}
+.future .future-details {
+  color: var(--secondary-color);
 }
 
 /**************************************/
