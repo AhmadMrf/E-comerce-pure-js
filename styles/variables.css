@@ -20,10 +20,21 @@
   --main-dark-color: hsl(0, 0%, 20%);
   --main-light-color: hsl(0, 0%, 100%);
   --main-color: var(--gray-1);
-  --secondary-color : var(--gray-3);
+  --secondary-color: var(--gray-3);
   --section-100-color: var(--gray-5);
   --search-box-color: var(--main-light-color);
 
+  --yellow-radial: radial-gradient(
+    circle,
+    hsla(50, 98%, 50%, 1) 0%,
+    hsla(50, 98%, 50%, 0.7) 100%
+  );
+
+  --blue-radial: radial-gradient(
+    circle,
+    hsla(194, 72%, 62%, 1) 0%,
+    hsla(194, 72%, 62%, 0.7) 100%
+  );
   /* fonts */
   --main-font-color: var(--gray-2);
   --main-font-hover: var(--gray-1);
@@ -49,7 +60,7 @@ body[data-theme="dark"] {
   --green-2: hsl(100, 52%, 55%);
 
   --main-color: var(--gray-7);
-  --secondary-color : var(--gray-8);
+  --secondary-color: var(--gray-8);
   --section-100-color: var(--gray-6);
   --search-box-color: var(--main-dark-color);
 

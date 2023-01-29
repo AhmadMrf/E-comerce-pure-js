@@ -35,7 +35,10 @@ main {
   width: 100%;
   color: var(--main-font-color);
 }
-
+.center {
+  width: 95%;
+  margin: 0 auto;
+}
 .badge {
   display: inline-flex;
   justify-content: center;
@@ -350,6 +353,17 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
   font-size: 0.8rem;
 }
 
+/************ collections styles **********/
+/******************************************/
+.collection.woman {
+  background-color: var(--blue-radial);
+}
+.collection.man {
+  background-color: var(--yellow-radial);
+}
+.collection.kids {
+  background-color: var(--white);
+}
 /**************************************/
 /************ medium size *************/
 /**************************************/
