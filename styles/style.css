@@ -36,10 +36,6 @@ main {
   color: var(--main-font-color);
 }
 
-.center {
-  padding: 0.5rem 0.5rem;
-}
-
 .badge {
   display: inline-flex;
   justify-content: center;
@@ -263,16 +259,20 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
 .top-trending-container {
   background-color: var(--section-100-color);
   transition: all 0.5s;
+  padding-bottom: 1.5rem;
+  padding-top: 0.5rem;
 }
 .top-trending-content {
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
   gap: calc(3.5rem + 5vw);
+  width: 95%;
+  margin: 0 auto;
 }
 .top-trending-images {
   position: relative;
-  width: 60%;
+  width: calc(60% - 15vw);
   aspect-ratio: 1;
 }
 
@@ -302,7 +302,7 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
   color: var(--secondary-color);
 }
 .top-trending-info h3 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 700;
   text-align: center;
 }
@@ -315,21 +315,39 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
   background-color: var(--green-1);
 }
 
+/************ futures styles **********/
+/**************************************/
+
 .futures-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1.5rem 0;
 }
 .futures-container .future {
-  flex-basis: 50%;
+  flex-basis: calc(50% - 5vw);
   display: flex;
   gap: 0.5rem;
+  padding-bottom: 1rem;
+}
+.future .icon {
+  display: inline-flex;
+  align-items: center;
+}
+.future .icon svg {
+  width: calc(2em + 1vw);
+  height: calc(2em + 1vw);
 }
 .future .info {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  gap: 0.3rem;
 }
 .future .future-details {
   color: var(--secondary-color);
+  font-size: 0.8rem;
 }
 
 /**************************************/
@@ -338,7 +356,6 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
 @media screen and (min-width: 769px) {
   /*********** header ***********/
   /******************************/
-
   .header-logo-container {
     flex-basis: content;
   }
@@ -355,8 +372,33 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
 
   /*********** top-trending ***********/
   /************************************/
+  .top-trending-container {
+    padding-bottom: calc(2.5rem + 2vw);
+  }
   .top-trending-content {
     flex-direction: row;
+    justify-content: flex-start;
+  }
+  .top-trending-images {
+    width: calc(50% - 10vw);
+  }
+  .top-trending-info {
+    gap: 1.5rem;
+    width: 45%;
+  }
+  .top-trending-info h3 {
+    font-size: 2.5rem;
+  }
+
+  /************ futures styles **********/
+  /**************************************/
+  .futures-container {
+    flex-wrap: nowrap;
+    padding: calc(1.5rem + 2vw) 0;
+  }
+  .future {
+    justify-content: center;
+    padding: 1rem 0;
   }
 }
 /*************************************/
@@ -367,11 +409,12 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
     transform: scale(130, 110);
   }
 
+  .center {
+    max-width: 100rem;
+    margin: 0 auto;
+  }
   /*********** header ***********/
   /******************************/
-  .header-content {
-    width: 90%;
-  }
   .header-logo-container {
     flex-basis: content;
   }
@@ -407,6 +450,19 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
 
   .sidebar-content {
     display: none !important;
+  }
+
+  /********* top trending ***********/
+  /**********************************/
+  .top-trending-info h3 {
+    font-size: 3rem;
+  }
+
+  /************ futures styles **********/
+  /**************************************/
+  .future .icon svg {
+    width: calc(2em + 2vw);
+    height: calc(2em + 2vw);
   }
 }
 
