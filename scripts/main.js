@@ -1,3 +1,4 @@
+import Swiper from "../assets/swiper/swiper.js";
 // ----------  html tags ----------
 const body = document.body;
 
@@ -5,7 +6,6 @@ const aside = document.querySelector(".sidebar-content");
 
 const toggleMenuIcon = document.querySelector(".menu");
 const toggleThemeIcon = document.querySelectorAll(".toggle-theme");
-console.log(toggleThemeIcon);
 // ----------  functions ----------
 
 const toggleIcon = (e) => {
@@ -30,7 +30,42 @@ const initialTheme = () => {
   }
 };
 initialTheme();
-
+// ---------- swiper  -------------
+const spaceBetween = 25;
+const swiperBreakPoints = {
+  320: {
+    slidesPerView: 1,
+    spaceBetween,
+  },
+  769: {
+    slidesPerView: 2,
+    spaceBetween,
+  },
+  1025: {
+    slidesPerView: 3,
+    spaceBetween,
+  },
+}
+const new_product_swiper = new Swiper(".new-products-container .products-wrapper", {
+  loop: true,
+  slidesPerView: 1,
+  spaceBetween: 16,
+  navigation: {
+    nextEl: ".new-products-container .key.right",
+    prevEl: ".new-products-container .key.left",
+  },
+  breakpoints: swiperBreakPoints,
+});
+const trends_swiper = new Swiper(".trends-container .products-wrapper", {
+  loop: true,
+  slidesPerView: 1,
+  spaceBetween: 16,
+  navigation: {
+    nextEl: ".trends-container .key.right",
+    prevEl: ".trends-container .key.left",
+  },
+  breakpoints: swiperBreakPoints,
+});
 // ----------  listeners  ----------
 
 toggleMenuIcon.addEventListener("click", (e) => {

@@ -37,7 +37,7 @@ main {
 }
 .center {
   width: 95%;
-  margin: 0 auto;
+  margin: 1rem auto;
 }
 .badge {
   display: inline-flex;
@@ -68,6 +68,19 @@ main {
   user-select: none;
   /* border: 1px solid red; */
 }
+
+.svg.star-full {
+  --star-fill: var(--yellow-1);
+  stroke: none;
+}
+.svg.star-half {
+  --star-fill: var(--yellow-1);
+  --star-opacity: 0.2;
+}
+.svg.star-empty {
+  --star-fill: var(--yellow-1);
+  opacity: 0.2;
+}
 .title {
   text-transform: capitalize;
 }
@@ -82,6 +95,7 @@ main {
   font-weight: 500;
   padding: 0.6rem 1.5rem;
   border-radius: 1000px;
+  width: max-content;
 }
 .button-light {
   color: var(--main-color);
@@ -89,6 +103,18 @@ main {
   font-weight: 500;
   padding: 0.6rem 1.5rem;
   border-radius: 1000px;
+  width: max-content;
+}
+h3.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  padding-bottom: 1rem;
+}
+p.descriptoin {
+  text-align: center;
+  color: var(--secondary-color);
+  padding-bottom: 1rem;
 }
 .border {
   border: 1px solid red;
@@ -309,14 +335,6 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
   font-weight: 700;
   text-align: center;
 }
-.top-trending-info button {
-  color: var(--white);
-  font-weight: 500;
-  max-width: max-content;
-  padding: 0.6rem 1.5rem;
-  border-radius: 1000px;
-  background-color: var(--green-1);
-}
 
 /************ futures styles **********/
 /**************************************/
@@ -355,31 +373,40 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
 
 /************ collections styles **********/
 /******************************************/
-.collection{
+.collection {
+  overflow: hidden;
   display: flex;
-  padding:0 1rem;
-  margin-bottom: 1rem;
+  justify-content: center;
+  padding-left: 1rem;
+  margin-bottom: 1.2rem;
   border-radius: 1.2rem;
 }
-.collection-info{
+.collection-info {
   flex-basis: 45%;
-  padding: 1rem;
+  padding: 1rem 0 1rem 0;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  justify-content: center;
+  gap: 1.5rem;
 }
-.collection-info .info-title{
+.collection-info .info-title {
   font-size: 2rem;
   font-weight: 700;
 }
-.collection-info .info-subtitle .discount{
+.collection-info .info-subtitle .discount {
   color: var(--main-color);
 }
-.collection-image-container{
+.collection-image-container {
   padding-left: 1rem;
 }
-.collection-image-container img{
+.collection-image-container img {
+  vertical-align: top;
+  width: 100%;
+  height: 100%;
+  max-height: 17rem;
   object-fit: contain;
+  object-position: bottom;
+  transition: max-height 0.4s;
 }
 .collection.woman {
   background-image: var(--blue-radial);
@@ -391,10 +418,244 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
 }
 .collection.kids {
   background-color: var(--gray-opacity);
+  position: relative;
   color: var(--green-1);
 }
-.collection.kids .info-subtitle{
+.collection.kids::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 0;
+  z-index: -1;
+  display: block;
+  opacity: 0.5;
+  background-image: url(../assets/images/Pattern.png);
+  background-size: cover;
 }
+.collection.kids .info-subtitle {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+}
+.collection.kids .info-subtitle span:first-of-type {
+  font-size: min(2.7rem, 1rem + 3vw);
+  font-weight: 700;
+  color: var(--black-1);
+}
+.collection.kids .info-subtitle {
+  width: min(20rem, 100%);
+  background-color: var(--yellow-1);
+  clip-path: polygon(0% 0%, 80% 10%, 90% 90%, 0% 100%);
+}
+
+/************ collections styles **********/
+/************** trends styles *************/
+/******************************************/
+.new-products-container,
+.trends-container {
+  padding-top: 1.5rem;
+  display: grid;
+  gap: 0.7rem;
+  justify-items: center;
+  margin: 0 auto;
+}
+
+.filters-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+}
+.filters-wrapper button {
+  background-color: inherit;
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 100rem;
+  font-size: 0.8rem;
+  padding: 0.5rem 0.8rem;
+}
+.filters-wrapper button.active {
+  background-color: var(--yellow-1);
+  border: none;
+  color: var(--main-color);
+}
+.products-wrapper {
+  width: 70%;
+}
+.products-wrapper .product {
+  overflow: hidden;
+  padding-bottom: 1rem;
+  border-radius: 1.2rem;
+}
+.products-wrapper .product .content {
+  position: relative;
+}
+.products-wrapper .product .content img {
+  width: 100%;
+  object-fit: cover;
+}
+.products-wrapper .product .content .buttons {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.products-wrapper .product .content .buttons button {
+  width: 2.5rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: var(--white);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 0.8rem;
+  --gray-2 : var(--black-1)
+}
+.products-wrapper .product .content .tags {
+  top: 1rem;
+  left: 1rem;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.products-wrapper .product .content .tags .tag {
+  width: 3rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: var(--green-2);
+  display: grid;
+  place-items: center;
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+.tags .tag.discount {
+  background-color: var(--yellow-2) !important;
+}
+
+.arrow-key-wrapper {
+  margin-bottom: 2rem;
+  display: flex;
+  padding-top: 0.5rem;
+  align-items: center;
+  gap: 2rem;
+  font-size: 2rem;
+}
+
+.products-wrapper .product .info .details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  padding: 0.7rem 0.2rem;
+}
+.products-wrapper .product .info .details .category {
+  font-size: 1rem;
+  color: var(--secondary-color);
+}
+.products-wrapper .product .info .title {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.products-wrapper .product .info .price {
+  display: flex;
+  gap: 1rem;
+  padding: 0.7rem 0;
+}
+.price .current-price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--green-2);
+}
+.price .base-price {
+  color: var(--secondary-color);
+  text-decoration: line-through;
+}
+
+/************** brands styles *************/
+/******************************************/
+.brands-container{
+  padding: 2rem 2.5rem;
+  color: var(--white);
+  border-radius: 1.2rem;
+  background-color: var(--green-1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.brands-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  
+}
+.brands-wrapper li{
+  flex: 0 0 calc(6rem + 3vw);
+  aspect-ratio: 1.7;
+}
+.brands-wrapper li a{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: .7rem;
+  padding: .5rem .7rem;
+  width: 100%;
+  height: 100%;
+}
+.brands-wrapper li a img{
+  width: 100%;
+}
+
+
+/************** reviews styles *************/
+/******************************************/
+.reviews-container{
+  background-color: var(--section-100-color);
+  padding: 2rem ;
+}
+.review-wrapper{
+  clip-path: polygon(0 0, 0 100%,90% 100%, 100% 0%);
+  background-color: var(--search-box-color);
+  padding: 1rem;
+  padding-right: 10%;
+}
+.review-info{
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.review-info .image-wrapper{
+  width: 40%;
+  min-width: 8rem;
+  aspect-ratio: 1;
+}
+.review-info img{
+  width: 100%;
+  object-fit: contain;
+}
+.review-info-content{
+  display: flex;
+  flex-direction: column;
+}
+.review-info-content p{
+  color: var(--main-color);
+}
+.review-info-content span{
+  font-weight: 700;
+  padding-top: 1rem;
+}
+.review-wrapper .arrow-key-wrapper{
+  margin: 0;
+  font-size: 1.5rem;
+  padding-right: 1rem;
+  justify-content: flex-end;
+}
+
 /**************************************/
 /************ medium size *************/
 /**************************************/
@@ -444,6 +705,22 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
   .future {
     justify-content: center;
     padding: 1rem 0;
+  }
+
+  /************ collections styles **********/
+  /******************************************/
+  .collections-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+  }
+  .collection {
+    flex: 0 1 calc(50% - 0.6rem);
+    margin: 0;
+  }
+  .collection.full {
+    flex: 1 1 100%;
   }
 }
 /*************************************/
@@ -508,6 +785,15 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
   .future .icon svg {
     width: calc(2em + 2vw);
     height: calc(2em + 2vw);
+  }
+
+  /************ collections styles **********/
+  /******************************************/
+  .collection-info .info-title {
+    font-size: 2.5rem;
+  }
+  .collection.full .collection-image-container img {
+    max-height: 23rem;
   }
 }
 

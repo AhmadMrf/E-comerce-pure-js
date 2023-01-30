@@ -7,16 +7,18 @@
 
     <title>E-Commerce</title>
 
+    <link rel="stylesheet" href="./assets/swiper/swiper.css" />
+    <link rel="stylesheet" href="./styles/variables.css" />
+    <link rel="stylesheet" href="./styles/normalize-reset.css" />
+    <link rel="stylesheet" href="./styles/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles/variables.css" />
-    <link rel="stylesheet" href="./styles/normalize-reset.css" />
-    <link rel="stylesheet" href="./styles/style.css" />
-    <script defer src="./scripts/main.js"></script>
+    <script type="module" defer src="./assets/swiper/swiper.js"></script>
+    <script type="module" defer src="./scripts/main.js"></script>
   </head>
 
   <body data-theme="light">
@@ -237,10 +239,10 @@
         <div class="collection kids full">
           <div class="collection-info">
             <span class="info-title title">baby & kids fashion</span>
-            <span class="info-subtitle">
+            <div class="info-subtitle">
               <span>SALE!</span>
               <span>04 to 07 Febuary</span>
-            </span>
+            </div>
             <button class="button button-dark" type="button">shop now</button>
           </div>
           <div class="collection-image-container">
@@ -253,33 +255,229 @@
       <!--************************************-->
       <section class="center new-products-container">
         <h3 class="title">new arrivals</h3>
-        <span class="descriptoin">
-          ckeck out most promising product bought by our boyers</span
-        >
+        <p class="descriptoin">
+          ckeck out most promising product bought by our boyers
+        </p>
         <div class="filters-wrapper">
-          <button type="button">All</button>
+          <button type="button" class="active">All</button>
           <button type="button">Men</button>
           <button type="button">Women</button>
           <button type="button">Kids</button>
         </div>
-        <div class="products-wrapper">
-          <div class="wrapper">
-            <article class="product">
+        <div class="swiper products-wrapper">
+          <div class="swiper-wrapper">
+            <article class="product swiper-slide">
               <div class="content">
-                <img src="#" alt="product 1" />
+                <img src="./assets/images/Image6.png" alt="product 1" />
                 <div class="tags">
-                  <span class="tag-discount">40%</span>
+                  <span class="tag discount">40%</span>
+                  <span class="tag new">new!</span>
                 </div>
                 <div class="buttons">
-                  <button class="buttons-like" type="button">like</button>
-                  <button class="buttons-buy" type="button">buy</button>
-                  <button class="buttons-images" type="button">images</button>
+                  <button class="buttons-like" type="button">
+                    <svg class="svg">
+                      <use href="./assets/icons/svg-icons.svg#icon-Heart"></use>
+                    </svg>
+                  </button>
+                  <button class="buttons-buy" type="button">
+                    <svg class="svg">
+                      <use href="./assets/icons/svg-icons.svg#icon-Bag"></use>
+                    </svg>
+                  </button>
+                  <button class="buttons-images" type="button">
+                    <svg class="svg">
+                      <use
+                        href="./assets/icons/svg-icons.svg#icon-Gallery"
+                      ></use>
+                    </svg>
+                  </button>
                 </div>
               </div>
               <div class="info">
                 <div class="details">
                   <span class="category">kids</span>
-                  <div class="stars">5 star</div>
+                  <div class="stars">
+                    <svg class="svg star-full">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-full">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-half">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-empty">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-empty">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                  </div>
+                </div>
+                <span class="title">yellow t-shirt</span>
+                <div class="price">
+                  <span class="current-price">$350</span>
+                  <span class="base-price">$400</span>
+                </div>
+              </div>
+            </article>
+            <article class="product swiper-slide">
+              <div class="content">
+                <img src="./assets/images/Image11.png" alt="product 1" />
+                <div class="tags">
+                  <span class="tag discount">40%</span>
+                  <span class="tag new">new!</span>
+                </div>
+                <div class="buttons">
+                  <button class="buttons-like" type="button">
+                    <svg class="svg">
+                      <use href="./assets/icons/svg-icons.svg#icon-Heart"></use>
+                    </svg>
+                  </button>
+                  <button class="buttons-buy" type="button">
+                    <svg class="svg">
+                      <use href="./assets/icons/svg-icons.svg#icon-Bag"></use>
+                    </svg>
+                  </button>
+                  <button class="buttons-images" type="button">
+                    <svg class="svg">
+                      <use
+                        href="./assets/icons/svg-icons.svg#icon-Gallery"
+                      ></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="info">
+                <div class="details">
+                  <span class="category">kids</span>
+                  <div class="stars">
+                    <svg class="svg star-full">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-full">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-half">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-empty">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-empty">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                  </div>
+                </div>
+                <span class="title">yellow t-shirt</span>
+                <div class="price">
+                  <span class="current-price">$350</span>
+                  <span class="base-price">$400</span>
+                </div>
+              </div>
+            </article>
+            <article class="product swiper-slide">
+              <div class="content">
+                <img src="./assets/images/Image12.png" alt="product 1" />
+                <div class="tags">
+                  <span class="tag discount">40%</span>
+                  <span class="tag new">new!</span>
+                </div>
+                <div class="buttons">
+                  <button class="buttons-like" type="button">
+                    <svg class="svg">
+                      <use href="./assets/icons/svg-icons.svg#icon-Heart"></use>
+                    </svg>
+                  </button>
+                  <button class="buttons-buy" type="button">
+                    <svg class="svg">
+                      <use href="./assets/icons/svg-icons.svg#icon-Bag"></use>
+                    </svg>
+                  </button>
+                  <button class="buttons-images" type="button">
+                    <svg class="svg">
+                      <use
+                        href="./assets/icons/svg-icons.svg#icon-Gallery"
+                      ></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="info">
+                <div class="details">
+                  <span class="category">kids</span>
+                  <div class="stars">
+                    <svg class="svg star-full">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-full">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-half">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-empty">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-empty">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                  </div>
+                </div>
+                <span class="title">yellow t-shirt</span>
+                <div class="price">
+                  <span class="current-price">$350</span>
+                  <span class="base-price">$400</span>
+                </div>
+              </div>
+            </article>
+            <article class="product swiper-slide">
+              <div class="content">
+                <img src="./assets/images/Image13.png" alt="product 1" />
+                <div class="tags">
+                  <span class="tag discount">40%</span>
+                  <span class="tag new">new!</span>
+                </div>
+                <div class="buttons">
+                  <button class="buttons-like" type="button">
+                    <svg class="svg">
+                      <use href="./assets/icons/svg-icons.svg#icon-Heart"></use>
+                    </svg>
+                  </button>
+                  <button class="buttons-buy" type="button">
+                    <svg class="svg">
+                      <use href="./assets/icons/svg-icons.svg#icon-Bag"></use>
+                    </svg>
+                  </button>
+                  <button class="buttons-images" type="button">
+                    <svg class="svg">
+                      <use
+                        href="./assets/icons/svg-icons.svg#icon-Gallery"
+                      ></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="info">
+                <div class="details">
+                  <span class="category">kids</span>
+                  <div class="stars">
+                    <svg class="svg star-full">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-full">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-half">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-empty">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-empty">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                  </div>
                 </div>
                 <span class="title">yellow t-shirt</span>
                 <div class="price">
@@ -291,8 +489,12 @@
           </div>
         </div>
         <div class="arrow-key-wrapper">
-          <span>left</span>
-          <span>right</span>
+          <svg class="key left svg">
+            <use href="./assets/icons/svg-icons.svg#icon-Arrow-left"></use>
+          </svg>
+          <svg class="key right svg">
+            <use href="./assets/icons/svg-icons.svg#icon-Arrow-right"></use>
+          </svg>
         </div>
       </section>
 
@@ -300,44 +502,236 @@
       <!--******************************-->
       <section class="center brands-container">
         <h3 class="title">top brands deal</h3>
-        <span class="descriptoin">
+        <p class="descriptoin">
           up to <span class="discount">60%</span>off on brands
-        </span>
-        <div class="brands-wrapper">
-          <span class="image-container"><img src="#" alt="brand 1" /></span>
-          <span class="image-container"><img src="#" alt="brand 1" /></span>
-          <span class="image-container"><img src="#" alt="brand 1" /></span>
-          <span class="image-container"><img src="#" alt="brand 1" /></span>
-          <span class="image-container"><img src="#" alt="brand 1" /></span>
-        </div>
+        </p>
+        <ul class="brands-wrapper">
+          <li class="image-container"><a href="#"><img src="./assets/images/Image22.png" alt="brand 1" /></a>
+          <li class="image-container"><a href="#"><img src="./assets/images/Image21.png" alt="brand 1" /></a>
+          <li class="image-container"><a href="#"><img src="./assets/images/Image20.png" alt="brand 1" /></a>
+          <li class="image-container"><a href="#"><img src="./assets/images/Image19.png" alt="brand 1" /></a>
+          <li class="image-container"><a href="#"><img src="./assets/images/Image18.png" alt="brand 1" /></a>
+        </ul>
       </section>
 
       <!--******** trends tags *********-->
       <!--******************************-->
       <section class="center trends-container">
         <h3 class="title">trending collection</h3>
-        <span class="descriptoin">
-          ckeck out most promising product bought by our boyers</span
-        >
+        <p class="descriptoin">
+          ckeck out most promising product bought by our boyers
+        </p>
 
-        <div class="products-wrapper">
-          <div class="wrapper">
-            <article class="product">
+        <div class="swiper products-wrapper">
+          <div class="swiper-wrapper">
+            <article class="product swiper-slide">
               <div class="content">
-                <img src="#" alt="product 1" />
+                <img src="./assets/images/Image14.png" alt="product 1" />
                 <div class="tags">
-                  <span class="tag-new">new</span>
+                  <span class="tag new">new</span>
                 </div>
                 <div class="buttons">
-                  <button class="buttons-like" type="button">like</button>
-                  <button class="buttons-buy" type="button">buy</button>
-                  <button class="buttons-images" type="button">images</button>
+                  <button class="buttons-like" type="button">
+                    <svg class="svg">
+                      <use href="./assets/icons/svg-icons.svg#icon-Heart"></use>
+                    </svg>
+                  </button>
+                  <button class="buttons-buy" type="button">
+                    <svg class="svg">
+                      <use href="./assets/icons/svg-icons.svg#icon-Bag"></use>
+                    </svg>
+                  </button>
+                  <button class="buttons-images" type="button">
+                    <svg class="svg">
+                      <use
+                        href="./assets/icons/svg-icons.svg#icon-Gallery"
+                      ></use>
+                    </svg>
+                  </button>
                 </div>
               </div>
               <div class="info">
                 <div class="details">
                   <span class="category">kids</span>
-                  <div class="stars">5 star</div>
+                  <div class="stars">
+                    <svg class="svg star-full">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-full">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-half">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-empty">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-empty">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                  </div>
+                </div>
+                <span class="title">yellow t-shirt</span>
+                <div class="price">
+                  <span class="current-price">$350</span>
+                  <span class="base-price">$400</span>
+                </div>
+              </div>
+            </article>
+            <article class="product swiper-slide">
+              <div class="content">
+                <img src="./assets/images/Image15.png" alt="product 1" />
+                <div class="tags">
+                  <span class="tag new">new</span>
+                </div>
+                <div class="buttons">
+                  <button class="buttons-like" type="button">
+                    <svg class="svg">
+                      <use href="./assets/icons/svg-icons.svg#icon-Heart"></use>
+                    </svg>
+                  </button>
+                  <button class="buttons-buy" type="button">
+                    <svg class="svg">
+                      <use href="./assets/icons/svg-icons.svg#icon-Bag"></use>
+                    </svg>
+                  </button>
+                  <button class="buttons-images" type="button">
+                    <svg class="svg">
+                      <use
+                        href="./assets/icons/svg-icons.svg#icon-Gallery"
+                      ></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="info">
+                <div class="details">
+                  <span class="category">kids</span>
+                  <div class="stars">
+                    <svg class="svg star-full">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-full">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-half">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-empty">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-empty">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                  </div>
+                </div>
+                <span class="title">yellow t-shirt</span>
+                <div class="price">
+                  <span class="current-price">$350</span>
+                  <span class="base-price">$400</span>
+                </div>
+              </div>
+            </article>
+            <article class="product swiper-slide">
+              <div class="content">
+                <img src="./assets/images/Image16.png" alt="product 1" />
+                <div class="tags">
+                  <span class="tag new">new</span>
+                </div>
+                <div class="buttons">
+                  <button class="buttons-like" type="button">
+                    <svg class="svg">
+                      <use href="./assets/icons/svg-icons.svg#icon-Heart"></use>
+                    </svg>
+                  </button>
+                  <button class="buttons-buy" type="button">
+                    <svg class="svg">
+                      <use href="./assets/icons/svg-icons.svg#icon-Bag"></use>
+                    </svg>
+                  </button>
+                  <button class="buttons-images" type="button">
+                    <svg class="svg">
+                      <use
+                        href="./assets/icons/svg-icons.svg#icon-Gallery"
+                      ></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="info">
+                <div class="details">
+                  <span class="category">kids</span>
+                  <div class="stars">
+                    <svg class="svg star-full">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-full">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-half">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-empty">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-empty">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                  </div>
+                </div>
+                <span class="title">yellow t-shirt</span>
+                <div class="price">
+                  <span class="current-price">$350</span>
+                  <span class="base-price">$400</span>
+                </div>
+              </div>
+            </article>
+            <article class="product swiper-slide">
+              <div class="content">
+                <img src="./assets/images/Image17.png" alt="product 1" />
+                <div class="tags">
+                  <span class="tag new">new</span>
+                </div>
+                <div class="buttons">
+                  <button class="buttons-like" type="button">
+                    <svg class="svg">
+                      <use href="./assets/icons/svg-icons.svg#icon-Heart"></use>
+                    </svg>
+                  </button>
+                  <button class="buttons-buy" type="button">
+                    <svg class="svg">
+                      <use href="./assets/icons/svg-icons.svg#icon-Bag"></use>
+                    </svg>
+                  </button>
+                  <button class="buttons-images" type="button">
+                    <svg class="svg">
+                      <use
+                        href="./assets/icons/svg-icons.svg#icon-Gallery"
+                      ></use>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="info">
+                <div class="details">
+                  <span class="category">kids</span>
+                  <div class="stars">
+                    <svg class="svg star-full">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-full">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-half">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-empty">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                    <svg class="svg star-empty">
+                      <use href="./assets/icons/svg-icons.svg#icon-Star"></use>
+                    </svg>
+                  </div>
                 </div>
                 <span class="title">yellow t-shirt</span>
                 <div class="price">
@@ -349,8 +743,12 @@
           </div>
         </div>
         <div class="arrow-key-wrapper">
-          <span>left</span>
-          <span>right</span>
+          <svg class="key left svg">
+            <use href="./assets/icons/svg-icons.svg#icon-Arrow-left"></use>
+          </svg>
+          <svg class="key right svg">
+            <use href="./assets/icons/svg-icons.svg#icon-Arrow-right"></use>
+          </svg>
         </div>
       </section>
 
@@ -359,12 +757,10 @@
       <section class="reviews-container">
         <div class="center reviews-content">
           <h3 class="title">reviews</h3>
-          <span class="descriptoin"
-            >this is what our customers have to say</span
-          >
+          <p class="descriptoin">this is what our customers have to say</p>
           <div class="review-wrapper">
             <div class="review-info">
-              <img src="#" alt="user image" />
+              <div class="image-wrapper"><img src="./assets/icons/User_default_image.png" alt="user image" /></div>
               <div class="review-info-content">
                 <p>
                   this is a long text this is a long text this is a long text
@@ -375,9 +771,13 @@
                 <span>mr ahmad</span>
               </div>
             </div>
-            <div class="review-arrow-keys">
-              <span>left</span>
-              <span>right</span>
+            <div class="arrow-key-wrapper">
+              <svg class="key left svg">
+                <use href="./assets/icons/svg-icons.svg#icon-Arrow-left"></use>
+              </svg>
+              <svg class="key right svg">
+                <use href="./assets/icons/svg-icons.svg#icon-Arrow-right"></use>
+              </svg>
             </div>
           </div>
         </div>
@@ -388,9 +788,9 @@
       <section class="center subscribe-container">
         <img src="#" alt="subscribe icon" />
         <h3 class="title">subscribe newsletter</h3>
-        <span class="descriptoin">
-          subscribe to our email and get updates right in your inbox</span
-        >
+        <p class="descriptoin">
+          subscribe to our email and get updates right in your inbox
+        </p>
 
         <div class="search-box">
           <label for="subscribe">
