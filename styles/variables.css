@@ -14,6 +14,8 @@
   --yellow-1-opacity: hsla(50, 98%, 50%, 0.8);
   --yellow-2: hsl(25, 100%, 56%);
 
+  --gray-opacity: hsla(0, 0%, 90%, 0.5);
+  
   --green-1: hsl(177, 100%, 14%);
   --green-2: hsl(100, 52%, 55%);
 
@@ -26,14 +28,14 @@
 
   --yellow-radial: radial-gradient(
     circle,
-    hsla(50, 98%, 50%, 1) 0%,
-    hsla(50, 98%, 50%, 0.7) 100%
+    hsla(50, 98%, 50%, 0.7) 0%,
+    hsla(50, 98%, 50%, 1) 100%
   );
 
   --blue-radial: radial-gradient(
     circle,
-    hsla(194, 72%, 62%, 1) 0%,
-    hsla(194, 72%, 62%, 0.7) 100%
+    hsla(194, 72%, 62%, 0.7) 0%,
+    hsla(194, 72%, 62%, 1) 100%
   );
   /* fonts */
   --main-font-color: var(--gray-2);
