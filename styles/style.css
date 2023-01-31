@@ -626,6 +626,8 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
 }
 .review-info{
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: 2rem;
 }
@@ -652,8 +654,7 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
 .review-wrapper .arrow-key-wrapper{
   margin: 0;
   font-size: 1.5rem;
-  padding-right: 1rem;
-  justify-content: flex-end;
+  justify-content:center;
 }
 
 /**************************************/
@@ -721,6 +722,16 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
   }
   .collection.full {
     flex: 1 1 100%;
+  }
+
+  /************ revews styles **********/
+  /*************************************/
+.review-info{
+  flex-direction: row;
+}
+  .review-wrapper .arrow-key-wrapper{
+    padding-right: 1rem;
+    justify-content: flex-end;
   }
 }
 /*************************************/
