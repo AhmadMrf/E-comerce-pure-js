@@ -215,6 +215,7 @@ header {
 
 .search-box label {
   cursor: text;
+  height: 100%;
   width: 100%;
 }
 .search-box input {
@@ -657,12 +658,41 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
 
 /************** subscribe styles *************/
 /******************************************/
+.subscribe-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
 .subscribe-container .image-wrapper {
   display: flex;
   justify-content: center;
   padding: 1.5rem 0;
 }
-
+.subscribe-container .search-box {
+  margin: 1rem 0;
+  background-color: var(--section-100-color);
+  color: var(--main-font-color);
+  caret-color: var(--main-font-color);
+  font-size: 1.5rem;
+  padding: 0.3rem;
+}
+.subscribe-container .search-box input {
+  font-size: 1.2rem;
+  padding: 1rem;
+}
+.subscribe-container .search-box button {
+  background-color: var(--yellow-1);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  padding: 1.1rem;
+}
+.socials-wrapper {
+  display: flex;
+  align-items: center;
+  gap: calc(1rem + 1vw);
+}
 /**************************************/
 /************ medium size *************/
 /**************************************/
@@ -738,6 +768,13 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
   .review-wrapper .arrow-key-wrapper {
     padding-right: 1rem;
     justify-content: flex-end;
+  }
+
+  /************ subscribe styles **********/
+  /****************************************/
+  .subscribe-container .search-box {
+    margin: 1rem auto;
+    width: calc(50% + 5vw);
   }
 }
 /*************************************/
