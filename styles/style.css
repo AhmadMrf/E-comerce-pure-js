@@ -150,15 +150,19 @@ header {
   transition: all 0.3s;
 }
 
-.header-logo-container {
+/* header and footer logo styles */
+.header-logo-container,
+.footer-logo-container {
   flex-basis: 50%;
   font-size: 1.5rem;
   font-weight: 700;
 }
-.header-logo-container span:first-of-type {
+.header-logo-container span:first-of-type,
+.footer-logo-container span:first-of-type {
   color: var(--yellow-1);
 }
-.header-logo-container span:last-of-type {
+.header-logo-container span:last-of-type,
+.footer-logo-container span:last-of-type {
   color: var(--green-1);
 }
 
@@ -657,7 +661,7 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
 }
 
 /************** subscribe styles *************/
-/******************************************/
+/*********************************************/
 .subscribe-container {
   display: flex;
   flex-direction: column;
@@ -686,13 +690,42 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
   border-radius: 50%;
   display: grid;
   place-items: center;
-  padding: 1.1rem;
+  padding: min(1.5rem, 0.5rem + 2vw);
 }
 .socials-wrapper {
   display: flex;
   align-items: center;
   gap: calc(1rem + 1vw);
 }
+
+/************ footer styles *************/
+/****************************************/
+footer {
+  padding: 2.5rem 0;
+  text-align: center;
+}
+/* footer logo styles added with header logo */
+footer .page-info,
+.footer-links-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-links-wrapper {
+  padding: 1rem 0;
+}
+.footer-links-wrapper .link {
+  padding: 0.5rem;
+  font-size: 1.1rem;
+}
+.footer-links-wrapper .title {
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
 /**************************************/
 /************ medium size *************/
 /**************************************/
@@ -776,6 +809,13 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
     margin: 1rem auto;
     width: calc(50% + 5vw);
   }
+
+  /************ footer styles *************/
+  /****************************************/
+  .footer-links-wrapper {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 }
 /*************************************/
 /************ large size *************/
@@ -848,6 +888,25 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
   }
   .collection.full .collection-image-container img {
     max-height: 23rem;
+  }
+
+  /************ footer styles *************/
+  /****************************************/
+  footer {
+    display: flex;
+    justify-content: space-between;
+    text-align: initial;
+  }
+  footer .page-info {
+    flex-basis: 25%;
+    align-items: flex-start;
+  }
+  footer .footer-links-wrapper {
+    padding: 0;
+    flex-grow: 2;
+  }
+  .footer-logo-container {
+    flex-basis: auto;
   }
 }
 
