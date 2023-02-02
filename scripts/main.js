@@ -31,31 +31,33 @@ const initialTheme = () => {
 };
 initialTheme();
 // ---------- swiper  -------------
-const spaceBetween = 25;
 const swiperBreakPoints = {
   320: {
     slidesPerView: 1,
-    spaceBetween,
+    spaceBetween: 25,
   },
   769: {
     slidesPerView: 2,
-    spaceBetween,
+    spaceBetween: 30,
   },
   1025: {
     slidesPerView: 3,
-    spaceBetween,
+    spaceBetween: 35,
   },
-}
-const new_product_swiper = new Swiper(".new-products-container .products-wrapper", {
-  loop: true,
-  slidesPerView: 1,
-  spaceBetween: 16,
-  navigation: {
-    nextEl: ".new-products-container .key.right",
-    prevEl: ".new-products-container .key.left",
-  },
-  breakpoints: swiperBreakPoints,
-});
+};
+const new_product_swiper = new Swiper(
+  ".new-products-container .products-wrapper",
+  {
+    loop: true,
+    slidesPerView: 1,
+    spaceBetween: 16,
+    navigation: {
+      nextEl: ".new-products-container .key.right",
+      prevEl: ".new-products-container .key.left",
+    },
+    breakpoints: swiperBreakPoints,
+  }
+);
 const trends_swiper = new Swiper(".trends-container .products-wrapper", {
   loop: true,
   slidesPerView: 1,
