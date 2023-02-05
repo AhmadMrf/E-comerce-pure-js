@@ -23,9 +23,9 @@ const toggleTheme = (e) => {
   localStorage.setItem("theme", theme);
 };
 
-const handleToggleHeaderHeight = (e) => {
+const handleToggleHeaderHeight = () => {
   let prevScroll = 0;
-  return () => {
+  const setClasses = () => {
     if (scrollY > 50 && scrollY > prevScroll) {
       header.classList.add("min");
       header.classList.add("hide");
@@ -37,7 +37,9 @@ const handleToggleHeaderHeight = (e) => {
       header.classList.remove("min");
       header.classList.remove("hide");
     }
-
+  };
+  return () => {
+    setClasses();
     prevScroll = scrollY;
   };
 };
