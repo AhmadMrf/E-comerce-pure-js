@@ -18,13 +18,13 @@
 
   --green-1: hsl(177, 100%, 14%);
   --green-2: hsl(100, 52%, 55%);
-
+  --background-color: hsl(0, 0%, 100%);
   --main-dark-color: hsl(0, 0%, 20%);
   --main-light-color: hsl(0, 0%, 100%);
   --main-color: var(--gray-1);
   --secondary-color: var(--gray-3);
   --section-100-color: var(--gray-5);
-  --search-box-color: var(--main-light-color);
+  --search-box-color: var(--gray-5);
 
   --yellow-radial: radial-gradient(
     circle,
@@ -61,10 +61,11 @@ body[data-theme="dark"] {
   --green-1: hsl(177, 100%, 14%);
   --green-2: hsl(100, 52%, 55%);
 
+  --background-color: hsl(0, 0%, 20%);
   --main-color: var(--gray-7);
   --secondary-color: var(--gray-8);
   --section-100-color: var(--gray-6);
-  --search-box-color: var(--main-dark-color);
+  --search-box-color: var(--gray-6);
 
   /* fonts */
   --main-font-color: var(--gray-3);

@@ -50,7 +50,7 @@ main {
   font-size: 0.75rem;
   font-weight: 500;
   position: absolute;
-  top: -40%;
+  top: -20%;
   left: 40%;
   color: var(--gray-1);
 }
@@ -66,6 +66,7 @@ main {
   width: 1.5em;
   height: 1.5em;
   user-select: none;
+  transition: all 0.5s;
   /* border: 1px solid red; */
 }
 
@@ -83,6 +84,7 @@ main {
 }
 .title {
   text-transform: capitalize;
+  transition: color 0.5s;
 }
 .subtitle {
   letter-spacing: 2px;
@@ -123,10 +125,14 @@ p.descriptoin {
 /*************************************/
 
 header {
-  background-color: var(--section-100-color);
+  background-color: var(--background-color);
   border-bottom: 1px solid var(--secondary-color);
   min-height: 5rem;
   transition: background-color 0.7s;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2;
 }
 .header-content {
   padding: 1rem 0;
@@ -135,6 +141,7 @@ header {
   justify-content: space-between;
   margin: 0 auto;
   width: 95%;
+  transition: padding 0.5s;
 }
 
 .header-navbar-container {
@@ -168,7 +175,7 @@ header {
 .header-user-info-container {
   flex-basis: 30%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-evenly;
   gap: 0.8rem;
 }
@@ -202,7 +209,7 @@ header {
   margin-top: 1rem;
   display: flex;
   gap: 1rem;
-  height: calc(100vh - 6rem);
+  height: 100vh;
   opacity: 1;
 }
 
@@ -286,6 +293,19 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
   color: var(--main-font-hover);
 }
 
+/* toggle header with scrolling */
+
+header.hide {
+  transform: translateY(-110%);
+}
+header.min {
+  min-height: 3rem;
+  transition: all 0.5s;
+}
+header.min .header-content {
+  padding: 0.3rem 0;
+}
+
 /************ top-trending styles **********/
 /*******************************************/
 
@@ -293,7 +313,7 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
   background-color: var(--section-100-color);
   transition: all 0.5s;
   padding-bottom: 1.5rem;
-  padding-top: 0.5rem;
+  padding-top: 5.5rem;
 }
 .top-trending-content {
   display: flex;
@@ -485,7 +505,7 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
   color: var(--main-color);
 }
 .products-wrapper {
-  width: 70%;
+  width: min(85%, calc(25rem + 5vw));
 }
 .products-wrapper .product {
   overflow: hidden;
@@ -619,12 +639,14 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
 .reviews-container {
   background-color: var(--section-100-color);
   padding: 2rem;
+  transition: background-color 0.7s;
 }
 .review-wrapper {
   clip-path: polygon(0 0, 0 100%, 90% 100%, 100% 0%);
-  background-color: var(--search-box-color);
+  background-color: var(--background-color);
   padding: 1rem;
-  padding-right: 10%;
+  /* padding-right: 10%; */
+  transition: background-color 0.7s;
 }
 .review-info {
   display: flex;
@@ -632,6 +654,8 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  padding-right: 10%;
+  padding-left: 2rem;
 }
 .review-info .image-wrapper {
   width: 40%;
@@ -647,7 +671,7 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
   flex-direction: column;
 }
 .review-info-content p {
-  color: var(--secondary-color);
+  /* color: var(--secondary-color); */
 }
 .review-info-content span {
   font-weight: 700;
@@ -657,6 +681,7 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
   margin: 0;
   font-size: 1.5rem;
   justify-content: center;
+  padding-right: 10%;
 }
 
 /************** subscribe styles *************/
@@ -689,7 +714,7 @@ body[data-theme="dark"] .sidebar-toggle-theme .title::before {
   border-radius: 50%;
   display: grid;
   place-items: center;
-  padding: min(1.5rem, 0.5rem + 2vw);
+  padding: min(1.2rem, 0.4rem + 2vw);
 }
 .socials-wrapper {
   display: flex;
@@ -795,13 +820,18 @@ footer .page-info p {
     flex: 1 1 100%;
   }
 
+  /****** new prouduct & trends styles ******/
+  /******************************************/
+  .products-wrapper {
+    width: 85%;
+  }
+
   /************ revews styles **********/
   /*************************************/
   .review-info {
     flex-direction: row;
   }
   .review-wrapper .arrow-key-wrapper {
-    padding-right: 1rem;
     justify-content: flex-end;
   }
 

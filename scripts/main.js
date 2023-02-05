@@ -1,7 +1,7 @@
 import Swiper from "../assets/swiper/swiper.js";
 // ----------  html tags ----------
 const body = document.body;
-
+const header = document.querySelector("header");
 const aside = document.querySelector(".sidebar-content");
 
 const toggleMenuIcon = document.querySelector(".menu");
@@ -22,6 +22,26 @@ const toggleTheme = (e) => {
   body.dataset.theme = theme;
   localStorage.setItem("theme", theme);
 };
+
+const handleToggleHeaderHeight = (e) => {
+  let prevScroll = 0;
+  return () => {
+    if (scrollY > 50 && scrollY > prevScroll) {
+      header.classList.add("min");
+      header.classList.add("hide");
+    }
+    if (scrollY < prevScroll) {
+      header.classList.remove("hide");
+    }
+    if (scrollY < 50) {
+      header.classList.remove("min");
+      header.classList.remove("hide");
+    }
+
+    prevScroll = scrollY;
+  };
+};
+const toggleHeaderHeight = handleToggleHeaderHeight();
 
 const initialTheme = () => {
   let theme = localStorage.getItem("theme");
@@ -68,6 +88,15 @@ const trends_swiper = new Swiper(".trends-container .products-wrapper", {
   },
   breakpoints: swiperBreakPoints,
 });
+
+const reviews_swiper = new Swiper(".review-wrapper", {
+  loop: true,
+  slidesPerView: 1,
+  navigation: {
+    nextEl: ".review-wrapper .key.right",
+    prevEl: ".review-wrapper .key.left",
+  },
+});
 // ----------  listeners  ----------
 
 toggleMenuIcon.addEventListener("click", (e) => {
@@ -79,3 +108,4 @@ toggleThemeIcon.forEach((item) =>
     toggleTheme(e);
   })
 );
+window.addEventListener("scroll", toggleHeaderHeight);
