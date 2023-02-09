@@ -14,6 +14,9 @@
   --yellow-1-opacity: hsla(50, 98%, 50%, 0.8);
   --yellow-2: hsl(25, 100%, 56%);
 
+  --red: hsl(0, 100%, 56%);
+  --red-opacity: hsl(0, 100%, 56%, 0.5);
+
   --gray-opacity: hsla(0, 0%, 70%, 0.8);
 
   --green-1: hsl(177, 100%, 14%);
@@ -37,6 +40,8 @@
     hsla(194, 72%, 62%, 0.7) 0%,
     hsla(194, 72%, 62%, 1) 100%
   );
+
+  --fill: hsla(0, 0%, 100%, 0);
   /* fonts */
   --main-font-color: var(--gray-2);
   --main-font-hover: var(--gray-1);
