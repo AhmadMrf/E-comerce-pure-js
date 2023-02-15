@@ -59,6 +59,12 @@
 .item-info-container .price {
   font-weight: 700;
 }
+.item-info-container .fevorite {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 
 .cart-item .item-buy-info {
   align-self: center;
