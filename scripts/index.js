@@ -9,6 +9,7 @@ import {
   PRODUCT_PRE_LOADER,
   BASE_URL,
   FILTER_BTN_PRE_LOADER,
+  REVIEW_PRE_LOADER,
 } from "../assets/data/template.js";
 
 const productsWrapper = document.querySelector(
@@ -17,6 +18,10 @@ const productsWrapper = document.querySelector(
 const trendsWrapper = document.querySelector(
   ".trends-container .swiper-wrapper"
 );
+const reviewsWrapper = document.querySelector(
+  ".reviews-container .swiper-wrapper"
+);
+
 const filterBtnwrapper = document.querySelector(".filters-wrapper");
 
 function mapFilterBtns(item) {
@@ -74,28 +79,69 @@ function mapProduct(item) {
             </article>
       `;
 }
+function mapReviews(item) {
+  return `
+  <div class="swiper-slide review-info">
+    <div class="image-wrapper">
+      <img
+        src="${item.image}"
+        alt="${item.auther}"
+      />
+    </div>
+    <div class="review-info-content">
+      <p>${item.description}</p>
+      <span>${item.auther}</span>
+    </div>
+  </div>
+  `;
+}
 createPreLoader(trendsWrapper, PRODUCT_PRE_LOADER, 3);
 createPreLoader(productsWrapper, PRODUCT_PRE_LOADER, 3);
 createPreLoader(filterBtnwrapper, FILTER_BTN_PRE_LOADER, 4);
+createPreLoader(reviewsWrapper, REVIEW_PRE_LOADER, 3);
 
-fetch(`${BASE_URL}/products`)
-  .then((res) => res.json())
-  .then((data) => {
-    const productsContent = changeData(data);
+Promise.all([
+  fetch(`${BASE_URL}/products`).then((res) => res.json()),
+  fetch(`${BASE_URL}/reviews`).then((res) => res.json()),
+])
+  .then((allData) => {
+    const [products, reviews] = allData;
+    const productsContent = changeData(products);
     const trends = getTrends(productsContent);
     const filterBtns = getCategories(productsContent);
-
+    console.log(reviews);
     const mappedProduct = productsContent.map(mapProduct);
     const mappedTrends = trends.map(mapProduct);
     const mappedFilterBtns = filterBtns.map(mapFilterBtns);
+    const mappedReviews = reviews.map(mapReviews);
 
     productsWrapper.innerHTML = mappedProduct.join("");
     trendsWrapper.innerHTML = mappedTrends.join("");
     filterBtnwrapper.innerHTML = mappedFilterBtns.join("");
+    reviewsWrapper.innerHTML = mappedReviews.join("");
   })
   .catch((err) => {
     console.log(err);
   });
+
+// fetch(`${BASE_URL}/products`)
+//   .then((res) => res.json())
+//   .then((data) => {
+//     const productsContent = changeData(data);
+//     const trends = getTrends(productsContent);
+//     const filterBtns = getCategories(productsContent);
+
+//     const mappedProduct = productsContent.map(mapProduct);
+//     const mappedTrends = trends.map(mapProduct);
+//     const mappedFilterBtns = filterBtns.map(mapFilterBtns);
+
+//     productsWrapper.innerHTML = mappedProduct.join("");
+//     trendsWrapper.innerHTML = mappedTrends.join("");
+//     filterBtnwrapper.innerHTML = mappedFilterBtns.join("");
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
 
 // ---------- swiper  -------------
 const swiperBreakPoints = {
