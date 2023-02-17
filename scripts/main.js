@@ -19,7 +19,7 @@ const toggleTheme = (e) => {
   let theme;
   body.dataset.theme === "light" ? (theme = "dark") : (theme = "light");
   body.dataset.theme = theme;
-  localStorage.setItem("theme", theme);
+  localStorage.setItem("theme", JSON.stringify(theme));
 };
 
 const handleToggleHeaderHeight = () => {
@@ -47,7 +47,7 @@ const toggleHeaderHeight = handleToggleHeaderHeight();
 const initialTheme = () => {
   let theme = localStorage.getItem("theme");
   if (theme) {
-    body.dataset.theme = theme;
+    body.dataset.theme = JSON.parse(theme);
   }
 };
 initialTheme();
