@@ -40,6 +40,12 @@
     hsla(194, 72%, 62%, 0.7) 0%,
     hsla(194, 72%, 62%, 1) 100%
   );
+  --pre-loader: linear-gradient(
+    90deg,
+    var(--gray-5) 36%,
+    var(--secondary-color) 48%,
+    var(--gray-5) 60%
+  );
 
   --fill: hsla(0, 0%, 100%, 0);
   /* fonts */
@@ -75,4 +81,10 @@ body[data-theme="dark"] {
   /* fonts */
   --main-font-color: var(--gray-3);
   --main-font-hover: var(--gray-1);
+  --pre-loader: linear-gradient(
+    90deg,
+    var(--main-color) 36%,
+    var(--secondary-color) 48%,
+    var(--main-color) 60%
+  );
 }

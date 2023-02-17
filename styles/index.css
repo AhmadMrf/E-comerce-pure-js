@@ -206,9 +206,12 @@
 }
 .products-wrapper .product .content {
   position: relative;
+  aspect-ratio: 0.8;
+  background-color: var(--search-box-color);
 }
 .products-wrapper .product .content img {
   width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 .products-wrapper .product .content .buttons {
@@ -414,6 +417,50 @@
   gap: calc(1rem + 1vw);
 }
 
+/************** pre loader styles *************/
+/*********************************************/
+button.pre-loader {
+  background-image: var(--pre-loader);
+  background-size: 200%;
+  animation: pre-loader 0.7s infinite;
+  transition: background-image 0.7s;
+  width: 5rem;
+  height: 2rem;
+}
+
+.reviews-container .pre-loader {
+  background-image: var(--pre-loader);
+  background-size: 200%;
+  animation: pre-loader 0.7s infinite;
+  transition: background-image 0.7s;
+  height: 16rem;
+  display: flex;
+  justify-content: flex-start;
+}
+.reviews-container .pre-loader .image-wrapper {
+  height: 80%;
+  background-color: var(--search-box-color);
+}
+.reviews-container .pre-loader .review-info-content {
+}
+.pre-loader {
+  aspect-ratio: 0.8;
+}
+.pre-loader .content {
+  height: 100%;
+  background-image: var(--pre-loader);
+  background-size: 200%;
+  animation: pre-loader 0.7s infinite;
+  transition: background-image 0.7s;
+}
+@keyframes pre-loader {
+  from {
+    background-position: 200%;
+  }
+  to {
+    background-position: 0%;
+  }
+}
 /**************************************/
 /************ medium size *************/
 /**************************************/
