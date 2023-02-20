@@ -1,11 +1,15 @@
-// ----------  html tags ----------
+import { setLocalStorage, getLocalStorage } from "./utils/useLocalStorage.js";
+
+// ---------- toggle theme and sidebar and button
+
+// html tags ----------
 const body = document.body;
 const header = document.querySelector("header");
 const aside = document.querySelector(".sidebar-content");
 
 const toggleMenuIcon = document.querySelector(".menu");
 const toggleThemeIcon = document.querySelectorAll(".toggle-theme");
-// ----------  functions ----------
+// functions ----------
 
 const toggleIcon = (e) => {
   e.currentTarget.classList.toggle("active");
@@ -52,7 +56,7 @@ const initialTheme = () => {
 };
 initialTheme();
 
-// ----------  listeners  ----------
+// listeners  ----------
 
 toggleMenuIcon.addEventListener("click", (e) => {
   toggleIcon(e);
@@ -64,3 +68,17 @@ toggleThemeIcon.forEach((item) =>
   })
 );
 window.addEventListener("scroll", toggleHeaderHeight);
+
+// ---------- cart data  -------------
+
+const cartBadge = document.querySelector(
+  ".user-info-icons-container.cart .cart-badge"
+);
+const catrItems = getLocalStorage("products");
+const handleBadge = (badge, itemCount) => {
+  itemCount === 0
+    ? badge.classList.add("hide")
+    : (badge.textContent = itemCount);
+};
+handleBadge(cartBadge, catrItems.length);
+console.log(catrItems);

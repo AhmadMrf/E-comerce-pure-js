@@ -54,7 +54,9 @@ main {
   left: 40%;
   color: var(--gray-1);
 }
-
+.badge.hide {
+  display: none;
+}
 .with-badge {
   position: relative;
 }

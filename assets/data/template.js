@@ -2,9 +2,9 @@ export const PRODUCT_PRE_LOADER = `
 <article class="pre-loader product swiper-slide">
   <div class="content">
   <div class="buttons">
-  <button class="buttons-like" type="button"></button>
-  <button class="buttons-buy" type="button"></button>
-  <button class="buttons-images" type="button"></button>
+  <button type="button"></button>
+  <button type="button"></button>
+  <button type="button"></button>
   </div>
   </div>
 </article>`;
