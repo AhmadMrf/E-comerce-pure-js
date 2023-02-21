@@ -32,7 +32,9 @@ const filterBtnwrapper = document.querySelector(".filters-wrapper");
 
 function toggleCartItem(productBtnsParent_withId, toggle = "plus") {
   const id = productBtnsParent_withId.dataset.product_id;
-  handleCart(allProduct, id, toggle);
+  const product = allProduct.find((productItem) => +productItem.id === +id);
+
+  handleCart(product, toggle);
 
   updateCartButtonUi(productsWrapper, id);
   updateCartButtonUi(trendsWrapper, id);
@@ -60,18 +62,12 @@ function updateCartButtonUi(parent, id) {
     </svg>
   </div>
     `;
-    addEventListenerFn([
-      element.children[1].querySelector(".plus"),
-      (e) => {
-        toggleCartItem(e.currentTarget.parentElement.parentElement, "plus");
-      },
-    ]);
-    addEventListenerFn([
-      element.children[1].querySelector(".minus"),
-      (e) => {
-        toggleCartItem(e.currentTarget.parentElement.parentElement, "minus");
-      },
-    ]);
+    addEventListenerFn(element.children[1].querySelector(".plus"), (e) => {
+      toggleCartItem(e.currentTarget.parentElement.parentElement, "plus");
+    });
+    addEventListenerFn(element.children[1].querySelector(".minus"), (e) => {
+      toggleCartItem(e.currentTarget.parentElement.parentElement, "minus");
+    });
   } else {
     element.children[1].outerHTML = `
     <button class="buttons-buy" type="button">
@@ -80,12 +76,9 @@ function updateCartButtonUi(parent, id) {
     </svg>
   </button>
     `;
-    addEventListenerFn([
-      element.children[1],
-      (e) => {
-        toggleCartItem(e.currentTarget.parentElement, "plus");
-      },
-    ]);
+    addEventListenerFn(element.children[1], (e) => {
+      toggleCartItem(e.currentTarget.parentElement, "plus");
+    });
   }
 }
 
@@ -222,24 +215,15 @@ Promise.all([
       ...trendsWrapper.querySelectorAll(".change-count .minus"),
     ];
 
-    addEventListenerFn([
-      notAddedToCartElement,
-      (e) => {
-        toggleCartItem(e.currentTarget.parentElement, "plus");
-      },
-    ]);
-    addEventListenerFn([
-      addedToCartElementPlus,
-      (e) => {
-        toggleCartItem(e.currentTarget.parentElement.parentElement, "plus");
-      },
-    ]);
-    addEventListenerFn([
-      addedToCartElementMinus,
-      (e) => {
-        toggleCartItem(e.currentTarget.parentElement.parentElement, "minus");
-      },
-    ]);
+    addEventListenerFn(notAddedToCartElement, (e) => {
+      toggleCartItem(e.currentTarget.parentElement, "plus");
+    });
+    addEventListenerFn(addedToCartElementPlus, (e) => {
+      toggleCartItem(e.currentTarget.parentElement.parentElement, "plus");
+    });
+    addEventListenerFn(addedToCartElementMinus, (e) => {
+      toggleCartItem(e.currentTarget.parentElement.parentElement, "minus");
+    });
   })
   .catch((err) => {
     console.log(err);

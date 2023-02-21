@@ -9,9 +9,8 @@ export function removeitem(id) {
   setLocalStorage("products", cartData);
   return cartData;
 }
-export function handleCart(allProduct, id, toggle) {
+export function handleCart(product, toggle) {
   let cartData = getLocalStorage("products");
-  const product = allProduct.find((productItem) => +productItem.id === +id);
 
   if (product) {
     const isInCart = cartData.find((cartItem) => +cartItem.id === +product.id);

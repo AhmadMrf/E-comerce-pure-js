@@ -1,4 +1,4 @@
-export function addEventListenerFn([elements, eventHandler]) {
+export function addEventListenerFn(elements, eventHandler) {
   if (!elements) return;
   if (elements instanceof NodeList || elements instanceof Array) {
     elements.forEach((element) => {

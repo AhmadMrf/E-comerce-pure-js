@@ -1,6 +1,7 @@
 import { handleBadge } from "./manage-cart/handleBadge.js";
 import { getLocalStorage } from "./utils/useLocalStorage.js";
 import { insertData } from "./utils/insertData.js";
+import { addEventListenerFn } from "./utils/addEventListenerFn.js";
 
 // ---------- selectors
 const cartWrapper = document.querySelector(".cart-items-wrapper");
@@ -10,7 +11,7 @@ const totalDiscount = document.querySelector(".total-discount-amount");
 
 // ---------- insert local data to page --------------
 const cartData = getLocalStorage("products");
-
+function toggleCartItem() {}
 function mapCartItem(item) {
   const totalPrice = +item.price + (+item.price * item.discount) / 100;
 
@@ -63,6 +64,15 @@ function mapCartItem(item) {
 }
 insertData(cartWrapper, cartData, mapCartItem);
 
+const plusButtons = cartWrapper.querySelectorAll(".change-count .plus");
+const minusButtons = cartWrapper.querySelectorAll(".change-count .minus");
+
+addEventListenerFn(plusButtons, (e) => {
+  console.log("add");
+});
+addEventListenerFn(minusButtons, (e) => {
+  console.log("remove");
+});
 // ------------ calculate item counts ---------------
 function calcCountCartItem() {
   const count = cartData.length;
