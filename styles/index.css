@@ -221,6 +221,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.7rem;
+  align-items: flex-end;
 }
 .products-wrapper .product .content .buttons button {
   width: 2.5rem;
@@ -232,6 +233,17 @@
   font-weight: 700;
   font-size: 0.8rem;
   --gray-2: var(--black-1);
+}
+.products-wrapper .product .content .buttons button.added {
+  background-color: var(--yellow-1);
+}
+.products-wrapper .product .content .buttons .change-count {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 10rem;
+  background-color: var(--search-box-color);
 }
 .products-wrapper .product .content .tags {
   top: 1rem;
@@ -561,7 +573,9 @@ button.pre-loader {
 }
 
 /**********  hover effects  ***********/
-
+.change-count svg:hover {
+  --fill: var(--yellow-1-opacity);
+}
 .filters-wrapper button:hover:not(.active) {
   color: var(--white);
   background-color: var(--yellow-1-opacity);

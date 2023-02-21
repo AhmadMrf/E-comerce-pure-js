@@ -3,6 +3,8 @@ import { changeData } from "./utils/changeData.js";
 import { getTrends } from "./utils/getTrends.js";
 import { getCategories } from "./utils/getCategories.js";
 import { stars } from "./utils/stars.js";
+import { handleCart } from "./manage-cart/handleCart.js";
+import { handleBadge } from "./manage-cart/handleBadge.js";
 import { createPreLoader } from "./utils/createPreLoader.js";
 import { setLocalStorage, getLocalStorage } from "./utils/useLocalStorage.js";
 import {
@@ -11,6 +13,9 @@ import {
   FILTER_BTN_PRE_LOADER,
   REVIEW_PRE_LOADER,
 } from "../assets/data/template.js";
+
+// ---------- global data -----------
+let allProduct = undefined;
 
 const productsWrapper = document.querySelector(
   ".new-products-container .swiper-wrapper"
@@ -21,8 +26,82 @@ const trendsWrapper = document.querySelector(
 const reviewsWrapper = document.querySelector(
   ".reviews-container .swiper-wrapper"
 );
-
 const filterBtnwrapper = document.querySelector(".filters-wrapper");
+
+function addEventListenerFn([elements, eventHandler]) {
+  if (!elements) return;
+  if (elements instanceof NodeList || elements instanceof Array) {
+    elements.forEach((element) => {
+      element.addEventListener("click", eventHandler);
+    });
+  } else {
+    elements.addEventListener("click", eventHandler);
+  }
+}
+
+function toggleCartItem(productBtnsParent_withId, toggle = "plus") {
+  const id = productBtnsParent_withId.dataset.product_id;
+  handleCart(allProduct, id, toggle);
+
+  updateCartButtonUi(productsWrapper, id);
+  updateCartButtonUi(trendsWrapper, id);
+
+  handleBadge("cart");
+}
+
+function updateCartButtonUi(parent, id) {
+  const cartData = getLocalStorage("products");
+  const isAddedToCart = cartData.find((cartItem) => cartItem.id == id);
+
+  const element = parent.querySelector(`[data-product_id="${id}"]`);
+
+  if (!element) return;
+
+  if (isAddedToCart) {
+    element.children[1].outerHTML = `
+    <div class="change-count">
+    <svg class="minus svg">
+      <use href="../assets/icons/svg-icons.svg#icon-Minus"></use>
+    </svg>
+    <span>${isAddedToCart.quantity}</span>
+    <svg class="plus svg">
+      <use href="../assets/icons/svg-icons.svg#icon-Plus"></use>
+    </svg>
+  </div>
+    `;
+    addEventListenerFn([
+      element.children[1].querySelector(".plus"),
+      (e) => {
+        toggleCartItem(e.currentTarget.parentElement.parentElement, "plus");
+      },
+    ]);
+    addEventListenerFn([
+      element.children[1].querySelector(".minus"),
+      (e) => {
+        toggleCartItem(e.currentTarget.parentElement.parentElement, "minus");
+      },
+    ]);
+  } else {
+    element.children[1].outerHTML = `
+    <button class="buttons-buy" type="button">
+    <svg class="svg">
+      <use href="./assets/icons/svg-icons.svg#icon-Bag"></use>
+    </svg>
+  </button>
+    `;
+    addEventListenerFn([
+      element.children[1],
+      (e) => {
+        toggleCartItem(e.currentTarget.parentElement, "plus");
+      },
+    ]);
+  }
+}
+
+function insertData([parentElement, data, mapFn]) {
+  const mappedData = data.map(mapFn);
+  parentElement.innerHTML = mappedData.join("");
+}
 
 function mapFilterBtns(item) {
   let active = "";
@@ -34,6 +113,9 @@ function mapFilterBtns(item) {
   `;
 }
 function mapProduct(item) {
+  const cartData = getLocalStorage("products");
+  const isAddedToCart = cartData.find((cartItem) => cartItem.id == item.id);
+
   const totalPrice = +item.price + (+item.price * item.discount) / 100;
   return `
       <article class="product swiper-slide">
@@ -43,17 +125,36 @@ function mapProduct(item) {
                   <span class="tag discount">${item.discount}%</span>
                   <!-- <span class="tag new">new!</span> -->
                 </div>
-                <div class="buttons">
+                <div data-product_id="${item.id}" class="buttons">
                   <button class="buttons-like" type="button">
                     <svg class="svg">
                       <use href="./assets/icons/svg-icons.svg#icon-Heart"></use>
                     </svg>
                   </button>
-                  <button class="buttons-buy" type="button">
-                    <svg class="svg">
-                      <use href="./assets/icons/svg-icons.svg#icon-Bag"></use>
+
+                  ${
+                    isAddedToCart
+                      ? `
+                    <div class="change-count">
+                    <svg class="minus svg">
+                      <use href="../assets/icons/svg-icons.svg#icon-Minus"></use>
                     </svg>
-                  </button>
+                    <span>${isAddedToCart.quantity}</span>
+                    <svg class="plus svg">
+                      <use href="../assets/icons/svg-icons.svg#icon-Plus"></use>
+                    </svg>
+                  </div>
+                    
+                    `
+                      : `
+                  <button class="buttons-buy" type="button">
+                  <svg class="svg">
+                    <use href="./assets/icons/svg-icons.svg#icon-Bag"></use>
+                  </svg>
+                </button>
+                  `
+                  }
+
                   <button class="buttons-images" type="button">
                     <svg class="svg">
                       <use
@@ -95,6 +196,7 @@ function mapReviews(item) {
   </div>
   `;
 }
+
 createPreLoader(trendsWrapper, PRODUCT_PRE_LOADER, 3);
 createPreLoader(productsWrapper, PRODUCT_PRE_LOADER, 3);
 createPreLoader(filterBtnwrapper, FILTER_BTN_PRE_LOADER, 4);
@@ -106,42 +208,56 @@ Promise.all([
 ])
   .then((allData) => {
     const [products, reviews] = allData;
+    allProduct = products;
     const productsContent = changeData(products);
     const trends = getTrends(productsContent);
     const filterBtns = getCategories(productsContent);
-    console.log(reviews);
-    const mappedProduct = productsContent.map(mapProduct);
-    const mappedTrends = trends.map(mapProduct);
-    const mappedFilterBtns = filterBtns.map(mapFilterBtns);
-    const mappedReviews = reviews.map(mapReviews);
 
-    productsWrapper.innerHTML = mappedProduct.join("");
-    trendsWrapper.innerHTML = mappedTrends.join("");
-    filterBtnwrapper.innerHTML = mappedFilterBtns.join("");
-    reviewsWrapper.innerHTML = mappedReviews.join("");
+    insertData([productsWrapper, productsContent, mapProduct]);
+    insertData([trendsWrapper, trends, mapProduct]);
+    insertData([filterBtnwrapper, filterBtns, mapFilterBtns]);
+    insertData([reviewsWrapper, reviews, mapReviews]);
+
+    const notAddedToCartElement = [
+      ...productsWrapper.querySelectorAll(".buttons-buy"),
+      ...trendsWrapper.querySelectorAll(".buttons-buy"),
+    ];
+    const addedToCartElementPlus = [
+      ...productsWrapper.querySelectorAll(".change-count .plus"),
+      ...trendsWrapper.querySelectorAll(".change-count .plus"),
+    ];
+    const addedToCartElementMinus = [
+      ...productsWrapper.querySelectorAll(".change-count .minus"),
+      ...trendsWrapper.querySelectorAll(".change-count .minus"),
+    ];
+
+    addEventListenerFn([
+      notAddedToCartElement,
+      (e) => {
+        toggleCartItem(e.currentTarget.parentElement, "plus");
+      },
+    ]);
+    addEventListenerFn([
+      addedToCartElementPlus,
+      (e) => {
+        toggleCartItem(e.currentTarget.parentElement.parentElement, "plus");
+      },
+    ]);
+    addEventListenerFn([
+      addedToCartElementMinus,
+      (e) => {
+        toggleCartItem(e.currentTarget.parentElement.parentElement, "minus");
+      },
+    ]);
   })
   .catch((err) => {
     console.log(err);
   });
 
-// fetch(`${BASE_URL}/products`)
-//   .then((res) => res.json())
-//   .then((data) => {
-//     const productsContent = changeData(data);
-//     const trends = getTrends(productsContent);
-//     const filterBtns = getCategories(productsContent);
+// ---------- cart and favorite badge  -------------
 
-//     const mappedProduct = productsContent.map(mapProduct);
-//     const mappedTrends = trends.map(mapProduct);
-//     const mappedFilterBtns = filterBtns.map(mapFilterBtns);
-
-//     productsWrapper.innerHTML = mappedProduct.join("");
-//     trendsWrapper.innerHTML = mappedTrends.join("");
-//     filterBtnwrapper.innerHTML = mappedFilterBtns.join("");
-//   })
-//   .catch((err) => {
-//     console.log(err);
-//   });
+handleBadge("cart");
+handleBadge("favorite");
 
 // ---------- swiper  -------------
 const swiperBreakPoints = {
