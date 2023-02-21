@@ -6,6 +6,8 @@ import { stars } from "./utils/stars.js";
 import { handleCart } from "./manage-cart/handleCart.js";
 import { handleBadge } from "./manage-cart/handleBadge.js";
 import { createPreLoader } from "./utils/createPreLoader.js";
+import { insertData } from "./utils/insertData.js";
+import { addEventListenerFn } from "./utils/addEventListenerFn.js";
 import { setLocalStorage, getLocalStorage } from "./utils/useLocalStorage.js";
 import {
   PRODUCT_PRE_LOADER,
@@ -27,17 +29,6 @@ const reviewsWrapper = document.querySelector(
   ".reviews-container .swiper-wrapper"
 );
 const filterBtnwrapper = document.querySelector(".filters-wrapper");
-
-function addEventListenerFn([elements, eventHandler]) {
-  if (!elements) return;
-  if (elements instanceof NodeList || elements instanceof Array) {
-    elements.forEach((element) => {
-      element.addEventListener("click", eventHandler);
-    });
-  } else {
-    elements.addEventListener("click", eventHandler);
-  }
-}
 
 function toggleCartItem(productBtnsParent_withId, toggle = "plus") {
   const id = productBtnsParent_withId.dataset.product_id;
@@ -96,11 +87,6 @@ function updateCartButtonUi(parent, id) {
       },
     ]);
   }
-}
-
-function insertData([parentElement, data, mapFn]) {
-  const mappedData = data.map(mapFn);
-  parentElement.innerHTML = mappedData.join("");
 }
 
 function mapFilterBtns(item) {
@@ -213,15 +199,15 @@ Promise.all([
 ])
   .then((allData) => {
     const [products, reviews] = allData;
-    allProduct = products;
     const productsContent = changeData(products);
+    allProduct = productsContent;
     const trends = getTrends(productsContent);
     const filterBtns = getCategories(productsContent);
 
-    insertData([productsWrapper, productsContent, mapProduct]);
-    insertData([trendsWrapper, trends, mapProduct]);
-    insertData([filterBtnwrapper, filterBtns, mapFilterBtns]);
-    insertData([reviewsWrapper, reviews, mapReviews]);
+    insertData(productsWrapper, productsContent, mapProduct);
+    insertData(trendsWrapper, trends, mapProduct);
+    insertData(filterBtnwrapper, filterBtns, mapFilterBtns);
+    insertData(reviewsWrapper, reviews, mapReviews);
 
     const notAddedToCartElement = [
       ...productsWrapper.querySelectorAll(".buttons-buy"),
