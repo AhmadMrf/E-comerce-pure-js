@@ -155,13 +155,16 @@ function mapProduct(item) {
                   `
                   }
 
+                  
+                  <a href='./pages/product.html#${item.id}' >
                   <button class="buttons-images" type="button">
                     <svg class="svg">
                       <use
                         href="./assets/icons/svg-icons.svg#icon-Gallery"
                       ></use>
                     </svg>
-                  </button>
+                    </button>
+                    </a>
                 </div>
               </div>
               <div class="info">
@@ -171,7 +174,9 @@ function mapProduct(item) {
                     ${stars(+item.rate)}
                   </div>
                 </div>
-                <span class="title">${item.name}</span>
+                <span class="title"><a href='./pages/product.html#${
+                  item.id
+                }' >${item.name}</a></span>
                 <div class="price">
                   <span class="current-price">$${+item.price}</span>
                   <span class="base-price">$${totalPrice}</span>
