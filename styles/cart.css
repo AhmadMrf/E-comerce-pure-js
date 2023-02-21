@@ -57,7 +57,14 @@
   color: var(--secondary-color);
 }
 .item-info-container .price {
+  display: flex;
+  gap: 1rem;
+}
+.item-info-container .current-price {
   font-weight: 700;
+}
+.item-info-container .base-price {
+  text-decoration: line-through;
 }
 .item-info-container .fevorite {
   font-weight: 700;
