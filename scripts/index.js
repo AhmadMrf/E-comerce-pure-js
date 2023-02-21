@@ -61,11 +61,11 @@ function updateCartButtonUi(parent, id) {
     element.children[1].outerHTML = `
     <div class="change-count">
     <svg class="minus svg">
-      <use href="../assets/icons/svg-icons.svg#icon-Minus"></use>
+      <use href="./assets/icons/svg-icons.svg#icon-Minus"></use>
     </svg>
     <span>${isAddedToCart.quantity}</span>
     <svg class="plus svg">
-      <use href="../assets/icons/svg-icons.svg#icon-Plus"></use>
+      <use href="./assets/icons/svg-icons.svg#icon-Plus"></use>
     </svg>
   </div>
     `;
@@ -137,11 +137,11 @@ function mapProduct(item) {
                       ? `
                     <div class="change-count">
                     <svg class="minus svg">
-                      <use href="../assets/icons/svg-icons.svg#icon-Minus"></use>
+                      <use href="./assets/icons/svg-icons.svg#icon-Minus"></use>
                     </svg>
                     <span>${isAddedToCart.quantity}</span>
                     <svg class="plus svg">
-                      <use href="../assets/icons/svg-icons.svg#icon-Plus"></use>
+                      <use href="./assets/icons/svg-icons.svg#icon-Plus"></use>
                     </svg>
                   </div>
                     
