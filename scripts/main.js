@@ -1,5 +1,5 @@
 import { setLocalStorage, getLocalStorage } from "./utils/useLocalStorage.js";
-
+import { handleBadge } from "./manage-cart/handleBadge.js";
 // ---------- toggle theme and sidebar and button
 
 // html tags ----------
@@ -68,17 +68,3 @@ toggleThemeIcon.forEach((item) =>
   })
 );
 window.addEventListener("scroll", toggleHeaderHeight);
-
-// ---------- cart data  -------------
-
-const cartBadge = document.querySelector(
-  ".user-info-icons-container.cart .cart-badge"
-);
-const catrItems = getLocalStorage("products");
-const handleBadge = (badge, itemCount) => {
-  itemCount === 0
-    ? badge.classList.add("hide")
-    : (badge.textContent = itemCount);
-};
-handleBadge(cartBadge, catrItems.length);
-console.log(catrItems);
