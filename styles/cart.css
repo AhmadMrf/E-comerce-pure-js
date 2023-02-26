@@ -4,11 +4,26 @@
 .cart-wrapper {
   padding-top: 5.5rem;
 }
-.cart-wrapper h2 {
-  font-size: 1.5rem;
-  font-weight: 700;
+.cart-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border-bottom: 2px solid var(--secondary-color);
   padding: 1rem 0;
+}
+.cart-title .title-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.cart-title .delete-cart-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.cart-title h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
 }
 .item-count-content {
   font-size: 0.8rem;
