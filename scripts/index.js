@@ -18,6 +18,7 @@ import {
 
 // ---------- global data -----------
 let allProduct = undefined;
+let cartData = getLocalStorage("products");
 
 const productsWrapper = document.querySelector(
   ".new-products-container .swiper-wrapper"
@@ -34,7 +35,7 @@ function toggleCartItem(productBtnsParent_withId, toggle = "plus") {
   const id = productBtnsParent_withId.dataset.product_id;
   const product = allProduct.find((productItem) => +productItem.id === +id);
 
-  handleCart(product, toggle);
+  cartData = handleCart(product, toggle);
 
   updateCartButtonUi(productsWrapper, id);
   updateCartButtonUi(trendsWrapper, id);
@@ -43,7 +44,6 @@ function toggleCartItem(productBtnsParent_withId, toggle = "plus") {
 }
 
 function updateCartButtonUi(parent, id) {
-  const cartData = getLocalStorage("products");
   const isAddedToCart = cartData.find((cartItem) => cartItem.id == id);
 
   const element = parent.querySelector(`[data-product_id="${id}"]`);
@@ -92,7 +92,6 @@ function mapFilterBtns(item) {
   `;
 }
 function mapProduct(item) {
-  const cartData = getLocalStorage("products");
   const isAddedToCart = cartData.find((cartItem) => cartItem.id == item.id);
 
   const totalPrice = +item.price + (+item.price * item.discount) / 100;
