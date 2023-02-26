@@ -1,18 +1,21 @@
 import { setLocalStorage, getLocalStorage } from "../utils/useLocalStorage.js";
-export function resetCart() {
-  setLocalStorage("products", []);
+function resetCart() {
+  return setLocalStorage("products", []);
 }
 
-export function removeitem(id) {
+function removeitem(id) {
   let cartData = getLocalStorage("products");
   cartData = cartData.filter((cartItem) => +cartItem.id !== +id);
   setLocalStorage("products", cartData);
   return cartData;
 }
-export function handleCart(product, toggle) {
+export function handleCart(product = {}, toggle) {
   let cartData = getLocalStorage("products");
-
-  if (product) {
+  if (toggle === "reset") {
+    cartData = resetCart();
+  } else if (toggle === "remove") {
+    cartData = removeitem(product.id);
+  } else if (product) {
     const isInCart = cartData.find((cartItem) => +cartItem.id === +product.id);
 
     if (isInCart) {
@@ -31,4 +34,5 @@ export function handleCart(product, toggle) {
     }
     setLocalStorage("products", cartData);
   }
+  return cartData;
 }

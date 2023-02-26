@@ -9,4 +9,5 @@ export function getLocalStorage(key) {
 }
 export function setLocalStorage(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
+  return getLocalStorage(key);
 }
