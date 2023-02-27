@@ -1,4 +1,4 @@
-import { handleBadge } from "./manage-cart/handleBadge.js";
+import { handleBadge } from "./utils/handleBadge.js";
 import { handleCart } from "./manage-cart/handleCart.js";
 import { getLocalStorage } from "./utils/useLocalStorage.js";
 import { insertData } from "./utils/insertData.js";

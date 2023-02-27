@@ -1,6 +1,6 @@
 import { insertData } from "./utils/insertData.js";
 import { handleCart } from "./manage-cart/handleCart.js";
-import { handleBadge } from "./manage-cart/handleBadge.js";
+import { handleBadge } from "./utils/handleBadge.js";
 import { getLocalStorage } from "./utils/useLocalStorage.js";
 import { createPreLoader } from "./utils/createPreLoader.js";
 import { changeData } from "./utils/changeData.js";

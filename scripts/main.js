@@ -1,5 +1,5 @@
-import { setLocalStorage, getLocalStorage } from "./utils/useLocalStorage.js";
-import { handleBadge } from "./manage-cart/handleBadge.js";
+// import { setLocalStorage, getLocalStorage } from "./utils/useLocalStorage.js";
+// import { handleBadge } from "./utils/handleBadge.js";
 // ---------- toggle theme and sidebar and button
 
 // html tags ----------

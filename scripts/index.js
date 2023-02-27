@@ -4,7 +4,7 @@ import { getTrends } from "./utils/getTrends.js";
 import { getCategories } from "./utils/getCategories.js";
 import { stars } from "./utils/stars.js";
 import { handleCart } from "./manage-cart/handleCart.js";
-import { handleBadge } from "./manage-cart/handleBadge.js";
+import { handleBadge } from "./utils/handleBadge.js";
 import { createPreLoader } from "./utils/createPreLoader.js";
 import { insertData } from "./utils/insertData.js";
 import { addEventListenerFn } from "./utils/addEventListenerFn.js";
