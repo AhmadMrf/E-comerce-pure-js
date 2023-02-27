@@ -34,7 +34,7 @@
 .small-images-wrapper li {
   border: 4px solid var(--green-1);
   position: relative;
-  width: 20%;
+  width: 15%;
   aspect-ratio: 1;
   transition: all 0.3s;
   cursor: pointer;
@@ -104,6 +104,7 @@
 .add-to-cart-content {
   padding: 1rem 0;
   display: flex;
+  align-self: center;
   flex-wrap: wrap;
   gap: 1rem;
 }
@@ -111,6 +112,7 @@
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  padding: 0.5rem 1.5rem;
 }
 
 /************** pre loader styles *************/
@@ -200,6 +202,7 @@
   }
   .add-to-cart-content {
     flex-direction: row-reverse;
+    align-self: inherit;
   }
 
   /************* pre loader ****************/
