@@ -10,6 +10,8 @@
   justify-content: space-between;
   border-bottom: 2px solid var(--secondary-color);
   padding: 1rem 0;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 .cart-title .title-info {
   display: flex;
@@ -19,7 +21,8 @@
 .cart-title .delete-cart-wrapper {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
+  cursor: pointer;
 }
 .cart-title h2 {
   font-size: 1.5rem;
@@ -144,6 +147,9 @@
   background-color: var(--secondary-color);
 }
 
+.hide {
+  display: none !important;
+}
 /**************************************/
 /************ medium size *************/
 /**************************************/

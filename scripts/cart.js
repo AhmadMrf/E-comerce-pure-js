@@ -4,6 +4,7 @@ import { handleFavorites } from "./manage-favorites/handleFavorites.js";
 import { getLocalStorage } from "./utils/useLocalStorage.js";
 import { insertData } from "./utils/insertData.js";
 import { addEventListenerFn } from "./utils/addEventListenerFn.js";
+import { hideResetWrapper } from "./utils/hideResetWrapper.js";
 
 // ---------- selectors -----------
 const cartWrapper = document.querySelector(".cart-items-wrapper");
@@ -21,6 +22,7 @@ function resetCart() {
   calcCountCartItem(countCartItem);
   calcTotalItem(totalPrice, "price");
   calcTotalItem(totalDiscount, "discount");
+  hideResetWrapper(cartData, resetCartWrapper);
 }
 function toggleCartItem(productBtnsParent_withId, toggle) {
   const id = productBtnsParent_withId.dataset.product_id;
@@ -28,6 +30,7 @@ function toggleCartItem(productBtnsParent_withId, toggle) {
 
   cartData = handleCart(product, toggle);
   updateCartUi(productBtnsParent_withId, id);
+  hideResetWrapper(cartData, resetCartWrapper);
 }
 function toggleFavoriteItem(productBtnsParent_withId) {
   const id = productBtnsParent_withId.dataset.product_id;
@@ -130,7 +133,7 @@ const favoriteWrapper = cartWrapper.querySelectorAll(".favorite");
 const plusButtons = cartWrapper.querySelectorAll(".item-buy-info .plus");
 const minusButtons = cartWrapper.querySelectorAll(".item-buy-info .minus");
 const removeItemButtons = cartWrapper.querySelectorAll(".item-buy-info .trash");
-const resetCartButton = document.querySelector(".delete-cart-wrapper .trash");
+const resetCartWrapper = document.querySelector(".delete-cart-wrapper");
 
 addEventListenerFn(favoriteWrapper, (e) => {
   const parent = e.currentTarget.closest("[data-product_id]");
@@ -148,7 +151,7 @@ addEventListenerFn(removeItemButtons, (e) => {
   const parent = e.currentTarget.closest("[data-product_id]");
   toggleCartItem(parent, "remove");
 });
-addEventListenerFn(resetCartButton, () => {
+addEventListenerFn(resetCartWrapper, () => {
   resetCart();
 });
 // ------------ calculate item counts ---------------
@@ -185,5 +188,7 @@ function calcTotalItem(element, item) {
 calcCountCartItem(countCartItem);
 calcTotalItem(totalPrice, "price");
 calcTotalItem(totalDiscount, "discount");
+
+hideResetWrapper(cartData, resetCartWrapper);
 // ---------- cart and favorite badge  -------------
 handleBadge("favorite");
