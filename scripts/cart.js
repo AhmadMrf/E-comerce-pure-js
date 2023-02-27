@@ -1,5 +1,6 @@
 import { handleBadge } from "./utils/handleBadge.js";
 import { handleCart } from "./manage-cart/handleCart.js";
+import { handleFavorites } from "./manage-favorites/handleFavorites.js";
 import { getLocalStorage } from "./utils/useLocalStorage.js";
 import { insertData } from "./utils/insertData.js";
 import { addEventListenerFn } from "./utils/addEventListenerFn.js";
@@ -12,6 +13,7 @@ const totalDiscount = document.querySelector(".total-discount-amount");
 
 // ---------- insert local data to page --------------
 let cartData = getLocalStorage("products");
+let favoriteData = getLocalStorage("favorites");
 
 function resetCart() {
   cartData = handleCart(null, "reset");
@@ -26,6 +28,14 @@ function toggleCartItem(productBtnsParent_withId, toggle) {
 
   cartData = handleCart(product, toggle);
   updateCartUi(productBtnsParent_withId, id);
+}
+function toggleFavoriteItem(productBtnsParent_withId) {
+  const id = productBtnsParent_withId.dataset.product_id;
+  const product = cartData.find((productItem) => +productItem.id === +id);
+
+  favoriteData = handleFavorites(product);
+  updateFavoriteUi(productBtnsParent_withId, id);
+  handleBadge("favorites");
 }
 function updateCartUi(parent, id) {
   const product = cartData.find((productItem) => +productItem.id === +id);
@@ -46,7 +56,23 @@ function updateCartUi(parent, id) {
   calcTotalItem(totalDiscount, "discount");
   calcCountCartItem(countCartItem);
 }
+function updateFavoriteUi(parent, id) {
+  const product = favoriteData.find((productItem) => +productItem.id === +id);
+  const favoriteIcon = parent.querySelector(".favorite svg.heart");
+  const favoriteText = parent.querySelector(".favorite span");
+  if (!product) {
+    favoriteIcon.classList.remove("in-favorites");
+    favoriteText.textContent = "add to favorites";
+  } else {
+    favoriteIcon.classList.add("in-favorites");
+    favoriteText.textContent = "remove from favorites";
+  }
+}
+
 function mapCartItem(item) {
+  const isAddedToFavorite = favoriteData.find(
+    (favoriteItem) => favoriteItem.id == item.id
+  );
   const totalPrice = +item.price + (+item.price * item.discount) / 100;
 
   return `
@@ -65,11 +91,11 @@ function mapCartItem(item) {
         <span class="base-price">$${totalPrice}</span>
       </div>
 
-      <div class="title fevorite">
-        <span>add to favorite</span>
-        <svg class="heart svg">
+      <div class="title favorite">
+        <span>${isAddedToFavorite ? "remove from" : "add to"} favorites</span>
+        <svg class="${isAddedToFavorite ? "in-favorites" : ""} heart svg">
           <use
-            href="../assets/icons/svg-icons.svg#icon-Heart-fill"
+            href="../assets/icons/svg-icons.svg#icon-Heart"
           ></use>
         </svg>
       </div>
@@ -100,11 +126,16 @@ function mapCartItem(item) {
 }
 insertData(cartWrapper, cartData, mapCartItem);
 
+const favoriteWrapper = cartWrapper.querySelectorAll(".favorite");
 const plusButtons = cartWrapper.querySelectorAll(".item-buy-info .plus");
 const minusButtons = cartWrapper.querySelectorAll(".item-buy-info .minus");
 const removeItemButtons = cartWrapper.querySelectorAll(".item-buy-info .trash");
 const resetCartButton = document.querySelector(".delete-cart-wrapper .trash");
 
+addEventListenerFn(favoriteWrapper, (e) => {
+  const parent = e.currentTarget.closest("[data-product_id]");
+  toggleFavoriteItem(parent);
+});
 addEventListenerFn(plusButtons, (e) => {
   const parent = e.currentTarget.closest("[data-product_id]");
   toggleCartItem(parent, "plus");
