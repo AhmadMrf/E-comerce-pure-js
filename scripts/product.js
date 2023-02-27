@@ -1,6 +1,7 @@
 import { insertData } from "./utils/insertData.js";
 import { handleCart } from "./manage-cart/handleCart.js";
 import { handleBadge } from "./utils/handleBadge.js";
+import { handleFavorites } from "./manage-favorites/handleFavorites.js";
 import { getLocalStorage } from "./utils/useLocalStorage.js";
 import { createPreLoader } from "./utils/createPreLoader.js";
 import { changeData } from "./utils/changeData.js";
@@ -21,6 +22,8 @@ const singleProductWrapper = document.querySelector(".single-product");
 const id = +location.hash.slice(1);
 // ----------- insert data ---------
 let cartData = getLocalStorage("products");
+let favoriteData = getLocalStorage("favorites");
+
 let product = null;
 function imageSlider(e, wrapper) {
   const mainImage = wrapper.querySelector(".main-image img");
@@ -39,6 +42,11 @@ function toggleCartItem(addToCartContent, toggle) {
   cartData = handleCart(product, toggle);
   updateCartContentUi(addToCartContent);
   handleBadge("cart");
+}
+function toggleFavoriteItem(favoriteWrapper) {
+  favoriteData = handleFavorites(product);
+  updateFavoriteUi(favoriteWrapper);
+  handleBadge("favorites");
 }
 function updateCartContentUi(wrapper) {
   const isAddedToCart = cartData.find((cartItem) => cartItem.id == product.id);
@@ -70,8 +78,23 @@ function updateCartContentUi(wrapper) {
     });
   }
 }
+function updateFavoriteUi(parent) {
+  const product = favoriteData.find((productItem) => +productItem.id === id);
+  const favoriteIcon = parent.querySelector(" svg.heart");
+  const favoriteText = parent.querySelector(" span");
+  if (!product) {
+    favoriteIcon.classList.remove("in-favorites");
+    favoriteText.textContent = "add to favorites";
+  } else {
+    favoriteIcon.classList.add("in-favorites");
+    favoriteText.textContent = "remove from favorites";
+  }
+}
 function mapSingleProduct(item) {
   const isAddedToCart = cartData.find((cartItem) => cartItem.id == item.id);
+  const isAddedToFavorite = favoriteData.find(
+    (favoriteItem) => favoriteItem.id == item.id
+  );
 
   const totalPrice = +item.price + (+item.price * item.discount) / 100;
 
@@ -108,9 +131,11 @@ function mapSingleProduct(item) {
         }</span></span
       >
       <div class="title favorite">
-        <span>add to favorite</span>
-        <svg class="heart svg">
-          <use href="../assets/icons/svg-icons.svg#icon-Heart"></use>
+        <span>${isAddedToFavorite ? "remove from" : "add to"} favorites</span>
+        <svg class="${isAddedToFavorite ? "in-favorites" : ""} heart svg">
+          <use
+            href="../assets/icons/svg-icons.svg#icon-Heart"
+          ></use>
         </svg>
       </div>
     </div>
@@ -150,7 +175,7 @@ fetch(`${BASE_URL}/products/${id}`)
       ".single-product-image-wrapper"
     );
 
-    const favorite = singleProductWrapper.querySelector(".favorite .heart");
+    const favoriteWrapper = singleProductWrapper.querySelector(".favorite");
 
     const addToCartContent = singleProductWrapper.querySelector(
       ".add-to-cart-content"
@@ -168,8 +193,8 @@ fetch(`${BASE_URL}/products/${id}`)
     addEventListenerFn(imageSliderWrapper, (e) => {
       imageSlider(e, imageSliderWrapper);
     });
-    addEventListenerFn(favorite, () => {
-      console.log("favorite");
+    addEventListenerFn(favoriteWrapper, (e) => {
+      toggleFavoriteItem(favoriteWrapper);
     });
     addEventListenerFn(addToCartButton, (e) => {
       toggleCartItem(addToCartContent, "plus");
