@@ -1,4 +1,4 @@
-import { getLocalStorage } from "../utils/useLocalStorage.js";
+import { getLocalStorage } from "./useLocalStorage.js";
 const cartBadge = document.querySelector(
   ".user-info-icons-container.cart .cart-badge"
 );
