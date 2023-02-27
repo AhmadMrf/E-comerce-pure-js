@@ -4,6 +4,7 @@ import { getTrends } from "./utils/getTrends.js";
 import { getCategories } from "./utils/getCategories.js";
 import { stars } from "./utils/stars.js";
 import { handleCart } from "./manage-cart/handleCart.js";
+import { handleFavorites } from "./manage-favorites/handleFavorites.js";
 import { handleBadge } from "./utils/handleBadge.js";
 import { createPreLoader } from "./utils/createPreLoader.js";
 import { insertData } from "./utils/insertData.js";
@@ -19,6 +20,7 @@ import {
 // ---------- global data -----------
 let allProduct = undefined;
 let cartData = getLocalStorage("products");
+let favoriteData = getLocalStorage("favorites");
 
 const productsWrapper = document.querySelector(
   ".new-products-container .swiper-wrapper"
@@ -41,6 +43,16 @@ function toggleCartItem(productBtnsParent_withId, toggle = "plus") {
   updateCartButtonUi(trendsWrapper, id);
 
   handleBadge("cart");
+}
+function toggleFavoriteItem(productBtnsParent_withId) {
+  const id = productBtnsParent_withId.dataset.product_id;
+  const product = allProduct.find((productItem) => +productItem.id === +id);
+  favoriteData = handleFavorites(product);
+
+  updateFavoriteButtonUi(productsWrapper, id);
+  updateFavoriteButtonUi(trendsWrapper, id);
+
+  handleBadge("favorite");
 }
 
 function updateCartButtonUi(parent, id) {
@@ -81,6 +93,20 @@ function updateCartButtonUi(parent, id) {
     });
   }
 }
+function updateFavoriteButtonUi(parent, id) {
+  const isAddedToFavorite = favoriteData.find(
+    (favoriteItem) => favoriteItem.id == id
+  );
+
+  const element = parent.querySelector(`[data-product_id="${id}"]`);
+
+  if (!element) return;
+  if (isAddedToFavorite) {
+    element.children[0].firstElementChild.classList.add("in-favorites");
+  } else {
+    element.children[0].firstElementChild.classList.remove("in-favorites");
+  }
+}
 
 function mapFilterBtns(item) {
   let active = "";
@@ -93,6 +119,9 @@ function mapFilterBtns(item) {
 }
 function mapProduct(item) {
   const isAddedToCart = cartData.find((cartItem) => cartItem.id == item.id);
+  const isAddedToFavorite = favoriteData.find(
+    (favoriteItem) => favoriteItem.id == item.id
+  );
 
   const totalPrice = +item.price + (+item.price * item.discount) / 100;
   return `
@@ -105,7 +134,9 @@ function mapProduct(item) {
                 </div>
                 <div data-product_id="${item.id}" class="buttons">
                   <button class="buttons-like" type="button">
-                    <svg class="svg">
+                    <svg class="${
+                      isAddedToFavorite ? "in-favorites" : ""
+                    } svg heart">
                       <use href="./assets/icons/svg-icons.svg#icon-Heart"></use>
                     </svg>
                   </button>
@@ -201,6 +232,10 @@ Promise.all([
     insertData(filterBtnwrapper, filterBtns, mapFilterBtns);
     insertData(reviewsWrapper, reviews, mapReviews);
 
+    const favoritesButtons = [
+      ...productsWrapper.querySelectorAll(".buttons-like"),
+      ...trendsWrapper.querySelectorAll(".buttons-like"),
+    ];
     const notAddedToCartElement = [
       ...productsWrapper.querySelectorAll(".buttons-buy"),
       ...trendsWrapper.querySelectorAll(".buttons-buy"),
@@ -214,6 +249,9 @@ Promise.all([
       ...trendsWrapper.querySelectorAll(".change-count .minus"),
     ];
 
+    addEventListenerFn(favoritesButtons, (e) => {
+      toggleFavoriteItem(e.currentTarget.parentElement);
+    });
     addEventListenerFn(notAddedToCartElement, (e) => {
       toggleCartItem(e.currentTarget.parentElement, "plus");
     });
