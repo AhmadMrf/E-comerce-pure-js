@@ -21,9 +21,14 @@ export function handleCart(product = {}, toggle) {
     if (isInCart) {
       cartData.map((cartItem) => {
         if (+isInCart.id === +cartItem.id) {
-          toggle === "plus"
-            ? (cartItem.quantity += 1)
-            : (cartItem.quantity -= 1);
+          if (toggle === "plus") {
+            cartItem.quantity += 1;
+            if (cartItem.quantity >= isInCart.count_in_stock) {
+              cartItem.quantity = isInCart.count_in_stock;
+            }
+          } else {
+            cartItem.quantity -= 1;
+          }
         }
         return cartItem;
       });
