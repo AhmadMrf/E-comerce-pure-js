@@ -71,7 +71,10 @@ main {
   transition: all 0.5s;
   /* border: 1px solid red; */
 }
-
+.svg.in-favorites {
+  --fill: var(--red);
+  --opacity: 1;
+}
 .svg.star-full {
   --star-fill: var(--yellow-1);
   stroke: none;

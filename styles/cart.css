@@ -81,11 +81,12 @@
 .item-info-container .base-price {
   text-decoration: line-through;
 }
-.item-info-container .fevorite {
+.item-info-container .favorite {
   font-weight: 700;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  cursor: pointer;
 }
 
 .cart-item .item-buy-info {

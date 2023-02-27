@@ -107,10 +107,10 @@ function mapSingleProduct(item) {
           item.count_in_stock
         }</span></span
       >
-      <div class="title fevorite">
+      <div class="title favorite">
         <span>add to favorite</span>
         <svg class="heart svg">
-          <use href="../assets/icons/svg-icons.svg#icon-Heart-fill"></use>
+          <use href="../assets/icons/svg-icons.svg#icon-Heart"></use>
         </svg>
       </div>
     </div>
@@ -150,7 +150,7 @@ fetch(`${BASE_URL}/products/${id}`)
       ".single-product-image-wrapper"
     );
 
-    const fevorite = singleProductWrapper.querySelector(".fevorite .heart");
+    const favorite = singleProductWrapper.querySelector(".favorite .heart");
 
     const addToCartContent = singleProductWrapper.querySelector(
       ".add-to-cart-content"
@@ -168,7 +168,7 @@ fetch(`${BASE_URL}/products/${id}`)
     addEventListenerFn(imageSliderWrapper, (e) => {
       imageSlider(e, imageSliderWrapper);
     });
-    addEventListenerFn(fevorite, () => {
+    addEventListenerFn(favorite, () => {
       console.log("favorite");
     });
     addEventListenerFn(addToCartButton, (e) => {

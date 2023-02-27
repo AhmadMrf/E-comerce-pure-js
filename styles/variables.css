@@ -48,6 +48,7 @@
   );
 
   --fill: hsla(0, 0%, 100%, 0);
+  --opacity: 0.4;
   /* fonts */
   --main-font-color: var(--gray-2);
   --main-font-hover: var(--gray-1);

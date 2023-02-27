@@ -95,11 +95,12 @@
   color: inherit;
   line-height: 1.5rem;
 }
-.product-content .fevorite {
+.product-content .favorite {
   font-weight: 700;
   display: flex;
   gap: 0.5rem;
   align-items: center;
+  cursor: pointer;
 }
 .add-to-cart-content {
   padding: 1rem 0;
