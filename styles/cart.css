@@ -19,10 +19,13 @@
   gap: 1rem;
 }
 .cart-title .delete-cart-wrapper {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+}
+.cart-title .delete-cart-wrapper.show {
+  display: flex;
 }
 .cart-title h2 {
   font-size: 1.5rem;
@@ -147,9 +150,6 @@
   background-color: var(--secondary-color);
 }
 
-.hide {
-  display: none !important;
-}
 /**************************************/
 /************ medium size *************/
 /**************************************/
