@@ -1,10 +1,7 @@
 export function hideResetWrapper(data, wrapper) {
-  console.log(5);
-  console.log(data);
-  console.log(wrapper);
   if (data.length > 0) {
-    wrapper.classList.remove("hide");
+    wrapper.classList.add("show");
   } else {
-    wrapper.classList.add("hide");
+    wrapper.classList.remove("show");
   }
 }
