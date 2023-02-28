@@ -19,10 +19,13 @@
   gap: 1rem;
 }
 .favorite-title .delete-favorite-wrapper {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
+}
+.favorite-title .delete-favorite-wrapper.show {
+  display: flex;
 }
 .favorite-title h2 {
   font-size: 1.5rem;
@@ -113,9 +116,11 @@
   padding-bottom: 1rem;
 }
 
-.hide {
-  display: none !important;
+.add-new-product {
+  margin: 0 auto;
+  display: block;
 }
+
 /**************************************/
 /************ medium size *************/
 /**************************************/
