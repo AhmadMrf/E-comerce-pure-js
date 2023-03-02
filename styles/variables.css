@@ -27,6 +27,7 @@
   --main-color: var(--gray-1);
   --secondary-color: var(--gray-3);
   --section-100-color: var(--gray-5);
+  --section-100-color-full-opacity: hsl(0, 0%, 90%);
   --search-box-color: var(--gray-5);
 
   --yellow-radial: radial-gradient(
@@ -77,6 +78,7 @@ body[data-theme="dark"] {
   --main-color: var(--gray-7);
   --secondary-color: var(--gray-8);
   --section-100-color: var(--gray-6);
+  --section-100-color-full-opacity: hsl(0, 0%, 18%);
   --search-box-color: var(--gray-6);
 
   /* fonts */
