@@ -203,7 +203,7 @@ sup {
 img {
   border-style: none;
 }
-button{
+button {
   border: none;
 }
 button,
@@ -256,7 +256,7 @@ fieldset {
   padding: 0.35em 0.75em 0.625em;
 }
 
- legend {
+legend {
   box-sizing: border-box; /* 1 */
   color: inherit; /* 2 */
   display: table; /* 1 */
@@ -282,6 +282,15 @@ textarea {
 [type="number"]::-webkit-inner-spin-button,
 [type="number"]::-webkit-outer-spin-button {
   height: auto;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 [type="search"] {
