@@ -47,7 +47,7 @@
     var(--secondary-color) 48%,
     var(--gray-5) 60%
   );
-
+  --stroke: var(--gray-2);
   --fill: hsla(0, 0%, 100%, 0);
   --opacity: 0.4;
   /* fonts */
@@ -80,6 +80,9 @@ body[data-theme="dark"] {
   --section-100-color: var(--gray-6);
   --section-100-color-full-opacity: hsl(0, 0%, 18%);
   --search-box-color: var(--gray-6);
+
+  --stroke: var(--gray-2);
+  --fill: hsla(0, 0%, 100%, 0);
 
   /* fonts */
   --main-font-color: var(--gray-3);
