@@ -142,35 +142,113 @@
   flex-direction: column;
   gap: 0.5rem;
 }
+.filters > div div {
+  padding-left: 0.3rem;
+}
 .filters > div .filter-name {
   font-size: 1.1rem;
   font-weight: 500;
 }
 
+.filters svg {
+  transition-duration: 0.2s;
+}
+input:checked ~ label svg {
+  --stroke: var(--green-2);
+}
+/******* color filter *********/
 .color-filter .colors {
   display: flex;
   gap: 0.5rem;
 }
 
-.input-wrapper input {
+.colors .input-wrapper input {
   display: none;
 }
-.input-wrapper label[data-color] {
-  display: inline-block;
-  border-radius: 50%;
-  width: 1.5rem;
-  height: 1.5rem;
-  background-color: red;
+
+.colors .input-wrapper label svg {
+  --fill: red;
+  stroke-width: 0;
 }
-.input-wrapper label[data-color] svg {
-  --fill: var(--secondary-color);
-  display: none;
-}
-.input-wrapper input:checked ~ label[data-color] {
+.colors .input-wrapper input:checked ~ label {
   filter: grayscale(50%);
 }
-.input-wrapper input:checked ~ label[data-color] svg {
-  display: initial;
+.colors .input-wrapper input:checked ~ label svg {
+  stroke-width: 1.5;
+  --stroke: inherit;
+}
+
+/******* category filter *********/
+
+.category-filter .categories {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.categories .input-wrapper input {
+  display: none;
+}
+.categories .input-wrapper label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.categories .input-wrapper label svg {
+  stroke-width: 0;
+}
+.categories .input-wrapper input:checked ~ label svg {
+  stroke-width: 1.5;
+}
+
+/******* price filter *********/
+.price-filter .input-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.price-filter .input-wrapper label {
+  flex-basis: 60%;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+}
+.price-filter .input-wrapper label input {
+  max-width: 15ch;
+  border: 1px solid var(--secondary-color);
+  color: var(--gray-1);
+  border-radius: 0.2rem;
+  background-color: var(--background-color);
+  caret-color: var(--gray-1);
+}
+.price-filter .input-wrapper label input:focus {
+  outline: none;
+  border-color: var(--green-2);
+}
+.price-filter .input-wrapper label input:invalid {
+  border-color: var(--red-opacity);
+}
+/******* inventory filter *********/
+.inventory-filter .inventories {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.inventory-filter .input-wrapper input {
+  display: none;
+}
+.inventory-filter .input-wrapper label {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.inventory-filter .input-wrapper label svg {
+  --fill: none;
+  stroke-width: 0;
+}
+.inventory-filter .input-wrapper input:checked ~ label svg {
+  stroke-width: 1.5;
+  --gray-2: red;
 }
 
 /************ product styles *************/

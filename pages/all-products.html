@@ -181,7 +181,7 @@
               </div> -->
             </div>
 
-            <div class="open-filter-section-button">
+            <div title="filter is active" class="open-filter-section-button">
               <span class="title filtered">filters</span>
               <svg class="svg close">
                 <use href="../assets/icons/svg-icons.svg#icon-Close"></use>
@@ -207,24 +207,30 @@
                 <div class="input-wrapper">
                   <input type="checkbox" value="red" id="color_1" />
                   <label data-color="red" for="color_1">
-                    <svg class="svg tick">
-                      <use href="../assets/icons/svg-icons.svg#icon-Tick"></use>
+                    <svg class="svg checkbox">
+                      <use
+                        href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"
+                      ></use>
                     </svg>
                   </label>
                 </div>
                 <div class="input-wrapper">
                   <input type="checkbox" value="green" id="color_2" />
                   <label data-color="green" for="color_2">
-                    <svg class="svg tick">
-                      <use href="../assets/icons/svg-icons.svg#icon-Tick"></use>
+                    <svg class="svg checkbox">
+                      <use
+                        href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"
+                      ></use>
                     </svg>
                   </label>
                 </div>
                 <div class="input-wrapper">
                   <input type="checkbox" value="blue" id="color_3" />
                   <label data-color="blue" for="color_3">
-                    <svg class="svg tick">
-                      <use href="../assets/icons/svg-icons.svg#icon-Tick"></use>
+                    <svg class="svg checkbox">
+                      <use
+                        href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"
+                      ></use>
                     </svg>
                   </label>
                 </div>
@@ -236,61 +242,111 @@
                 <div class="input-wrapper">
                   <input type="checkbox" value="men" id="cat_1" />
                   <label for="cat_1">
-                    <span>category 1</span>
                     <svg class="svg checkbox">
                       <use
                         href="../assets/icons/svg-icons.svg#icon-Checkbox"
                       ></use>
                     </svg>
-                    <svg class="svg checkbox-checked">
-                      <use
-                        href="../assets/icons/svg-icons.svg#icon-Checkbox-checked"
-                      ></use>
-                    </svg>
+                    <span>category 1</span>
                   </label>
                 </div>
                 <div class="input-wrapper">
-                  <input type="checkbox" value="men" id="cat_1" />
-                  <label for="cat_1">
-                    <span>category 1</span>
+                  <input type="checkbox" value="men" id="cat_2" />
+                  <label for="cat_2">
                     <svg class="svg checkbox">
                       <use
-                        href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"
+                        href="../assets/icons/svg-icons.svg#icon-Checkbox"
                       ></use>
                     </svg>
-                    <svg class="svg checkbox-checked">
-                      <use
-                        href="../assets/icons/svg-icons.svg#icon-Checkbox-circle-checked"
-                      ></use>
-                    </svg>
+                    <span>category 2</span>
                   </label>
                 </div>
-                <label for="cat_2">
-                  <span>category 2</span>
-                  <input type="checkbox" value="women" id="cat_2" />
-                </label>
-                <label for="cat_3">
-                  <span>category 3</span>
-                  <input type="checkbox" value="kids" id="cat_3" />
-                </label>
+                <div class="input-wrapper">
+                  <input type="checkbox" value="men" id="cat_3" />
+                  <label for="cat_3">
+                    <svg class="svg checkbox">
+                      <use
+                        href="../assets/icons/svg-icons.svg#icon-Checkbox"
+                      ></use>
+                    </svg>
+                    <span>category 3</span>
+                  </label>
+                </div>
+                <div class="input-wrapper">
+                  <input type="checkbox" value="men" id="cat_4" />
+                  <label for="cat_4">
+                    <svg class="svg checkbox">
+                      <use
+                        href="../assets/icons/svg-icons.svg#icon-Checkbox"
+                      ></use>
+                    </svg>
+                    <span>category 4</span>
+                  </label>
+                </div>
               </div>
             </div>
             <div class="price-filter">
               <span class="title filter-name">price :</span>
-              <label for="price-min">
-                <span>minimum</span>
-                <input type="number" id="price-min" />
-              </label>
-              <label for="price-max">
-                <span>maximum</span>
-                <input type="number" id="price-max" />
-              </label>
+              <div class="input-wrapper">
+                <label for="price-min">
+                  <span>min</span>
+                  <input
+                    type="number"
+                    step="1"
+                    max="10000"
+                    min="10"
+                    id="price-min"
+                  />
+                </label>
+                <label for="price-max">
+                  <span>max</span>
+                  <input
+                    type="number"
+                    step="1"
+                    max="10000"
+                    min="10"
+                    id="price-max"
+                  />
+                </label>
+              </div>
             </div>
             <div class="inventory-filter">
-              <label for="inventory">
-                <span class="title filter-name">only in stock </span>
-                <input type="checkbox" id="inventory" />
-              </label>
+              <span class="title filter-name">inventory :</span>
+              <div class="inventories">
+                <div class="input-wrapper">
+                  <input type="radio" name="inventory" id="inventory-all" />
+                  <label for="inventory-all">
+                    <svg class="svg radio">
+                      <use
+                        href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"
+                      ></use>
+                    </svg>
+                    <span>all products</span>
+                  </label>
+                </div>
+                <div class="input-wrapper">
+                  <input type="radio" name="inventory" id="inventory-yes" />
+                  <label for="inventory-yes">
+                    <svg class="svg radio">
+                      <use
+                        href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"
+                      ></use>
+                    </svg>
+                    <span>in stock</span>
+                  </label>
+                </div>
+                <div class="input-wrapper">
+                  <input type="radio" name="inventory" id="inventory-no" />
+                  <label for="inventory-no">
+                    <svg class="svg radio">
+                      <use
+                        href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"
+                      ></use>
+                    </svg>
+                    <span>out of stock</span>
+                  </label>
+                </div>
+              </div>
             </div>
           </div>
         </div>
