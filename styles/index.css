@@ -232,7 +232,7 @@
   place-items: center;
   font-weight: 700;
   font-size: 0.8rem;
-  --gray-2: var(--black-1);
+  --stroke: var(--black-1);
 }
 .products-wrapper .product .content .buttons button.added {
   background-color: var(--yellow-1);
