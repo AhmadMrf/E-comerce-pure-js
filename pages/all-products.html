@@ -84,6 +84,14 @@
                 <span class="hide badge cart-badge"></span>
               </a>
             </span>
+            <span class="user-info-icons-container button with-badge favorite">
+              <a href="./favorites.html">
+                <svg class="svg">
+                  <use href="../assets/icons/svg-icons.svg#icon-Heart"></use>
+                </svg>
+                <span class="hide badge favorite-badge"></span>
+              </a>
+            </span>
             <span class="user-info-icons-container button user">
               <svg class="svg">
                 <use href="../assets/icons/svg-icons.svg#icon-Add-user"></use>
@@ -161,7 +169,10 @@
         <div class="products-info-wrapper">
           <div class="products-count">
             <h2 class="title">all products</h2>
-            <span>- <span class="count">24 products</span></span>
+            <span
+              >- <span class="count"></span
+              ><span class="filtered hide">(filter active)</span></span
+            >
           </div>
 
           <!--***************** sort ***************-->
@@ -173,16 +184,13 @@
                 <option value="l_price">lowest price</option>
                 <option value="h_discount">highest discount</option>
               </select>
-
-              <!-- <div id="sort-box">
-                <span data-value="h_price">highest price</span>
-                <span data-value="l_price">lowest price</span>
-                <span data-value="h_discount">highest discount</span>
-              </div> -->
             </div>
 
-            <div title="filter is active" class="open-filter-section-button">
-              <span class="title filtered">filters</span>
+            <div
+              title="filter is active"
+              class="open-filter-section-button disable"
+            >
+              <span class="title">filters</span>
               <svg class="svg close">
                 <use href="../assets/icons/svg-icons.svg#icon-Close"></use>
               </svg>
@@ -190,17 +198,17 @@
           </div>
         </div>
         <!--********** filters **********-->
-        <div class="filters-wrapper active">
+        <div class="filters-wrapper">
           <div class="filter-info">
             <span class="title">filters</span>
-            <div class="clear-filter">
-              <span class="title">clear</span>
+            <div class="reset-filter">
+              <span class="title">reset</span>
               <svg class="trash svg">
                 <use href="../assets/icons/svg-icons.svg#icon-Trash"></use>
               </svg>
             </div>
           </div>
-          <div class="filters">
+          <form class="filters">
             <div class="color-filter">
               <span class="title filter-name">color :</span>
               <div class="colors">
@@ -291,6 +299,8 @@
                 <label for="price-min">
                   <span>min</span>
                   <input
+                    value="10"
+                    placeholder="10"
                     type="number"
                     step="1"
                     max="10000"
@@ -301,6 +311,8 @@
                 <label for="price-max">
                   <span>max</span>
                   <input
+                    value="10000"
+                    placeholder="10000"
                     type="number"
                     step="1"
                     max="10000"
@@ -314,7 +326,13 @@
               <span class="title filter-name">inventory :</span>
               <div class="inventories">
                 <div class="input-wrapper">
-                  <input type="radio" name="inventory" id="inventory-all" />
+                  <input
+                    checked="true"
+                    value="all"
+                    type="radio"
+                    name="inventory"
+                    id="inventory-all"
+                  />
                   <label for="inventory-all">
                     <svg class="svg radio">
                       <use
@@ -325,7 +343,12 @@
                   </label>
                 </div>
                 <div class="input-wrapper">
-                  <input type="radio" name="inventory" id="inventory-yes" />
+                  <input
+                    type="radio"
+                    value="in-stock"
+                    name="inventory"
+                    id="inventory-yes"
+                  />
                   <label for="inventory-yes">
                     <svg class="svg radio">
                       <use
@@ -336,7 +359,12 @@
                   </label>
                 </div>
                 <div class="input-wrapper">
-                  <input type="radio" name="inventory" id="inventory-no" />
+                  <input
+                    type="radio"
+                    value="out-of-stock"
+                    name="inventory"
+                    id="inventory-no"
+                  />
                   <label for="inventory-no">
                     <svg class="svg radio">
                       <use
@@ -348,11 +376,11 @@
                 </div>
               </div>
             </div>
-          </div>
+          </form>
         </div>
         <!--************ product list **************-->
         <div class="products-card-wrapper">
-          <article class="product">
+          <!-- <article class="product">
             <div class="content">
               <img
                 src="https://picsum.photos/id/131/200/300"
@@ -419,279 +447,7 @@
                 <span class="base-price">$242</span>
               </div>
             </div>
-          </article>
-          <article class="product">
-            <div class="content">
-              <img
-                src="https://picsum.photos/id/131/200/300"
-                alt="Electronic Granite Chips"
-              />
-              <div class="tags">
-                <span class="tag discount">10%</span>
-                <span class="tag new">new!</span>
-              </div>
-              <div class="buttons">
-                <button class="buttons-like" type="button">
-                  <svg class="svg heart">
-                    <use href="../assets/icons/svg-icons.svg#icon-Heart"></use>
-                  </svg>
-                </button>
-
-                <button class="buttons-buy" type="button">
-                  <svg class="svg">
-                    <use href="../assets/icons/svg-icons.svg#icon-Bag"></use>
-                  </svg>
-                </button>
-
-                <a href="./product.html#2">
-                  <button class="buttons-images" type="button">
-                    <svg class="svg">
-                      <use
-                        href="../assets/icons/svg-icons.svg#icon-Gallery"
-                      ></use>
-                    </svg>
-                  </button>
-                </a>
-              </div>
-            </div>
-            <div class="info">
-              <div class="details">
-                <span class="category">winter</span>
-                <div class="stars">
-                  <svg class="svg star-full">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-
-                  <svg class="svg star-full">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-
-                  <svg class="svg star-full">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-
-                  <svg class="svg star-full">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-
-                  <svg class="svg star-empty">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-                </div>
-              </div>
-              <span class="title"
-                ><a href="./product.html#2">Electronic Granite Chips</a></span
-              >
-              <div class="price">
-                <span class="current-price">$220</span>
-                <span class="base-price">$242</span>
-              </div>
-            </div>
-          </article>
-          <article class="product">
-            <div class="content">
-              <img
-                src="https://picsum.photos/id/131/200/300"
-                alt="Electronic Granite Chips"
-              />
-              <div class="tags">
-                <span class="tag discount">10%</span>
-                <span class="tag new">new!</span>
-              </div>
-              <div class="buttons">
-                <button class="buttons-like" type="button">
-                  <svg class="svg heart">
-                    <use href="../assets/icons/svg-icons.svg#icon-Heart"></use>
-                  </svg>
-                </button>
-
-                <button class="buttons-buy" type="button">
-                  <svg class="svg">
-                    <use href="../assets/icons/svg-icons.svg#icon-Bag"></use>
-                  </svg>
-                </button>
-
-                <a href="./product.html#2">
-                  <button class="buttons-images" type="button">
-                    <svg class="svg">
-                      <use
-                        href="../assets/icons/svg-icons.svg#icon-Gallery"
-                      ></use>
-                    </svg>
-                  </button>
-                </a>
-              </div>
-            </div>
-            <div class="info">
-              <div class="details">
-                <span class="category">winter</span>
-                <div class="stars">
-                  <svg class="svg star-full">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-
-                  <svg class="svg star-full">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-
-                  <svg class="svg star-full">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-
-                  <svg class="svg star-full">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-
-                  <svg class="svg star-empty">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-                </div>
-              </div>
-              <span class="title"
-                ><a href="./product.html#2">Electronic Granite Chips</a></span
-              >
-              <div class="price">
-                <span class="current-price">$220</span>
-                <span class="base-price">$242</span>
-              </div>
-            </div>
-          </article>
-          <article class="product">
-            <div class="content">
-              <img
-                src="https://picsum.photos/id/131/200/300"
-                alt="Electronic Granite Chips"
-              />
-              <div class="tags">
-                <span class="tag discount">10%</span>
-                <span class="tag new">new!</span>
-              </div>
-              <div class="buttons">
-                <button class="buttons-like" type="button">
-                  <svg class="svg heart">
-                    <use href="../assets/icons/svg-icons.svg#icon-Heart"></use>
-                  </svg>
-                </button>
-
-                <button class="buttons-buy" type="button">
-                  <svg class="svg">
-                    <use href="../assets/icons/svg-icons.svg#icon-Bag"></use>
-                  </svg>
-                </button>
-
-                <a href="./product.html#2">
-                  <button class="buttons-images" type="button">
-                    <svg class="svg">
-                      <use
-                        href="../assets/icons/svg-icons.svg#icon-Gallery"
-                      ></use>
-                    </svg>
-                  </button>
-                </a>
-              </div>
-            </div>
-            <div class="info">
-              <div class="details">
-                <span class="category">winter</span>
-                <div class="stars">
-                  <svg class="svg star-full">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-
-                  <svg class="svg star-full">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-
-                  <svg class="svg star-full">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-
-                  <svg class="svg star-full">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-
-                  <svg class="svg star-empty">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-                </div>
-              </div>
-              <span class="title"
-                ><a href="./product.html#2">Electronic Granite Chips</a></span
-              >
-              <div class="price">
-                <span class="current-price">$220</span>
-                <span class="base-price">$242</span>
-              </div>
-            </div>
-          </article>
-          <article class="product">
-            <div class="content">
-              <img
-                src="https://picsum.photos/id/131/200/300"
-                alt="Electronic Granite Chips"
-              />
-              <div class="tags">
-                <span class="tag discount">10%</span>
-                <span class="tag new">new!</span>
-              </div>
-              <div class="buttons">
-                <button class="buttons-like" type="button">
-                  <svg class="svg heart">
-                    <use href="../assets/icons/svg-icons.svg#icon-Heart"></use>
-                  </svg>
-                </button>
-
-                <button class="buttons-buy" type="button">
-                  <svg class="svg">
-                    <use href="../assets/icons/svg-icons.svg#icon-Bag"></use>
-                  </svg>
-                </button>
-
-                <a href="./product.html#2">
-                  <button class="buttons-images" type="button">
-                    <svg class="svg">
-                      <use
-                        href="../assets/icons/svg-icons.svg#icon-Gallery"
-                      ></use>
-                    </svg>
-                  </button>
-                </a>
-              </div>
-            </div>
-            <div class="info">
-              <div class="details">
-                <span class="category">winter</span>
-                <div class="stars">
-                  <svg class="svg star-full">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-
-                  <svg class="svg star-full">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-
-                  <svg class="svg star-full">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-
-                  <svg class="svg star-full">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-
-                  <svg class="svg star-empty">
-                    <use href="../assets/icons/svg-icons.svg#icon-Star"></use>
-                  </svg>
-                </div>
-              </div>
-              <span class="title"
-                ><a href="./product.html#2">Electronic Granite Chips</a></span
-              >
-              <div class="price">
-                <span class="current-price">$220</span>
-                <span class="base-price">$242</span>
-              </div>
-            </div>
-          </article>
+          </article> -->
         </div>
       </section>
       <!--******** footer tags *********-->

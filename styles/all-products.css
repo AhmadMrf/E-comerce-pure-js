@@ -13,10 +13,12 @@
   flex-wrap: wrap;
   gap: 1rem;
   position: relative;
+  padding-top: 1rem;
 }
 .products-count {
   flex-grow: 100;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
 }
@@ -24,15 +26,38 @@
   font-size: 1.5rem;
   font-weight: 700;
 }
-
+.products-count .filtered {
+  color: var(--green-2);
+  font-size: 0.6rem;
+  padding-left: 0.3rem;
+}
+.products-count .filtered.hide {
+  display: none;
+}
 .products-sort-wrapper {
   flex: 1 1 max-content;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
 }
 
+/********** sort **************/
+.product-sort {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.product-sort select {
+  width: min-content;
+  background-color: var(--section-100-color-full-opacity);
+  color: var(--gray-1);
+  border: 1px solid var(--secondary-color);
+  padding: 0.4rem 0.3rem;
+  border-radius: 0.2rem;
+  transition: background-color 0.7s;
+}
 /********** filters **************/
 
 .open-filter-section-button {
@@ -45,6 +70,11 @@
   padding: 0.7rem 0.5rem;
   border-left: 1px solid var(--secondary-color);
   cursor: pointer;
+  transition: background-color 0.7s;
+}
+.open-filter-section-button.disable {
+  color: var(--secondary-color);
+  cursor: not-allowed;
 }
 .open-filter-section-button span,
 .open-filter-section-button svg {
@@ -77,7 +107,7 @@
   transform: translate(-50%, 0rem);
   opacity: 1;
 }
-.open-filter-section-button span.filtered::before {
+.open-filter-section-button.filtered span::before {
   position: absolute;
   top: 50%;
   left: -1rem;
@@ -100,7 +130,7 @@
   height: 0;
   overflow-y: hidden;
   padding: 0 1rem;
-  transition: min-height 0.3s, padding 0.5s;
+  transition: background-color 0.7s, min-height 0.3s, padding 0.5s;
 }
 .filters-wrapper.active {
   border: 1px solid var(--secondary-color);
@@ -120,13 +150,13 @@
   font-weight: 700;
 }
 
-.clear-filter {
+.reset-filter {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   cursor: pointer;
 }
-.clear-filter.hide {
+.reset-filter.hide {
   display: none;
 }
 
@@ -157,8 +187,10 @@ input:checked ~ label svg {
   --stroke: var(--green-2);
 }
 /******* color filter *********/
+
 .color-filter .colors {
   display: flex;
+  flex-direction: column;
   gap: 0.5rem;
 }
 
@@ -167,7 +199,6 @@ input:checked ~ label svg {
 }
 
 .colors .input-wrapper label svg {
-  --fill: red;
   stroke-width: 0;
 }
 .colors .input-wrapper input:checked ~ label {
@@ -210,6 +241,7 @@ input:checked ~ label svg {
 .price-filter .input-wrapper label {
   flex-basis: 60%;
   display: flex;
+  align-items: center;
   gap: 0.5rem;
   justify-content: space-between;
 }
@@ -220,6 +252,8 @@ input:checked ~ label svg {
   border-radius: 0.2rem;
   background-color: var(--background-color);
   caret-color: var(--gray-1);
+  padding: 0.2rem 0.3rem;
+  transition: background-color 0.7s;
 }
 .price-filter .input-wrapper label input:focus {
   outline: none;
@@ -251,11 +285,22 @@ input:checked ~ label svg {
   --gray-2: red;
 }
 
-/************ product styles *************/
+/************ products wrapper styles *************/
 .products-card-wrapper {
+  display: grid;
+  justify-items: center;
+  row-gap: 1rem;
+  grid-template-columns: 1fr;
   padding: 1.5rem 0;
 }
+.products-card-wrapper.no-grid {
+  grid-template-columns: 1fr !important;
+}
+
+/************ product styles *************/
+
 .products-card-wrapper .product {
+  width: min(20rem, 90%);
   overflow: hidden;
   padding-bottom: 1rem;
   border-radius: 1.2rem;
@@ -269,6 +314,20 @@ input:checked ~ label svg {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.products-card-wrapper .product .content .colors {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: flex-end;
+}
+.products-card-wrapper .product .content .colors .color {
+  width: 2rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
 }
 .products-card-wrapper .product .content .tags {
   top: 1rem;
@@ -301,6 +360,17 @@ input:checked ~ label svg {
   gap: 0.7rem;
   align-items: flex-end;
 }
+.products-wrapper .product .content .buttons button.added {
+  background-color: var(--yellow-1);
+}
+.products-card-wrapper .product .content .buttons .change-count {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 10rem;
+  background-color: var(--search-box-color);
+}
 .products-card-wrapper .product .content .buttons button {
   width: 2.5rem;
   aspect-ratio: 1;
@@ -310,7 +380,7 @@ input:checked ~ label svg {
   place-items: center;
   font-weight: 700;
   font-size: 0.8rem;
-  --gray-2: var(--black-1);
+  --stroke: var(--black-1);
 }
 .products-card-wrapper .product .info .details {
   display: flex;
@@ -340,11 +410,60 @@ input:checked ~ label svg {
   color: var(--secondary-color);
   text-decoration: line-through;
 }
+.no-product {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.5rem;
+}
+.no-product h4 {
+  color: var(--secondary-color);
+}
 
+/************** pre loader styles *************/
+/*********************************************/
+button.pre-loader {
+  background-image: var(--pre-loader);
+  background-size: 200%;
+  animation: pre-loader 0.7s infinite;
+  transition: background-image 0.7s;
+  width: 5rem;
+  height: 2rem;
+}
+
+.pre-loader {
+  aspect-ratio: 0.8;
+}
+.pre-loader .content {
+  height: 100%;
+  background-image: var(--pre-loader);
+  background-size: 200%;
+  animation: pre-loader 0.7s infinite;
+  transition: background-image 0.7s;
+}
+@keyframes pre-loader {
+  from {
+    background-position: 200%;
+  }
+  to {
+    background-position: 0%;
+  }
+}
 /**************************************/
 /************ medium size *************/
 /**************************************/
 @media screen and (min-width: 769px) {
+  .filters > div {
+    flex: 1 1 calc(33% - 0.3rem);
+  }
+  .filters > div:last-child {
+    /* align-items: center; */
+  }
+  .products-card-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 /**************************************/
@@ -352,12 +471,17 @@ input:checked ~ label svg {
 /**************************************/
 
 @media screen and (min-width: 1024px) {
+  .filters > div {
+    flex: 1 1 calc(24% - 0.3rem);
+  }
+  .products-card-wrapper {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /************ hover styles *************/
 
-svg.trash:hover,
-svg.heart:hover {
+svg.trash:hover {
   --fill: var(--red-opacity);
 }
 .product .buttons button:hover {
