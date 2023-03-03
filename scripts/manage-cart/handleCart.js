@@ -34,8 +34,10 @@ export function handleCart(product = {}, toggle) {
       });
       if (isInCart.quantity <= 0) cartData = removeitem(isInCart.id);
     } else {
-      const newCartProduct = { ...product, quantity: 1 };
-      cartData = [...cartData, newCartProduct];
+      if (+product.count_in_stock) {
+        const newCartProduct = { ...product, quantity: 1 };
+        cartData = [...cartData, newCartProduct];
+      }
     }
     setLocalStorage("products", cartData);
   }
