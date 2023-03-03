@@ -66,3 +66,4 @@ export const EMPTY_STAR = `
 export const BASE_URL = `https://635298c0a9f3f34c37434ca1.mockapi.io`;
 
 export const CATEGORIES = ["kids", "men", "women", "winter"];
+export const COLORS = ["#ff0000", "#00ff00", "#0000ff"];
