@@ -1,10 +1,10 @@
-export function addEventListenerFn(elements, eventHandler) {
+export function addEventListenerFn(elements, eventHandler, event = "click") {
   if (!elements) return;
   if (elements instanceof NodeList || elements instanceof Array) {
     elements.forEach((element) => {
-      element.addEventListener("click", eventHandler);
+      element.addEventListener(event, eventHandler);
     });
   } else {
-    elements.addEventListener("click", eventHandler);
+    elements.addEventListener(event, eventHandler);
   }
 }
