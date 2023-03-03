@@ -122,7 +122,11 @@ function mapProduct(item) {
   const isAddedToFavorite = favoriteData.find(
     (favoriteItem) => favoriteItem.id == item.id
   );
-
+  const colors = item.colors
+    .map(
+      (item) => `<span style='background-color:${item};' class="color"></span>`
+    )
+    .join("");
   const totalPrice = +item.price + (+item.price * item.discount) / 100;
   return `
       <article class="product swiper-slide">
@@ -174,11 +178,14 @@ function mapProduct(item) {
                     </svg>
                     </button>
                     </a>
-                </div>
+                    </div>
+                    <divs class='colors'>
+                    ${colors}
+                    </divs>
               </div>
               <div class="info">
                 <div class="details">
-                  <span class="category">${item.category}</span>
+                  <span class="category">${item.category[0]}</span>
                   <div class="stars">
                     ${stars(+item.rate)}
                   </div>

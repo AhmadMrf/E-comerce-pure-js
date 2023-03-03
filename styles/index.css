@@ -245,6 +245,20 @@
   border-radius: 10rem;
   background-color: var(--search-box-color);
 }
+.products-wrapper .product .content .colors {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  align-items: flex-end;
+}
+.products-wrapper .product .content .colors .color {
+  width: 2rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+}
 .products-wrapper .product .content .tags {
   top: 1rem;
   left: 1rem;
