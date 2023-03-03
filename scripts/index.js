@@ -1,7 +1,7 @@
 import Swiper from "../assets/swiper/swiper.js";
 import { changeData } from "./utils/changeData.js";
 import { getTrends } from "./utils/getTrends.js";
-import { getCategories } from "./utils/getCategories.js";
+import { getFilterItems } from "./filter-sort/getFilterItems.js";
 import { stars } from "./utils/stars.js";
 import { handleCart } from "./manage-cart/handleCart.js";
 import { handleFavorites } from "./manage-favorites/handleFavorites.js";
@@ -232,11 +232,11 @@ Promise.all([
     const productsContent = changeData(products);
     allProduct = productsContent;
     const trends = getTrends(productsContent);
-    const filterBtns = getCategories(productsContent);
+    const { category: filterBtns } = getFilterItems(productsContent);
 
     insertData(productsWrapper, productsContent, mapProduct);
     insertData(trendsWrapper, trends, mapProduct);
-    insertData(filterBtnwrapper, filterBtns, mapFilterBtns);
+    insertData(filterBtnwrapper, ["all", ...filterBtns], mapFilterBtns);
     insertData(reviewsWrapper, reviews, mapReviews);
 
     const favoritesButtons = [
