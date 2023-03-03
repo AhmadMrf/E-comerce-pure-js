@@ -120,7 +120,7 @@ function mapSingleProduct(item) {
         <span class="price">$${+item.price}</span>
         <span class="discount">$${totalPrice}</span>
       </div>
-      <span class="category">${item.category}</span>
+      <span class="category">${item.category[0]}</span>
       <div class="rate">${stars(+item.rate, false)}</div>
       <p class="descriptoin">
         ${item.description}

@@ -42,7 +42,7 @@ function mapCartItem(item) {
       <h4 class="name"><a href='./product.html#${item.id}' >${
     item.name
   }</a></h4>
-      <span class="category">${item.category}</span>
+      <span class="category">${item.category[0]}</span>
       <div class="price">
         <span class="current-price">$${+item.price}</span>
       </div>
