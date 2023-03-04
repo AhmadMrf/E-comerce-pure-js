@@ -2,14 +2,18 @@ import { handleCart } from "./manage-cart/handleCart.js";
 import { handleFavorites } from "./manage-favorites/handleFavorites.js";
 import { handleBadge } from "./utils/handleBadge.js";
 import { getLocalStorage } from "./utils/useLocalStorage.js";
-import { PRODUCT_PRE_LOADER, BASE_URL } from "../assets/data/template.js";
+import {
+  PRODUCT_PRE_LOADER,
+  BASE_URL,
+  ALL_PRODUCTS_NO_PRODUCT,
+} from "../assets/data/template.js";
 import { createPreLoader } from "./utils/createPreLoader.js";
 import { changeData } from "./utils/changeData.js";
 import { insertData } from "./utils/insertData.js";
 import { stars } from "./utils/stars.js";
 import { addEventListenerFn } from "./utils/addEventListenerFn.js";
 import { handleFilter } from "./filter-sort/handleFilter.js";
-import { setUrlFilter } from "./filter-sort/setUrlFilter.js";
+import { setFilterFromUrl } from "./filter-sort/setFilterFromUrl.js";
 import { getFilterItems } from "./filter-sort/getFilterItems.js";
 
 // slectors
@@ -34,51 +38,38 @@ const toggleFilterButton = document.querySelector(
 const filterTag = document.querySelector(".products-count .filtered");
 
 //*********** toggle filter menu */
-const toggleFilters = () => {
-  toggleFilterButton.classList.toggle("active");
-  filterWrapper.classList.toggle("active");
-};
 
 // get search params
 
 const searchParams = new URLSearchParams(location.search);
+
 // globals
+
 let allProduct = undefined;
 let cartData = getLocalStorage("products");
 let favoriteData = getLocalStorage("favorites");
 let filters = undefined;
 let initialFilter = undefined;
-const noData = `
-  <div class="no-product">
-    <h4 class="title">no product to show</h4>
-    <span>change your filters</span>
-</div>
-`;
 let sort = null;
 
-function resetFilters() {
-  filters = { ...initialFilter };
-  updateProductList(initialFilter);
-  updateFilterMenuUi(filters);
-  changeUiOnFilterChange(initialFilter, filters);
-  calcCountFoundedItem(allProduct, productCount);
-}
-addEventListenerFn(resetFilter, resetFilters);
+// functions
 
-function changeUiOnFilterChange(initialFilter, filterObj) {
-  const { min_price: min_priceInit, max_price: max_priceInit } = initialFilter;
-  const { color, category, min_price, max_price, inventory } = filterObj;
-  const noFilter =
-    !color.length &&
-    !category.length &&
-    min_price === min_priceInit &&
-    max_price === max_priceInit &&
-    inventory === "all";
-  toggleFilterButton.classList.toggle("filtered", !noFilter);
-  filterTag.classList.toggle("hide", noFilter);
+function toggleOpenFilterMenu() {
+  toggleFilterButton.classList.toggle("active");
+  filterWrapper.classList.toggle("active");
 }
 
-function toggleFilterItem(e) {
+function calcCountFoundedItem(products, element) {
+  let count = products.length;
+  if (count) {
+    count = count === 1 ? `${count} product` : `${count} products`;
+  } else {
+    count = `no product`;
+  }
+  element.textContent = count;
+}
+
+function toggleFilterInputs(e) {
   const name = e.target.name;
   const value = e.target.value;
   if (name === "category" || name === "color") {
@@ -94,7 +85,6 @@ function toggleFilterItem(e) {
 
   updateProductList(filters);
 }
-
 function toggleCartItem(productBtnsParent_withId, toggle = "plus") {
   const id = productBtnsParent_withId.dataset.product_id;
   const product = allProduct.find((productItem) => +productItem.id === +id);
@@ -105,7 +95,6 @@ function toggleCartItem(productBtnsParent_withId, toggle = "plus") {
 
   handleBadge("cart");
 }
-
 function toggleFavoriteItem(productBtnsParent_withId) {
   const id = productBtnsParent_withId.dataset.product_id;
   const product = allProduct.find((productItem) => +productItem.id === +id);
@@ -116,15 +105,57 @@ function toggleFavoriteItem(productBtnsParent_withId) {
   handleBadge("favorite");
 }
 
+function resetFilters() {
+  filters = { ...initialFilter };
+  updateProductList(initialFilter);
+  updateFilterMenuUi(filters);
+  changeUiOnFilterChange(initialFilter, filters);
+  calcCountFoundedItem(allProduct, productCount);
+}
+function changeUiOnFilterChange(initialFilter, filterObj) {
+  const { min_price: min_priceInit, max_price: max_priceInit } = initialFilter;
+  const { color, category, min_price, max_price, inventory } = filterObj;
+  const noFilter =
+    !color.length &&
+    !category.length &&
+    min_price === min_priceInit &&
+    max_price === max_priceInit &&
+    inventory === "all";
+  toggleFilterButton.classList.toggle("filtered", !noFilter);
+  filterTag.classList.toggle("hide", noFilter);
+}
 function updateProductList(filterObj) {
-  const filteredData = handleFilter(allProduct, filterObj);
+  const filteredData = handleFilter(allProduct, initialFilter, filterObj);
   insertData(productsWrapper, filteredData, mapProduct);
   if (!filteredData.length) {
     productsWrapper.classList.add("no-grid");
-    productsWrapper.innerHTML = noData;
+    productsWrapper.innerHTML = ALL_PRODUCTS_NO_PRODUCT;
   }
+  const favoritesButtons = productsWrapper.querySelectorAll(".buttons-like");
+  const notAddedToCartElement =
+    productsWrapper.querySelectorAll(".buttons-buy");
+  const addedToCartElementPlus = productsWrapper.querySelectorAll(
+    ".change-count .plus"
+  );
+  const addedToCartElementMinus = productsWrapper.querySelectorAll(
+    ".change-count .minus"
+  );
+
+  addEventListenerFn(favoritesButtons, (e) => {
+    toggleFavoriteItem(e.currentTarget.parentElement);
+  });
+  addEventListenerFn(notAddedToCartElement, (e) => {
+    toggleCartItem(e.currentTarget.parentElement, "plus");
+  });
+  addEventListenerFn(addedToCartElementPlus, (e) => {
+    toggleCartItem(e.currentTarget.parentElement.parentElement, "plus");
+  });
+  addEventListenerFn(addedToCartElementMinus, (e) => {
+    toggleCartItem(e.currentTarget.parentElement.parentElement, "minus");
+  });
   changeUiOnFilterChange(initialFilter, filterObj);
   calcCountFoundedItem(filteredData, productCount);
+  filteredData.forEach((item) => console.log(+item.price));
 }
 function updateFilterMenuUi(filters) {
   const { color, category, min_price, max_price, inventory } = filters;
@@ -150,6 +181,7 @@ function updateFilterMenuUi(filters) {
   });
   console.log(filters);
 }
+
 function updateCartButtonUi(parent, id) {
   const isAddedToCart = cartData.find((cartItem) => cartItem.id == id);
 
@@ -202,7 +234,6 @@ function updateFavoriteButtonUi(parent, id) {
     element.children[0].firstElementChild.classList.remove("in-favorites");
   }
 }
-
 function mapProduct(item = []) {
   const isAddedToCart = cartData.find((cartItem) => cartItem.id == item.id);
   const isAddedToFavorite = favoriteData.find(
@@ -353,8 +384,10 @@ fetch(`${BASE_URL}/products`)
   .then((products) => {
     const productsContent = changeData(products);
     allProduct = productsContent;
+
     const { category, color, minPrice, maxPrice } =
       getFilterItems(productsContent);
+
     initialFilter = {
       category: [],
       color: [],
@@ -362,8 +395,13 @@ fetch(`${BASE_URL}/products`)
       max_price: maxPrice,
       inventory: "all",
     };
-    filters = setUrlFilter({ ...initialFilter, category, color }, searchParams);
-    const filteredData = handleFilter(productsContent, filters);
+
+    filters = setFilterFromUrl(
+      { ...initialFilter, category, color },
+      searchParams
+    );
+
+    const filteredData = handleFilter(productsContent, initialFilter, filters);
 
     insertData(colorFilterWrapper, color, mapColor);
     insertData(priceFilterWrapper, [{ minPrice, maxPrice }], mapPrice);
@@ -371,7 +409,7 @@ fetch(`${BASE_URL}/products`)
     insertData(productsWrapper, filteredData, mapProduct);
     if (!filteredData.length) {
       productsWrapper.classList.add("no-grid");
-      productsWrapper.innerHTML = noData;
+      productsWrapper.innerHTML = ALL_PRODUCTS_NO_PRODUCT;
     }
     changeUiOnFilterChange(initialFilter, filters);
     updateFilterMenuUi(filters);
@@ -408,47 +446,42 @@ fetch(`${BASE_URL}/products`)
     addEventListenerFn(
       colorFilterBtns,
       (e) => {
-        toggleFilterItem(e);
+        toggleFilterInputs(e);
       },
       "change"
     );
     addEventListenerFn(
       categoryFilterBtn,
       (e) => {
-        toggleFilterItem(e);
+        toggleFilterInputs(e);
       },
       "change"
     );
     addEventListenerFn(
       priceFilterBtn,
       (e) => {
-        toggleFilterItem(e);
+        toggleFilterInputs(e);
       },
       "change"
     );
     addEventListenerFn(
       inventoryFilterBtn,
       (e) => {
-        toggleFilterItem(e);
+        toggleFilterInputs(e);
       },
       "change"
     );
 
     toggleFilterButton.classList.remove("disable");
-    toggleFilterButton.addEventListener("click", toggleFilters);
+    toggleFilterButton.addEventListener("click", toggleOpenFilterMenu);
   })
   .catch((err) => {
     console.log(err);
   });
 
-function calcCountFoundedItem(products, element) {
-  let count = products.length;
-  if (count) {
-    count = count === 1 ? `${count} product` : `${count} products`;
-  } else {
-    count = `no product`;
-  }
-  element.textContent = count;
-}
 handleBadge("cart");
 handleBadge("favorite");
+
+// listener
+
+addEventListenerFn(resetFilter, resetFilters);

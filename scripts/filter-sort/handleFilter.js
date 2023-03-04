@@ -1,16 +1,6 @@
-const initialFilters = {
-  color: [],
-  category: [],
-  min_price: 0,
-  max_price: 1000,
-  inventory: "all",
-  // 'all , in-stock , out-of-stock`
-};
-
-export function handleFilter(allProducts, filters = initialFilters) {
-  const minPrice = 0;
-  const maxPrice = 1000;
-  const tempProduct = allProducts.filter((product) => {
+export function handleFilter(allProducts, initialFilter, filters) {
+  const { min_price: minPrice, max_price: maxPrice } = initialFilter;
+  const newProduct = allProducts.filter((product) => {
     let colorMatched = true;
     let categoryMatched = true;
     let priceMatched = true;
@@ -29,8 +19,8 @@ export function handleFilter(allProducts, filters = initialFilters) {
 
     if (filters.min_price !== minPrice || filters.max_price !== maxPrice) {
       priceMatched =
-        product.price >= filters.min_price &&
-        product.price <= filters.max_price;
+        +product.price >= filters.min_price &&
+        +product.price <= filters.max_price;
     }
 
     switch (filters.inventory) {
@@ -44,5 +34,5 @@ export function handleFilter(allProducts, filters = initialFilters) {
 
     return colorMatched && categoryMatched && priceMatched && inventoryMatched;
   });
-  return tempProduct;
+  return newProduct;
 }
