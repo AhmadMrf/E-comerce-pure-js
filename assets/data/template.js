@@ -29,6 +29,12 @@ export const REVIEW_PRE_LOADER = `
   <div class="image-wrapper"></div>
   <div class="review-info-content"></div>
 </div>`;
+export const ALL_PRODUCTS_NO_PRODUCT = `
+<div class="no-product">
+  <h4 class="title">no product to show</h4>
+  <span>change your filters</span>
+</div>
+`;
 export const FILTER_BTN_PRE_LOADER = `
 <button class='pre-loader' type="button"></button>
 `;
