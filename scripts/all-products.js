@@ -84,8 +84,6 @@ function toggleFilterInputs(e) {
   } else {
     filters[name] = +value;
   }
-  console.log("in", initialFilter);
-  console.log("fi", filters);
   updateProductList(filters);
 }
 function toggleCartItem(productBtnsParent_withId, toggle = "plus") {
