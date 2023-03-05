@@ -79,10 +79,13 @@ function toggleFilterInputs(e) {
     } else {
       filters[name] = filters[name].filter((item) => item !== value);
     }
-  } else {
+  } else if (name === "inventory") {
     filters[name] = value;
+  } else {
+    filters[name] = +value;
   }
-
+  console.log("in", initialFilter);
+  console.log("fi", filters);
   updateProductList(filters);
 }
 function toggleCartItem(productBtnsParent_withId, toggle = "plus") {
@@ -106,7 +109,7 @@ function toggleFavoriteItem(productBtnsParent_withId) {
 }
 
 function resetFilters() {
-  filters = { ...initialFilter };
+  filters = { ...initialFilter, category: [], color: [] };
   updateProductList(initialFilter);
   updateFilterMenuUi(filters);
   changeUiOnFilterChange(initialFilter, filters);
@@ -155,7 +158,6 @@ function updateProductList(filterObj) {
   });
   changeUiOnFilterChange(initialFilter, filterObj);
   calcCountFoundedItem(filteredData, productCount);
-  filteredData.forEach((item) => console.log(+item.price));
 }
 function updateFilterMenuUi(filters) {
   const { color, category, min_price, max_price, inventory } = filters;
@@ -179,7 +181,6 @@ function updateFilterMenuUi(filters) {
     element.checked = false;
     if (color.includes(element.value)) element.checked = true;
   });
-  console.log(filters);
 }
 
 function updateCartButtonUi(parent, id) {
