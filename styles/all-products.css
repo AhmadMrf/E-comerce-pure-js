@@ -201,9 +201,9 @@ input:checked ~ label svg {
 .colors .input-wrapper label svg {
   stroke-width: 0;
 }
-.colors .input-wrapper input:checked ~ label {
+/* .colors .input-wrapper input:checked ~ label {
   filter: grayscale(50%);
-}
+} */
 .colors .input-wrapper input:checked ~ label svg {
   stroke-width: 1.5;
   --stroke: inherit;
