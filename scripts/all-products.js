@@ -13,8 +13,9 @@ import { insertData } from "./utils/insertData.js";
 import { stars } from "./utils/stars.js";
 import { addEventListenerFn } from "./utils/addEventListenerFn.js";
 import { handleFilter } from "./filter-sort/handleFilter.js";
-import { setFilterFromUrl } from "./filter-sort/setFilterFromUrl.js";
+import { setSortAndFilterFromUrl } from "./filter-sort/setSortAndFilterFromUrl.js";
 import { getFilterItems } from "./filter-sort/getFilterItems.js";
+import { handleSort } from "./filter-sort/handleSort.js";
 
 // slectors
 
@@ -37,6 +38,7 @@ const toggleFilterButton = document.querySelector(
 );
 const filterTag = document.querySelector(".products-count .filtered");
 
+const sortSelect = document.querySelector("#sort");
 //*********** toggle filter menu */
 
 // get search params
@@ -45,12 +47,12 @@ const searchParams = new URLSearchParams(location.search);
 
 // globals
 
-let allProduct = undefined;
-let cartData = getLocalStorage("products");
 let favoriteData = getLocalStorage("favorites");
-let filters = undefined;
+let cartData = getLocalStorage("products");
 let initialFilter = undefined;
-let sort = null;
+let allProduct = undefined;
+let filters = undefined;
+let sort = undefined;
 
 // functions
 
@@ -68,7 +70,10 @@ function calcCountFoundedItem(products, element) {
   }
   element.textContent = count;
 }
-
+function sortProducts(e) {
+  sort = e.target.value;
+  updateProductList(filters);
+}
 function toggleFilterInputs(e) {
   const name = e.target.name;
   const value = e.target.value;
@@ -108,12 +113,12 @@ function toggleFavoriteItem(productBtnsParent_withId) {
 
 function resetFilters() {
   filters = { ...initialFilter, category: [], color: [] };
-  updateProductList(initialFilter);
-  updateFilterMenuUi(filters);
-  changeUiOnFilterChange(initialFilter, filters);
   calcCountFoundedItem(allProduct, productCount);
+  changeFilterIndicator(initialFilter, filters);
+  updateFilterMenuUi(filters);
+  updateProductList(initialFilter);
 }
-function changeUiOnFilterChange(initialFilter, filterObj) {
+function changeFilterIndicator(initialFilter, filterObj) {
   const { min_price: min_priceInit, max_price: max_priceInit } = initialFilter;
   const { color, category, min_price, max_price, inventory } = filterObj;
   const noFilter =
@@ -127,7 +132,8 @@ function changeUiOnFilterChange(initialFilter, filterObj) {
 }
 function updateProductList(filterObj) {
   const filteredData = handleFilter(allProduct, initialFilter, filterObj);
-  insertData(productsWrapper, filteredData, mapProduct);
+  const sortedData = handleSort(filteredData, sort);
+  insertData(productsWrapper, sortedData, mapProduct);
   if (!filteredData.length) {
     productsWrapper.classList.add("no-grid");
     productsWrapper.innerHTML = ALL_PRODUCTS_NO_PRODUCT;
@@ -154,7 +160,7 @@ function updateProductList(filterObj) {
   addEventListenerFn(addedToCartElementMinus, (e) => {
     toggleCartItem(e.currentTarget.parentElement.parentElement, "minus");
   });
-  changeUiOnFilterChange(initialFilter, filterObj);
+  changeFilterIndicator(initialFilter, filterObj);
   calcCountFoundedItem(filteredData, productCount);
 }
 function updateFilterMenuUi(filters) {
@@ -394,23 +400,26 @@ fetch(`${BASE_URL}/products`)
       max_price: maxPrice,
       inventory: "all",
     };
-
-    filters = setFilterFromUrl(
+    const { filter, sort: urlSort } = setSortAndFilterFromUrl(
       { ...initialFilter, category, color },
       searchParams
     );
+    filters = filter;
+    sort = urlSort;
+    sortSelect.value = sort;
 
     const filteredData = handleFilter(productsContent, initialFilter, filters);
+    const sortedData = handleSort(filteredData, sort);
 
     insertData(colorFilterWrapper, color, mapColor);
     insertData(priceFilterWrapper, [{ minPrice, maxPrice }], mapPrice);
     insertData(categoryFilterWrapper, category, mapCategory);
-    insertData(productsWrapper, filteredData, mapProduct);
+    insertData(productsWrapper, sortedData, mapProduct);
     if (!filteredData.length) {
       productsWrapper.classList.add("no-grid");
       productsWrapper.innerHTML = ALL_PRODUCTS_NO_PRODUCT;
     }
-    changeUiOnFilterChange(initialFilter, filters);
+    changeFilterIndicator(initialFilter, filters);
     updateFilterMenuUi(filters);
     const favoritesButtons = productsWrapper.querySelectorAll(".buttons-like");
     const notAddedToCartElement =
@@ -470,7 +479,6 @@ fetch(`${BASE_URL}/products`)
       },
       "change"
     );
-
     toggleFilterButton.classList.remove("disable");
     toggleFilterButton.addEventListener("click", toggleOpenFilterMenu);
   })
@@ -484,3 +492,10 @@ handleBadge("favorite");
 // listener
 
 addEventListenerFn(resetFilter, resetFilters);
+addEventListenerFn(
+  sortSelect,
+  (e) => {
+    sortProducts(e);
+  },
+  "change"
+);
