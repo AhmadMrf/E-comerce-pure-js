@@ -2,14 +2,27 @@
 // import { handleBadge } from "./utils/handleBadge.js";
 // ---------- toggle theme and sidebar and button
 
+import { productPromise } from "./getProductsFromAPI/getProductsFromAPI.js";
+
 // html tags ----------
 const body = document.body;
 const header = document.querySelector("header");
 const aside = document.querySelector(".sidebar-content");
-
+const searchBoxes = document.querySelectorAll("header .search-box");
 const toggleMenuIcon = document.querySelector(".menu");
 const toggleThemeIcon = document.querySelectorAll(".toggle-theme");
 // functions ----------
+let allProducts = undefined;
+
+productPromise.then((products) => {
+  searchBoxes.forEach((searchBox) => {
+    const input = searchBox.querySelector("input");
+    input.removeAttribute("disabled");
+    input.placeholder = "search product name";
+    searchBox.classList.remove("disable");
+  });
+  allProducts = products;
+});
 
 const toggleIcon = (e) => {
   e.currentTarget.classList.toggle("active");
