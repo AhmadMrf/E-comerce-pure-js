@@ -33,6 +33,58 @@ const reviewsWrapper = document.querySelector(
 );
 const filterBtnwrapper = document.querySelector(".filters-wrapper");
 
+// functions
+
+function toggleFilterProducts(e, wrapper) {
+  const target = e.target;
+  if (!target.closest("button")) return;
+  [...wrapper.children].forEach((item) => {
+    item.classList.remove("active");
+  });
+  target.classList.add("active");
+  const filterName = target.dataset.filter;
+  filterProducts(allProduct, filterName);
+}
+function filterProducts(allProduct, filterName) {
+  let filteredProduct = [...allProduct];
+  if (filterName !== "all") {
+    filteredProduct = allProduct.filter((item) =>
+      item.category.includes(filterName)
+    );
+  }
+
+  insertData(productsWrapper, filteredProduct, mapProduct);
+
+  const favoritesButtons = [
+    ...productsWrapper.querySelectorAll(".buttons-like"),
+    ...trendsWrapper.querySelectorAll(".buttons-like"),
+  ];
+  const notAddedToCartElement = [
+    ...productsWrapper.querySelectorAll(".buttons-buy"),
+    ...trendsWrapper.querySelectorAll(".buttons-buy"),
+  ];
+  const addedToCartElementPlus = [
+    ...productsWrapper.querySelectorAll(".change-count .plus"),
+    ...trendsWrapper.querySelectorAll(".change-count .plus"),
+  ];
+  const addedToCartElementMinus = [
+    ...productsWrapper.querySelectorAll(".change-count .minus"),
+    ...trendsWrapper.querySelectorAll(".change-count .minus"),
+  ];
+
+  addEventListenerFn(favoritesButtons, (e) => {
+    toggleFavoriteItem(e.currentTarget.parentElement);
+  });
+  addEventListenerFn(notAddedToCartElement, (e) => {
+    toggleCartItem(e.currentTarget.parentElement, "plus");
+  });
+  addEventListenerFn(addedToCartElementPlus, (e) => {
+    toggleCartItem(e.currentTarget.parentElement.parentElement, "plus");
+  });
+  addEventListenerFn(addedToCartElementMinus, (e) => {
+    toggleCartItem(e.currentTarget.parentElement.parentElement, "minus");
+  });
+}
 function toggleCartItem(productBtnsParent_withId, toggle = "plus") {
   const id = productBtnsParent_withId.dataset.product_id;
   const product = allProduct.find((productItem) => +productItem.id === +id);
@@ -114,7 +166,7 @@ function mapFilterBtns(item) {
     active = "active";
   }
   return `
-<button class='${active}' type="button">${item}</button>
+<button data-filter='${item}' class='${active}' type="button">${item}</button>
   `;
 }
 function mapProduct(item) {
@@ -255,7 +307,9 @@ Promise.all([
       ...productsWrapper.querySelectorAll(".change-count .minus"),
       ...trendsWrapper.querySelectorAll(".change-count .minus"),
     ];
-
+    addEventListenerFn(filterBtnwrapper, (e) => {
+      toggleFilterProducts(e, filterBtnwrapper);
+    });
     addEventListenerFn(favoritesButtons, (e) => {
       toggleFavoriteItem(e.currentTarget.parentElement);
     });
