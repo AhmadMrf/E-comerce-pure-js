@@ -1,7 +1,7 @@
 import Swiper from "../assets/swiper/swiper.js";
 import { changeData } from "./utils/changeData.js";
 import { getTrends } from "./utils/getTrends.js";
-import { getFilterItems } from "./filter-sort/getFilterItems.js";
+import { getFilterItems } from "./manage-filter-sort/getFilterItems.js";
 import { stars } from "./utils/stars.js";
 import { handleCart } from "./manage-cart/handleCart.js";
 import { handleFavorites } from "./manage-favorites/handleFavorites.js";

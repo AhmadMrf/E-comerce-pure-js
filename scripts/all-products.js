@@ -12,10 +12,10 @@ import { changeData } from "./utils/changeData.js";
 import { insertData } from "./utils/insertData.js";
 import { stars } from "./utils/stars.js";
 import { addEventListenerFn } from "./utils/addEventListenerFn.js";
-import { handleFilter } from "./filter-sort/handleFilter.js";
-import { setSortAndFilterFromUrl } from "./filter-sort/setSortAndFilterFromUrl.js";
-import { getFilterItems } from "./filter-sort/getFilterItems.js";
-import { handleSort } from "./filter-sort/handleSort.js";
+import { handleFilter } from "./manage-filter-sort/handleFilter.js";
+import { setSortAndFilterFromUrl } from "./manage-filter-sort/setSortAndFilterFromUrl.js";
+import { getFilterItems } from "./manage-filter-sort/getFilterItems.js";
+import { handleSort } from "./manage-filter-sort/handleSort.js";
 
 // slectors
 
