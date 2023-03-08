@@ -1,4 +1,5 @@
 import { getDataFromAPI } from "./getDataFromAPI/getDataFromAPI.js";
+import { addEventListenerFn } from "./utils/addEventListenerFn.js";
 // import { setLocalStorage, getLocalStorage } from "./utils/useLocalStorage.js";
 // import { handleBadge } from "./utils/handleBadge.js";
 // ---------- toggle theme and sidebar and button
@@ -7,21 +8,32 @@ import { getDataFromAPI } from "./getDataFromAPI/getDataFromAPI.js";
 const body = document.body;
 const header = document.querySelector("header");
 const aside = document.querySelector(".sidebar-content");
-const searchBoxes = document.querySelectorAll("header .search-box");
+const searchInputs = document.querySelectorAll("header .search-box input");
 const toggleMenuIcon = document.querySelector(".menu");
 const toggleThemeIcon = document.querySelectorAll(".toggle-theme");
 // functions ----------
 let allProducts = undefined;
+let searchState = {
+  searchStarted: false,
+  serachInputTuched: false,
+};
 
-getDataFromAPI("products").then((products) => {
-  searchBoxes.forEach((searchBox) => {
-    const input = searchBox.querySelector("input");
-    input.removeAttribute("disabled");
-    input.placeholder = "search product name";
-    searchBox.classList.remove("disable");
-  });
-  allProducts = products;
-});
+function handleSearch() {
+  console.log("search");
+}
+
+addEventListenerFn(
+  searchInputs,
+  async (e) => {
+    handleSearch();
+    if (!searchState.searchStarted && !searchState.serachInputTuched) {
+      searchState.serachInputTuched = true;
+      allProducts = await getDataFromAPI("products");
+    }
+    searchState.searchStarted = true;
+  },
+  "input"
+);
 
 const toggleIcon = (e) => {
   e.currentTarget.classList.toggle("active");
