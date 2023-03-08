@@ -1,6 +1,7 @@
 import { insertData } from "./utils/insertData.js";
 import { handleCart } from "./manage-cart/handleCart.js";
 import { handleBadge } from "./utils/handleBadge.js";
+import { getDataFromAPI } from "./getDataFromAPI/getDataFromAPI.js";
 import { handleFavorites } from "./manage-favorites/handleFavorites.js";
 import { getLocalStorage } from "./utils/useLocalStorage.js";
 import { createPreLoader } from "./utils/createPreLoader.js";
@@ -162,6 +163,8 @@ function mapSingleProduct(item) {
   `;
 }
 createPreLoader(singleProductWrapper, SINGLE_PRODUCT_PRE_LOADER);
+
+// getDataFromAPI(`products/${id}`).then((p) => console.log(p));
 
 fetch(`${BASE_URL}/products/${id}`)
   .then((res) => res.json())

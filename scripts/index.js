@@ -1,4 +1,5 @@
 import Swiper from "../assets/swiper/swiper.js";
+import { getDataFromAPI } from "./getDataFromAPI/getDataFromAPI.js";
 import { changeData } from "./utils/changeData.js";
 import { getTrends } from "./utils/getTrends.js";
 import { getFilterItems } from "./manage-filter-sort/getFilterItems.js";
@@ -274,6 +275,10 @@ createPreLoader(trendsWrapper, PRODUCT_PRE_LOADER, 3);
 createPreLoader(productsWrapper, PRODUCT_PRE_LOADER, 3);
 createPreLoader(filterBtnwrapper, FILTER_BTN_PRE_LOADER, 4);
 createPreLoader(reviewsWrapper, REVIEW_PRE_LOADER, 3);
+
+// Promise.all([getDataFromAPI("products"), getDataFromAPI("reviews")]).then((p) =>
+//   console.log(p)
+// );
 
 Promise.all([
   fetch(`${BASE_URL}/products`).then((res) => res.json()),

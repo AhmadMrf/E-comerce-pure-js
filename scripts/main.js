@@ -1,8 +1,7 @@
+import { getDataFromAPI } from "./getDataFromAPI/getDataFromAPI.js";
 // import { setLocalStorage, getLocalStorage } from "./utils/useLocalStorage.js";
 // import { handleBadge } from "./utils/handleBadge.js";
 // ---------- toggle theme and sidebar and button
-
-import { productPromise } from "./getProductsFromAPI/getProductsFromAPI.js";
 
 // html tags ----------
 const body = document.body;
@@ -14,7 +13,7 @@ const toggleThemeIcon = document.querySelectorAll(".toggle-theme");
 // functions ----------
 let allProducts = undefined;
 
-productPromise.then((products) => {
+getDataFromAPI("products").then((products) => {
   searchBoxes.forEach((searchBox) => {
     const input = searchBox.querySelector("input");
     input.removeAttribute("disabled");

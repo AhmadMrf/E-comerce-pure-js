@@ -2,11 +2,7 @@ import { handleCart } from "./manage-cart/handleCart.js";
 import { handleFavorites } from "./manage-favorites/handleFavorites.js";
 import { handleBadge } from "./utils/handleBadge.js";
 import { getLocalStorage } from "./utils/useLocalStorage.js";
-import {
-  PRODUCT_PRE_LOADER,
-  BASE_URL,
-  ALL_PRODUCTS_NO_PRODUCT,
-} from "../assets/data/template.js";
+import { getDataFromAPI } from "./getDataFromAPI/getDataFromAPI.js";
 import { createPreLoader } from "./utils/createPreLoader.js";
 import { changeData } from "./utils/changeData.js";
 import { insertData } from "./utils/insertData.js";
@@ -16,6 +12,11 @@ import { handleFilter } from "./manage-filter-sort/handleFilter.js";
 import { setSortAndFilterFromUrl } from "./manage-filter-sort/setSortAndFilterFromUrl.js";
 import { getFilterItems } from "./manage-filter-sort/getFilterItems.js";
 import { handleSort } from "./manage-filter-sort/handleSort.js";
+import {
+  PRODUCT_PRE_LOADER,
+  BASE_URL,
+  ALL_PRODUCTS_NO_PRODUCT,
+} from "../assets/data/template.js";
 
 // slectors
 
@@ -383,6 +384,8 @@ function mapPrice(item) {
 }
 
 createPreLoader(productsWrapper, PRODUCT_PRE_LOADER, 3);
+
+// getDataFromAPI('products').then(p=>console.log(p))
 
 fetch(`${BASE_URL}/products`)
   .then((res) => res.json())
