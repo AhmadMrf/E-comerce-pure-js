@@ -217,9 +217,7 @@ header {
   height: 100vh;
   opacity: 1;
 }
-.search-box.disable > * {
-  cursor: not-allowed;
-}
+
 .search-box {
   caret-color: var(--main-font-color);
   background-color: var(--search-box-color);
