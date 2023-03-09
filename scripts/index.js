@@ -276,14 +276,7 @@ createPreLoader(productsWrapper, PRODUCT_PRE_LOADER, 3);
 createPreLoader(filterBtnwrapper, FILTER_BTN_PRE_LOADER, 4);
 createPreLoader(reviewsWrapper, REVIEW_PRE_LOADER, 3);
 
-// Promise.all([getDataFromAPI("products"), getDataFromAPI("reviews")]).then((p) =>
-//   console.log(p)
-// );
-
-Promise.all([
-  fetch(`${BASE_URL}/products`).then((res) => res.json()),
-  fetch(`${BASE_URL}/reviews`).then((res) => res.json()),
-])
+Promise.all([getDataFromAPI("products"), getDataFromAPI("reviews")])
   .then((allData) => {
     const [products, reviews] = allData;
     const productsContent = changeData(products);

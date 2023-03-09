@@ -164,10 +164,7 @@ function mapSingleProduct(item) {
 }
 createPreLoader(singleProductWrapper, SINGLE_PRODUCT_PRE_LOADER);
 
-// getDataFromAPI(`products/${id}`).then((p) => console.log(p));
-
-fetch(`${BASE_URL}/products/${id}`)
-  .then((res) => res.json())
+getDataFromAPI(`products/${id}`)
   .then((data) => {
     const productData = changeData([data]);
     product = productData[0];

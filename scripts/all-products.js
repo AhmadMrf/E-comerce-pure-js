@@ -385,10 +385,7 @@ function mapPrice(item) {
 
 createPreLoader(productsWrapper, PRODUCT_PRE_LOADER, 3);
 
-// getDataFromAPI('products').then(p=>console.log(p))
-
-fetch(`${BASE_URL}/products`)
-  .then((res) => res.json())
+getDataFromAPI("products")
   .then((products) => {
     const productsContent = changeData(products);
     allProduct = productsContent;
