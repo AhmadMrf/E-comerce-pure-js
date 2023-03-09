@@ -1,8 +1,5 @@
 import { getDataFromAPI } from "./getDataFromAPI/getDataFromAPI.js";
 import { addEventListenerFn } from "./utils/addEventListenerFn.js";
-// import { setLocalStorage, getLocalStorage } from "./utils/useLocalStorage.js";
-// import { handleBadge } from "./utils/handleBadge.js";
-// ---------- toggle theme and sidebar and button
 
 // html tags ----------
 const body = document.body;
@@ -11,29 +8,17 @@ const aside = document.querySelector(".sidebar-content");
 const searchInputs = document.querySelectorAll("header .search-box input");
 const toggleMenuIcon = document.querySelector(".menu");
 const toggleThemeIcon = document.querySelectorAll(".toggle-theme");
-// functions ----------
+// globals ----------
 let allProducts = undefined;
 let searchState = {
   searchStarted: false,
   serachInputTuched: false,
 };
 
+// functions
 function handleSearch() {
-  console.log("search");
+  if (!allProducts) return;
 }
-
-addEventListenerFn(
-  searchInputs,
-  async (e) => {
-    handleSearch();
-    if (!searchState.searchStarted && !searchState.serachInputTuched) {
-      searchState.serachInputTuched = true;
-      allProducts = await getDataFromAPI("products");
-    }
-    searchState.searchStarted = true;
-  },
-  "input"
-);
 
 const toggleIcon = (e) => {
   e.currentTarget.classList.toggle("active");
@@ -82,13 +67,25 @@ initialTheme();
 
 // listeners  ----------
 
-toggleMenuIcon.addEventListener("click", (e) => {
+addEventListenerFn(toggleMenuIcon, (e) => {
   toggleIcon(e);
   toggleSideBar(e);
 });
-toggleThemeIcon.forEach((item) =>
-  item.addEventListener("click", (e) => {
-    toggleTheme(e);
-  })
+addEventListenerFn(toggleThemeIcon, (e) => {
+  toggleTheme(e);
+});
+addEventListenerFn(
+  searchInputs,
+  async (e) => {
+    header.classList.toggle("active-search", e.target.value.length);
+    if (!searchState.searchStarted && !searchState.serachInputTuched) {
+      searchState.serachInputTuched = true;
+      allProducts = await getDataFromAPI("products");
+    }
+    handleSearch();
+    searchState.searchStarted = true;
+  },
+  "input"
 );
+
 window.addEventListener("scroll", toggleHeaderHeight);
