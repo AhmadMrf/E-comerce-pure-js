@@ -316,11 +316,16 @@ header .search-box input:placeholder-shown ~ svg {
   right: 0;
 }
 .search-result article {
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--background-color);
+}
+.search-result article a {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 0.5rem;
-  border-bottom: 1px solid var(--background-color);
+}
+.search-result article:hover {
+  background-color: var(--background-color);
 }
 .search-result article:last-child {
   border-bottom: none;
@@ -328,6 +333,7 @@ header .search-box input:placeholder-shown ~ svg {
 .search-result img {
   object-fit: contain;
   width: 5rem;
+  aspect-ratio: 1;
 }
 
 .search-box:focus-within + .search-result {
