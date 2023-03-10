@@ -16,21 +16,23 @@ let allProducts = undefined;
 let searchState = {
   searchStarted: false,
   serachInputTuched: false,
+  value: "",
 };
 
 // functions
 function mapSearchResult(item) {
   return `
-  <article class="searched-product">
+  <article data-id="${item.id}" class="searched-product">
+  <a href="./pages/product.html#${item.id}">
     <img src="${item.image[0]}" alt="${item.name}" />
     <span>${item.name}</span>
+    </a>
   </article>
   `;
 }
-
 function handleSearch(value) {
   if (!allProducts) return;
-  if (!value.length) {
+  if (!value) {
     searchResultWrapper.forEach((wrapper) => (wrapper.innerHTML = ""));
     return;
   }
@@ -49,10 +51,21 @@ function handleSearch(value) {
 function updateSearchResult(searchResult) {
   insertData(searchResultWrapper[0], searchResult, mapSearchResult);
   insertData(searchResultWrapper[1], searchResult, mapSearchResult);
+  searchResultWrapper.forEach((product) => {
+    const resultProducts = product.querySelectorAll("article");
+    addEventListenerFn(
+      resultProducts,
+      (e) => {
+        const id = e.target.closest("article")?.dataset.id;
+        location.assign(`./pages/product.html#${id}`);
+      },
+      "mousedown"
+    );
+  });
 }
-function matchInputValues(e) {
+function matchInputValues(value) {
   searchInputs.forEach((input) => {
-    input.value = e.target.value;
+    input.value = value || "";
   });
 }
 
@@ -109,29 +122,40 @@ addEventListenerFn(toggleMenuIcon, (e) => {
 addEventListenerFn(toggleThemeIcon, (e) => {
   toggleTheme(e);
 });
+
 addEventListenerFn(
   searchInputs,
   async (e) => {
-    const value = e.target.value;
-    header.classList.toggle("active-search", value.length);
+    searchState.value = e.target.value;
+    header.classList.toggle("active-search", searchState.value.length);
     if (!searchState.searchStarted && !searchState.serachInputTuched) {
       searchState.serachInputTuched = true;
       try {
         allProducts = await getDataFromAPI("products");
+        handleSearch(searchState.value);
       } catch (err) {
         console.log(err);
       }
+      return;
     }
-    matchInputValues(e);
-    handleSearch(value);
+    if (!allProducts) {
+      searchResultWrapper.forEach(
+        (wrapper) => (wrapper.innerHTML = "<span>loading products ...</span>")
+      );
+      return;
+    }
+    matchInputValues(searchState.value);
+    handleSearch(searchState.value);
     searchState.searchStarted = true;
   },
   "input"
 );
-// addEventListenerFn(clearInputButtons, () => {
-//   searchInputs.forEach((input) => {
-//     input.value = "";
-//   });
-// });
+addEventListenerFn(
+  clearInputButtons,
+  () => {
+    handleSearch();
+    matchInputValues();
+  },
+  "mousedown"
+);
 window.addEventListener("scroll", toggleHeaderHeight);
-console.log(clearInputButtons);
