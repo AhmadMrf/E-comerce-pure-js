@@ -18,12 +18,13 @@ let searchState = {
   serachInputTuched: false,
   value: "",
 };
+const isIndex = location.pathname.includes('index')
 
 // functions
 function mapSearchResult(item) {
   return `
   <article data-id="${item.id}" class="searched-product">
-  <a href="./pages/product.html#${item.id}">
+  <a href="${isIndex?'./pages/':'./'}product.html#${item.id}">
     <img src="${item.image[0]}" alt="${item.name}" />
     <span>${item.name}</span>
     </a>
@@ -56,8 +57,8 @@ function updateSearchResult(searchResult) {
     addEventListenerFn(
       resultProducts,
       (e) => {
-        const id = e.target.closest("article")?.dataset.id;
-        location.assign(`./pages/product.html#${id}`);
+        const href = e.target.closest("article").querySelector('a').href;
+        location.assign(href);
       },
       "mousedown"
     );
