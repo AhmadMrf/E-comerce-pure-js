@@ -279,12 +279,11 @@ createPreLoader(reviewsWrapper, REVIEW_PRE_LOADER, 3);
 Promise.all([getDataFromAPI("products"), getDataFromAPI("reviews")])
   .then((allData) => {
     const [products, reviews] = allData;
-    const productsContent = changeData(products);
-    allProduct = productsContent;
-    const trends = getTrends(productsContent);
-    const { category: filterBtns } = getFilterItems(productsContent);
+    allProduct = products;
+    const trends = getTrends(products);
+    const { category: filterBtns } = getFilterItems(products);
 
-    insertData(productsWrapper, productsContent, mapProduct);
+    insertData(productsWrapper, products, mapProduct);
     insertData(trendsWrapper, trends, mapProduct);
     insertData(filterBtnwrapper, ["all", ...filterBtns], mapFilterBtns);
     insertData(reviewsWrapper, reviews, mapReviews);

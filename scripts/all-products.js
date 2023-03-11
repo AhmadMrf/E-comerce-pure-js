@@ -387,11 +387,10 @@ createPreLoader(productsWrapper, PRODUCT_PRE_LOADER, 3);
 
 getDataFromAPI("products")
   .then((products) => {
-    const productsContent = changeData(products);
-    allProduct = productsContent;
+    allProduct = products;
 
     const { category, color, minPrice, maxPrice } =
-      getFilterItems(productsContent);
+      getFilterItems(products);
 
     initialFilter = {
       category: [],
@@ -408,7 +407,7 @@ getDataFromAPI("products")
     sort = urlSort;
     sortSelect.value = sort;
 
-    const filteredData = handleFilter(productsContent, initialFilter, filters);
+    const filteredData = handleFilter(products, initialFilter, filters);
     const sortedData = handleSort(filteredData, sort);
 
     insertData(colorFilterWrapper, color, mapColor);

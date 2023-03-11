@@ -224,6 +224,7 @@ header {
   border-radius: 100rem;
   padding-right: 0.5rem;
   transition: background-color 0.7s;
+  border: 1px solid var(--main-color)
 }
 
 .search-box label {

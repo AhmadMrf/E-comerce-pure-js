@@ -1,6 +1,7 @@
 import { getDataFromAPI } from "./getDataFromAPI/getDataFromAPI.js";
 import { addEventListenerFn } from "./utils/addEventListenerFn.js";
 import { insertData } from "./utils/insertData.js";
+// import {getPathName} from './utils/getPathName.js'
 
 // html tags ----------
 const body = document.body;
@@ -18,13 +19,13 @@ let searchState = {
   serachInputTuched: false,
   value: "",
 };
-const isIndex = location.pathname.includes('index')
+// const pageName = getPathName()
 
 // functions
 function mapSearchResult(item) {
   return `
   <article data-id="${item.id}" class="searched-product">
-  <a href="${isIndex?'./pages/':'./'}product.html#${item.id}">
+  <a href="${location.origin}/pages/product.html#${item.id}">
     <img src="${item.image[0]}" alt="${item.name}" />
     <span>${item.name}</span>
     </a>
@@ -58,6 +59,7 @@ function updateSearchResult(searchResult) {
       resultProducts,
       (e) => {
         const href = e.target.closest("article").querySelector('a').href;
+        console.log(href);
         location.assign(href);
       },
       "mousedown"
@@ -129,22 +131,20 @@ addEventListenerFn(
   async (e) => {
     searchState.value = e.target.value;
     header.classList.toggle("active-search", searchState.value.length);
-    if (!searchState.searchStarted && !searchState.serachInputTuched) {
-      searchState.serachInputTuched = true;
-      try {
-        allProducts = await getDataFromAPI("products");
-        handleSearch(searchState.value);
-      } catch (err) {
-        console.log(err);
-      }
-      return;
-    }
     if (!allProducts) {
       searchResultWrapper.forEach(
         (wrapper) => (wrapper.innerHTML = "<span>loading products ...</span>")
       );
-      return;
     }
+    if (!searchState.searchStarted && !searchState.serachInputTuched) {
+      searchState.serachInputTuched = true;
+      try {
+        allProducts = await getDataFromAPI("products");
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    
     matchInputValues(searchState.value);
     handleSearch(searchState.value);
     searchState.searchStarted = true;
