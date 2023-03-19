@@ -1,7 +1,6 @@
 import { getDataFromAPI } from "./getDataFromAPI/getDataFromAPI.js";
 import { addEventListenerFn } from "./utils/addEventListenerFn.js";
 import { insertData } from "./utils/insertData.js";
-// import {getPathName} from './utils/getPathName.js'
 
 // html tags ----------
 const body = document.body;
@@ -19,21 +18,26 @@ let searchState = {
   serachInputTuched: false,
   value: "",
 };
-// const pageName = getPathName()
-
+const isIndex =
+  location.pathname === "/index.html" || location.pathname === "/";
 // functions
 function mapSearchResult(item) {
   return `
   <article data-id="${item.id}" class="searched-product">
-  <a href="${location.origin}/pages/product.html#${item.id}">
+  <div data-id="${item.id}">
     <img src="${item.image[0]}" alt="${item.name}" />
     <span>${item.name}</span>
-    </a>
+    </div>
   </article>
   `;
 }
 function handleSearch(value) {
-  if (!allProducts) return;
+  if (!allProducts && value) {
+    searchResultWrapper.forEach(
+      (wrapper) => (wrapper.innerHTML = "<span>loading products ...</span>")
+    );
+    return;
+  }
   if (!value) {
     searchResultWrapper.forEach((wrapper) => (wrapper.innerHTML = ""));
     return;
@@ -58,9 +62,12 @@ function updateSearchResult(searchResult) {
     addEventListenerFn(
       resultProducts,
       (e) => {
-        const href = e.target.closest("article").querySelector('a').href;
-        console.log(href);
-        location.assign(href);
+        const id = e.target.closest("article").querySelector("div").dataset.id;
+        if (isIndex) {
+          location.href = `./pages/product.html#${id}`;
+        } else {
+          location.href = `./product.html#${id}`;
+        }
       },
       "mousedown"
     );
@@ -131,22 +138,19 @@ addEventListenerFn(
   async (e) => {
     searchState.value = e.target.value;
     header.classList.toggle("active-search", searchState.value.length);
-    if (!allProducts) {
-      searchResultWrapper.forEach(
-        (wrapper) => (wrapper.innerHTML = "<span>loading products ...</span>")
-      );
-    }
+    matchInputValues(searchState.value);
+    handleSearch(searchState.value);
+
     if (!searchState.searchStarted && !searchState.serachInputTuched) {
       searchState.serachInputTuched = true;
       try {
         allProducts = await getDataFromAPI("products");
+        handleSearch(searchState.value);
       } catch (err) {
         console.log(err);
       }
     }
-    
-    matchInputValues(searchState.value);
-    handleSearch(searchState.value);
+
     searchState.searchStarted = true;
   },
   "input"
