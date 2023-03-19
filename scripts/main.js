@@ -18,8 +18,15 @@ let searchState = {
   serachInputTuched: false,
   value: "",
 };
+// const isIndex =
+//   location.pathname === "/index.html" || location.pathname === "/";
+
+//  *********  for github page  **********  //
 const isIndex =
-  location.pathname === "/index.html" || location.pathname === "/";
+  location.pathname === "/E-comerce-pure-js/index.html" ||
+  location.pathname === "/E-comerce-pure-js/";
+//  *********  for github page  **********  //
+
 // functions
 function mapSearchResult(item) {
   return `
