@@ -208,3 +208,5 @@ getDataFromAPI(`products/${id}`)
     });
   })
   .catch((err) => console.log(err));
+
+window.addEventListener("hashchange", () => location.reload());
