@@ -172,8 +172,112 @@
       <!--******************************-->
 
       <section class="checkout-wrapper center">
-        <div class="checkout-content"></div>
+        <h2 class="title">checkout info :</h2>
+        <div class="checkout-content">
+          <div class="shipping-wrapper">
+            <div class="checkout-indicator">
+              <span class="indicator-number">1</span>
+              <span class="indicator-title">shiping info</span>
+            </div>
+            <div class="shipping-content">
+              <address class="shipping-address">
+                <label class="title" for="address">address:</label>
+                <textarea
+                  name="address"
+                  id="address"
+                  placeholder="type your address"
+                ></textarea>
+              </address>
+              <div class="shipping-time-content">
+                <span class="title">shipping time:</span>
+                <div class="shipping-time">
+                  <div class="input-wrapper">
+                    <input
+                      checked="true"
+                      value="today"
+                      type="radio"
+                      name="time"
+                      id="time-today"
+                    />
+                    <label for="time-today">
+                      <svg class="svg radio">
+                        <use
+                          href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"
+                        ></use>
+                      </svg>
+                      <span>today</span>
+                    </label>
+                  </div>
+                  <div class="input-wrapper">
+                    <input
+                      value="tomorrow"
+                      type="radio"
+                      name="time"
+                      id="time-tomorrow"
+                    />
+                    <label for="time-tomorrow">
+                      <svg class="svg radio">
+                        <use
+                          href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"
+                        ></use>
+                      </svg>
+                      <span>tomorrow</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="payment-method-wrapper">
+            <div class="checkout-indicator">
+              <span class="indicator-number">2</span>
+              <span class="indicator-title">payment info</span>
+            </div>
+            <div class="payment-content">
+              <span class="title">payment method:</span>
+              <div class="payments">
+                <div class="input-wrapper">
+                  <input
+                    checked="true"
+                    value="online"
+                    type="radio"
+                    name="payment"
+                    id="payment-online"
+                  />
+                  <label for="payment-online">
+                    <svg class="svg radio">
+                      <use
+                        href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"
+                      ></use>
+                    </svg>
+                    <span>online</span>
+                  </label>
+                </div>
+                <div class="input-wrapper">
+                  <input
+                    value="cash"
+                    type="radio"
+                    name="payment"
+                    id="payment-cash"
+                  />
+                  <label for="payment-cash">
+                    <svg class="svg radio">
+                      <use
+                        href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"
+                      ></use>
+                    </svg>
+                    <span>cash</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="cart-summary">
+          <div class="checkout-indicator">
+            <span class="indicator-number">3</span>
+            <span class="indicator-title">cart info</span>
+          </div>
           <div class="cart-total-content">
             <h4 class="title">cart summary</h4>
             <div class="total-price-container">
@@ -204,8 +308,8 @@
                   </button>
                 </label>
               </div>
-              <button class="button button-dark add-new-product">
-                <a href="./all-products.html">add new product</a>
+              <button class="button button-dark pay">
+                <a href="#">pay</a>
               </button>
             </div>
           </div>
