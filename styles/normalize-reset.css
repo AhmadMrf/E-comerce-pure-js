@@ -235,6 +235,7 @@ button,
 [type="submit"] {
   -webkit-appearance: button;
   user-select: none;
+  cursor: pointer;
 }
 
 button::-moz-focus-inner,
