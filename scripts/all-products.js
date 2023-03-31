@@ -78,7 +78,7 @@ function sortProducts(e) {
 function toggleFilterInputs(e) {
   const name = e.target.name;
   const value = e.target.value;
-  if (name === "category" || name === "color") {
+  if (name === "categories" || name === "colors") {
     const inItem = filters[name].find((item) => item === value);
     if (!inItem) {
       filters[name].push(value);
@@ -113,7 +113,7 @@ function toggleFavoriteItem(productBtnsParent_withId) {
 }
 
 function resetFilters() {
-  filters = { ...initialFilter, category: [], color: [] };
+  filters = { ...initialFilter, categories: [], colors: [] };
   calcCountFoundedItem(allProduct, productCount);
   changeFilterIndicator(initialFilter, filters);
   updateFilterMenuUi(filters);
@@ -121,10 +121,10 @@ function resetFilters() {
 }
 function changeFilterIndicator(initialFilter, filterObj) {
   const { min_price: min_priceInit, max_price: max_priceInit } = initialFilter;
-  const { color, category, min_price, max_price, inventory } = filterObj;
+  const { colors, categories, min_price, max_price, inventory } = filterObj;
   const noFilter =
-    !color.length &&
-    !category.length &&
+    !colors.length &&
+    !categories.length &&
     min_price === min_priceInit &&
     max_price === max_priceInit &&
     inventory === "all";
@@ -165,9 +165,9 @@ function updateProductList(filterObj) {
   calcCountFoundedItem(filteredData, productCount);
 }
 function updateFilterMenuUi(filters) {
-  const { color, category, min_price, max_price, inventory } = filters;
-  const colorElements = filtersContent.elements["color"];
-  const categoryElements = filtersContent.elements["category"];
+  const { colors, categories, min_price, max_price, inventory } = filters;
+  const colorElements = filtersContent.elements["colors"];
+  const categoryElements = filtersContent.elements["categories"];
   const inventoryElements = filtersContent.elements["inventory"];
   const minPriceElement = filtersContent.elements["min_price"];
   const maxPriceElement = filtersContent.elements["max_price"];
@@ -180,11 +180,11 @@ function updateFilterMenuUi(filters) {
   });
   categoryElements.forEach((element) => {
     element.checked = false;
-    if (category.includes(element.value)) element.checked = true;
+    if (categories.includes(element.value)) element.checked = true;
   });
   colorElements.forEach((element) => {
     element.checked = false;
-    if (color.includes(element.value)) element.checked = true;
+    if (colors.includes(element.value)) element.checked = true;
   });
 }
 
@@ -254,7 +254,7 @@ function mapProduct(item = []) {
   return `
       <article class="product swiper-slide">
               <div class="content">
-                <img src="${item.image[0]}" alt="${item.name}" />
+                <img src="${item.images[0]}" alt="${item.name}" />
                 <div class="tags">
                   <span class="tag discount">${item.discount}%</span>
                 </div>
@@ -307,7 +307,7 @@ function mapProduct(item = []) {
               </div>
               <div class="info">
                 <div class="details">
-                  <span class="category">${item.category[0]}</span>
+                  <span class="category">${item.categories.join(" - ")}</span>
                   <div class="stars">
                     ${stars(+item.rate, false)}
                   </div>
@@ -317,7 +317,7 @@ function mapProduct(item = []) {
   }</a></span>
                 <div class="price">
                   <span class="current-price">$${+item.price}</span>
-                  <span class="base-price">$${totalPrice}</span>
+                  <span class="base-price">$${totalPrice.toFixed(2)}</span>
                 </div>
               </div>
             </article>
@@ -327,7 +327,7 @@ function mapProduct(item = []) {
 function mapColor(item, index) {
   return `
   <div class="input-wrapper">
-  <input name="color" type="checkbox" value="${item}" id="color_${index}">
+  <input name="colors" type="checkbox" value="${item}" id="color_${index}">
   <label data-color="${item}" for="color_${index}">
     <svg style="--fill:${item};" class="svg checkbox">
       <use href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"></use>
@@ -339,7 +339,7 @@ function mapColor(item, index) {
 function mapCategory(item, index) {
   return `
   <div class="input-wrapper">
-  <input name="category" type="checkbox" value="${item}" id="cat_${index}" />
+  <input name="categories" type="checkbox" value="${item}" id="cat_${index}" />
   <label data-category="${item}" for="cat_${index}">
     <svg class="svg checkbox">
       <use
@@ -386,21 +386,19 @@ function mapPrice(item) {
 createPreLoader(productsWrapper, PRODUCT_PRE_LOADER, 3);
 
 getDataFromAPI("products")
-  .then((products) => {
+  .then(({ error, products }) => {
     allProduct = products;
-
-    const { category, color, minPrice, maxPrice } =
-      getFilterItems(products);
+    const { categories, colors, minPrice, maxPrice } = getFilterItems(products);
 
     initialFilter = {
-      category: [],
-      color: [],
+      categories: [],
+      colors: [],
       min_price: minPrice,
       max_price: maxPrice,
       inventory: "all",
     };
     const { filter, sort: urlSort } = setSortAndFilterFromUrl(
-      { ...initialFilter, category, color },
+      { ...initialFilter, categories, colors },
       searchParams
     );
     filters = filter;
@@ -410,9 +408,9 @@ getDataFromAPI("products")
     const filteredData = handleFilter(products, initialFilter, filters);
     const sortedData = handleSort(filteredData, sort);
 
-    insertData(colorFilterWrapper, color, mapColor);
+    insertData(colorFilterWrapper, colors, mapColor);
     insertData(priceFilterWrapper, [{ minPrice, maxPrice }], mapPrice);
-    insertData(categoryFilterWrapper, category, mapCategory);
+    insertData(categoryFilterWrapper, categories, mapCategory);
     insertData(productsWrapper, sortedData, mapProduct);
     if (!filteredData.length) {
       productsWrapper.classList.add("no-grid");

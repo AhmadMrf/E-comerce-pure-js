@@ -32,7 +32,7 @@ function mapSearchResult(item) {
   return `
   <article data-id="${item.id}" class="searched-product">
   <div data-id="${item.id}">
-    <img src="${item.image[0]}" alt="${item.name}" />
+    <img src="${item.images[0]}" alt="${item.name}" />
     <span>${item.name}</span>
     </div>
   </article>

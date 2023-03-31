@@ -53,7 +53,7 @@ function updateCartUi(parent, id) {
   const itemCount = parent.querySelector(".change-count span");
   const subTotal = parent.querySelector(".subtotal");
   itemCount.textContent = product.quantity;
-  subTotal.textContent = +product.price * product.quantity;
+  subTotal.textContent = (+product.price * product.quantity).toFixed(2);
 
   calcTotalItem(totalPrice, "price");
   calcTotalItem(totalDiscount, "discount");
@@ -74,24 +74,24 @@ function updateFavoriteUi(parent, id) {
 
 function mapCartItem(item) {
   const isAddedToFavorite = favoriteData.find(
-    (favoriteItem) => favoriteItem.id == item.id
+    (favoriteItem) => +favoriteItem.id === +item.id
   );
   const totalPrice = +item.price + (+item.price * item.discount) / 100;
-
+  const subTotal = +item.price * item.quantity;
   return `
   <article data-product_id='${item.id}' class="cart-item">
   <div class="item-info">
     <div class="item-image-wrapper">
-      <img src="${item.image[0]}" alt="${item.name}" />
+      <img src="${item.images[0]}" alt="${item.name}" />
     </div>
     <div class="item-info-container">
       <h4 class="name"><a href='./product.html#${item.id}' >${
     item.name
   }</a></h4>
-      <span class="category">${item.category[0]}</span>
+      <span class="category">${item.categories.join(" - ")}</span>
       <div class="price">
         <span class="current-price">$${+item.price}</span>
-        <span class="base-price">$${totalPrice}</span>
+        <span class="base-price">$${totalPrice.toFixed(2)}</span>
       </div>
 
       <div class="title favorite">
@@ -115,9 +115,7 @@ function mapCartItem(item) {
       </svg>
     </div>
     <span class="total-item title"
-      >subtotal : <span class="subtotal">$${
-        +item.price * item.quantity
-      }</span></span
+      >subtotal : <span class="subtotal">$${subTotal.toFixed(2)}</span></span
     >
 
     <svg class="trash svg">

@@ -36,13 +36,13 @@ function mapCartItem(item) {
   <article data-product_id='${item.id}' class="favorite-item">
   <div class="item-info">
     <div class="item-image-wrapper">
-      <img src="${item.image[0]}" alt="${item.name}" />
+      <img src="${item.images[0]}" alt="${item.name}" />
     </div>
     <div class="item-info-container">
       <h4 class="name"><a href='./product.html#${item.id}' >${
     item.name
   }</a></h4>
-      <span class="category">${item.category[0]}</span>
+      <span class="category">${item.categories.join(" - ")}</span>
       <div class="price">
         <span class="current-price">$${+item.price}</span>
       </div>

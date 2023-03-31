@@ -35,7 +35,7 @@ function imageSlider(e, wrapper) {
       .querySelectorAll("li")
       .forEach((li) => li.classList.remove("active"));
     const index = li.dataset.index;
-    mainImage.src = product.image[index];
+    mainImage.src = product.images[index];
     li.classList.add("active");
   }
 }
@@ -92,9 +92,9 @@ function updateFavoriteUi(parent) {
   }
 }
 function mapSingleProduct(item) {
-  const isAddedToCart = cartData.find((cartItem) => cartItem.id == item.id);
+  const isAddedToCart = cartData.find((cartItem) => +cartItem.id === +item.id);
   const isAddedToFavorite = favoriteData.find(
-    (favoriteItem) => favoriteItem.id == item.id
+    (favoriteItem) => +favoriteItem.id === +item.id
   );
 
   const totalPrice = +item.price + (+item.price * item.discount) / 100;
@@ -102,16 +102,16 @@ function mapSingleProduct(item) {
   return `
   <div class="single-product-image-wrapper">
     <div class="main-image">
-      <img src="${item.image[0]}" alt="${item.name}" />
+      <img src="${item.images[0]}" alt="${item.name}" />
     </div>
 
     <ul class="small-images-wrapper">
       <li data-index='0' class="active">
-        <img src="${item.image[0]}" alt="${item.name}" />
+        <img src="${item.images[0]}" alt="${item.name}" />
       </li>
-      <li data-index='1'><img src="${item.image[1]}" alt="${item.name}" /></li>
-      <li data-index='2'><img src="${item.image[2]}" alt="${item.name}" /></li>
-      <li data-index='3'><img src="${item.image[3]}" alt="${item.name}" /></li>
+      <li data-index='1'><img src="${item.images[1]}" alt="${item.name}" /></li>
+      <li data-index='2'><img src="${item.images[2]}" alt="${item.name}" /></li>
+      <li data-index='3'><img src="${item.images[3]}" alt="${item.name}" /></li>
     </ul>
   </div>
   <div class="single-product-info-wrapper">
@@ -119,9 +119,9 @@ function mapSingleProduct(item) {
       <h2 class="name">${item.name}</h2>
       <div class="price-wrapper">
         <span class="price">$${+item.price}</span>
-        <span class="discount">$${totalPrice}</span>
+        <span class="discount">$${totalPrice.toFixed(2)}</span>
       </div>
-      <span class="category">${item.category[0]}</span>
+      <span class="category">${item.categories.join(" - ")}</span>
       <div class="rate">${stars(+item.rate, false)}</div>
       <p class="descriptoin">
         ${item.description}
@@ -164,12 +164,11 @@ function mapSingleProduct(item) {
 }
 createPreLoader(singleProductWrapper, SINGLE_PRODUCT_PRE_LOADER);
 
-getDataFromAPI(`products/${id}`)
-  .then((data) => {
-    const productData = changeData([data]);
-    product = productData[0];
+getDataFromAPI("products", `id=${id}`)
+  .then(({ error, products }) => {
+    product = products[0];
 
-    insertData(singleProductWrapper, productData, mapSingleProduct);
+    insertData(singleProductWrapper, products, mapSingleProduct);
 
     const imageSliderWrapper = singleProductWrapper.querySelector(
       ".single-product-image-wrapper"

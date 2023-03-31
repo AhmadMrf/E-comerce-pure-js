@@ -50,7 +50,7 @@ function filterProducts(allProduct, filterName) {
   let filteredProduct = [...allProduct];
   if (filterName !== "all") {
     filteredProduct = allProduct.filter((item) =>
-      item.category.includes(filterName)
+      item.categories.includes(filterName)
     );
   }
 
@@ -171,9 +171,9 @@ function mapFilterBtns(item) {
   `;
 }
 function mapProduct(item) {
-  const isAddedToCart = cartData.find((cartItem) => cartItem.id == item.id);
+  const isAddedToCart = cartData.find((cartItem) => +cartItem.id === +item.id);
   const isAddedToFavorite = favoriteData.find(
-    (favoriteItem) => favoriteItem.id == item.id
+    (favoriteItem) => +favoriteItem.id === +item.id
   );
   const colors = item.colors
     .map(
@@ -184,7 +184,7 @@ function mapProduct(item) {
   return `
       <article class="product swiper-slide">
               <div class="content">
-                <img src="${item.image[0]}" alt="${item.name}" />
+                <img src="${item.images[0]}" alt="${item.name}" />
                 <div class="tags">
                   <span class="tag discount">${item.discount}%</span>
                   <!-- <span class="tag new">new!</span> -->
@@ -238,7 +238,7 @@ function mapProduct(item) {
               </div>
               <div class="info">
                 <div class="details">
-                  <span class="category">${item.category[0]}</span>
+                  <span class="category">${item.categories.join(" - ")}</span>
                   <div class="stars">
                     ${stars(+item.rate)}
                   </div>
@@ -248,7 +248,7 @@ function mapProduct(item) {
                 }' >${item.name}</a></span>
                 <div class="price">
                   <span class="current-price">$${+item.price}</span>
-                  <span class="base-price">$${totalPrice}</span>
+                  <span class="base-price">$${totalPrice.toFixed(2)}</span>
                 </div>
               </div>
             </article>
@@ -278,10 +278,13 @@ createPreLoader(reviewsWrapper, REVIEW_PRE_LOADER, 3);
 
 Promise.all([getDataFromAPI("products"), getDataFromAPI("reviews")])
   .then((allData) => {
-    const [products, reviews] = allData;
+    const [
+      { error: productsError, products },
+      { error: reviewsError, reviews },
+    ] = allData;
     allProduct = products;
     const trends = getTrends(products);
-    const { category: filterBtns } = getFilterItems(products);
+    const { categories: filterBtns } = getFilterItems(products);
 
     insertData(productsWrapper, products, mapProduct);
     insertData(trendsWrapper, trends, mapProduct);

@@ -5,15 +5,15 @@ export function handleFilter(allProducts, initialFilter, filters) {
     let categoryMatched = true;
     let priceMatched = true;
     let inventoryMatched = true;
-    if (filters.color.length !== 0) {
+    if (filters.colors.length !== 0) {
       colorMatched = product.colors.some((item) =>
-        filters.color.includes(item)
+        filters.colors.includes(item)
       );
     }
 
-    if (filters.category.length !== 0) {
-      categoryMatched = product.category.some((item) =>
-        filters.category.includes(item)
+    if (filters.categories.length !== 0) {
+      categoryMatched = product.categories.some((item) =>
+        filters.categories.includes(item)
       );
     }
 

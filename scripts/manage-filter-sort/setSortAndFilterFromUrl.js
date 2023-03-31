@@ -1,10 +1,10 @@
 export function setSortAndFilterFromUrl(fullFilter, searchParam) {
-  const { color, category, min_price, max_price, inventory } = fullFilter;
+  const { colors, categories, min_price, max_price, inventory } = fullFilter;
 
   const searchParams = {
     filter: {
-      color: [],
-      category: [],
+      colors: [],
+      categories: [],
       min_price,
       max_price,
       inventory,
@@ -12,12 +12,12 @@ export function setSortAndFilterFromUrl(fullFilter, searchParam) {
     sort: "h_price",
   };
   for (let [key, value] of searchParam.entries()) {
-    if (key === "color") {
-      color.includes(`#${value}`)
+    if (key === "colors") {
+      colors.includes(`#${value}`)
         ? searchParams.filter[key].push(`#${value}`)
         : null;
-    } else if (key === "category") {
-      category.includes(value) ? searchParams.filter[key].push(value) : null;
+    } else if (key === "categories") {
+      categories.includes(value) ? searchParams.filter[key].push(value) : null;
     } else if ("sort") {
       searchParams.sort = value;
     } else {
