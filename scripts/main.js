@@ -1,4 +1,5 @@
 import { getDataFromAPI } from "./getDataFromAPI/getDataFromAPI.js";
+import { getUser } from "./manage-users/getUser.js";
 import { addEventListenerFn } from "./utils/addEventListenerFn.js";
 import { insertData } from "./utils/insertData.js";
 
@@ -11,6 +12,7 @@ const clearInputButtons = header.querySelectorAll(".search-box svg");
 const searchInputs = document.querySelectorAll("header .search-box input");
 const toggleMenuIcon = document.querySelector(".menu");
 const toggleThemeIcon = document.querySelectorAll(".toggle-theme");
+const userInfoState = document.querySelector(".user-info-icons-container.user");
 // globals ----------
 let allProducts = undefined;
 let searchState = {
@@ -18,16 +20,29 @@ let searchState = {
   serachInputTuched: false,
   value: "",
 };
-// const isIndex =
-//   location.pathname === "/index.html" || location.pathname === "/";
+const isSignin = getUser();
 
 //  *********  for github page  **********  //
 const isIndex =
   location.pathname === "/E-comerce-pure-js/index.html" ||
-  location.pathname === "/E-comerce-pure-js/";
+  location.pathname === "/E-comerce-pure-js/" ||
+  location.pathname === "/index.html" ||
+  location.pathname === "/";
 //  *********  for github page  **********  //
 
 // functions
+function userState() {
+  const href = isIndex ? "./pages/profile.html" : "./profile.html";
+  if (isSignin) {
+    userInfoState.innerHTML = `<a href="${href}"> 
+      <svg class="svg">
+        <use href="../assets/icons/svg-icons.svg#icon-User"></use>
+      </svg>
+    </a>`;
+  }
+}
+userState();
+
 function mapSearchResult(item) {
   return `
   <article data-id="${item.id}" class="searched-product">
@@ -152,6 +167,7 @@ addEventListenerFn(
       searchState.serachInputTuched = true;
       try {
         allProducts = await getDataFromAPI("products");
+        console.log(allProducts);
         handleSearch(searchState.value);
       } catch (err) {
         console.log(err);
