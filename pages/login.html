@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../styles/variables.css" />
     <link rel="stylesheet" href="../styles/normalize-reset.css" />
     <link rel="stylesheet" href="../styles/main.css" />
-    <link rel="stylesheet" href="../styles/cart.css" />
+    <link rel="stylesheet" href="../styles/login.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,7 +18,7 @@
       rel="stylesheet"
     />
     <script type="module" defer src="../scripts/main.js"></script>
-    <script type="module" defer src="../scripts/cart.js"></script>
+    <script type="module" defer src="../scripts/login.js"></script>
   </head>
 
   <body data-theme="light">
@@ -79,6 +79,14 @@
               </span>
             </div>
 
+            <span class="user-info-icons-container button with-badge cart">
+              <a href="./cart.html">
+                <svg class="svg">
+                  <use href="../assets/icons/svg-icons.svg#icon-Buy"></use>
+                </svg>
+                <span class="hide badge cart-badge"></span>
+              </a>
+            </span>
             <span class="user-info-icons-container button with-badge favorite">
               <a href="./favorites.html">
                 <svg class="svg">
@@ -162,89 +170,152 @@
         </aside>
       </header>
 
-      <!--******** cart tags *********-->
+      <!--******** login tags *********-->
       <!--******************************-->
 
-      <section class="cart-wrapper center">
-        <div class="cart-title">
-          <div class="title-info">
-            <h2 class="title">shopping cart</h2>
-            <span class="item-count-content"
-              >- <span class="item-count">-</span>
-            </span>
-          </div>
-          <div class="delete-cart-wrapper">
-            <svg class="trash svg">
-              <use href="../assets/icons/svg-icons.svg#icon-Trash"></use>
-            </svg>
-            <span>empty cart !</span>
-          </div>
-        </div>
-        <div class="cart-content">
-          <div class="cart-items-wrapper">
-            <!--<article class="cart-item">
-               <div class="item-info">
-                <div class="item-image-wrapper">
-                  <img src="../assets/images/Image13.png" alt="" />
-                </div>
-                <div class="item-info-container">
-                  <h4 class="name">jacket new edition</h4>
-                  <span class="category">men</span>
-                  <span class="price">$150</span>
+      <section class="login-wrapper center">
+        <div class="form-content">
+          <form name="signin" class="form-control signin-wrapper">
+            <span></span>
 
-                  <div class="title favorite">
-                    <span>add to favorite</span>
-                    <svg class="heart svg">
+            <h2 class="title">sign in</h2>
+            <div class="inputs">
+              <div class="input email error">
+                <label for="email-signin">email</label>
+                <span></span>
+
+                <input
+                  name="email"
+                  id="email-signin"
+                  type="text"
+                  placeholder="email"
+                  class="title"
+                />
+              </div>
+              <div class="input password">
+                <label for="password-signin">password</label>
+                <span></span>
+
+                <input
+                  name="password"
+                  id="password-signin"
+                  type="password"
+                  placeholder="password"
+                  class="title"
+                />
+              </div>
+              <button name="submit" class="title">sign in</button>
+            </div>
+            <div class="extra-form-info">
+              <div class="remember">
+                <div class="input-wrapper">
+                  <input
+                    name="remember"
+                    checked
+                    type="checkbox"
+                    value="remember"
+                    id="remember"
+                  />
+                  <label for="remember">
+                    <svg class="svg checkbox">
                       <use
-                        href="../assets/icons/svg-icons.svg#icon-Heart"
+                        href="../assets/icons/svg-icons.svg#icon-Checkbox"
                       ></use>
                     </svg>
+                    <span class="title">remember me</span>
+                  </label>
+                </div>
+              </div>
+              <div class="forget">
+                <a class="title" href="#">forgot password?</a>
+              </div>
+            </div>
+            <div class="change-form">
+              <span>Not a member?</span>
+              <button type="button" class="title">sign up</button>
+            </div>
+          </form>
+          <form name="signup" class="form-control signup-wrapper">
+            <span></span>
+            <h2 class="title">sign up</h2>
+            <div class="inputs">
+              <div class="input username">
+                <label for="username-signup">user name</label>
+                <span></span>
+
+                <input
+                  name="username"
+                  id="username-signup"
+                  type="text"
+                  placeholder="user name"
+                  class="title"
+                />
+              </div>
+              <div class="input email">
+                <label for="email">email</label>
+                <span></span>
+                <input
+                  name="email"
+                  id="email"
+                  type="email"
+                  placeholder="email"
+                  class="title"
+                />
+              </div>
+              <div class="input password">
+                <label for="password-signup">password</label>
+                <span></span>
+
+                <input
+                  name="password"
+                  id="password-signup"
+                  type="password"
+                  placeholder="password"
+                  class="title"
+                />
+              </div>
+              <div class="input password">
+                <label for="password-confirm">confirm password</label>
+                <span></span>
+                <input
+                  name="password_confirm"
+                  id="password-confirm"
+                  type="password"
+                  placeholder="confirm password"
+                  class="title"
+                />
+              </div>
+              <div class="extra-form-info">
+                <div class="agreement">
+                  <div class="input-wrapper">
+                    <span></span>
+                    <input
+                      name="agreement"
+                      type="checkbox"
+                      value=""
+                      id="agreement"
+                    />
+                    <label for="agreement">
+                      <svg class="svg checkbox">
+                        <use
+                          href="../assets/icons/svg-icons.svg#icon-Checkbox"
+                        ></use>
+                      </svg>
+                      <span class="title"
+                        >i agree to the terms & conditions</span
+                      >
+                    </label>
                   </div>
                 </div>
               </div>
-              <div class="item-buy-info">
-                <div class="change-count">
-                  <svg class="minus svg">
-                    <use href="../assets/icons/svg-icons.svg#icon-Minus"></use>
-                  </svg>
-                  <span>1</span>
-                  <svg class="plus svg">
-                    <use href="../assets/icons/svg-icons.svg#icon-Plus"></use>
-                  </svg>
-                </div>
-                <span class="total-item title"
-                  >subtotal : <span class="subtotal">$150</span></span
-                >
-
-                <svg class="trash svg">
-                  <use href="../assets/icons/svg-icons.svg#icon-Trash"></use>
-                </svg>
-              </div>
-            </article> -->
-          </div>
-          <div class="cart-total-wrapper">
-            <div class="cart-total-content">
-              <h4 class="title">summary</h4>
-              <div class="total-price-container">
-                <div class="total-discount">
-                  <span class="title">total discount : </span
-                  ><span class="total-discount-amount">$150</span>
-                </div>
-                <div class="total-price">
-                  <span class="title">total price : </span
-                  ><span class="total-price-amount">$850</span>
-                </div>
-              </div>
-              <div class="buttons">
-                <button class="button button-dark checkout">
-                  <a href="./checkout.html">login and checkout</a>
-                </button>
-                <button class="button button-dark add-new-product">
-                  <a href="./all-products.html">add new product</a>
-                </button>
-              </div>
+              <button name="submit" class="title">sign up</button>
             </div>
-          </div>
+
+            <div class="change-form">
+              <span>already have account?</span>
+              <button type="button" class="title">sign in</button>
+            </div>
+          </form>
         </div>
       </section>
       <!--******** footer tags *********-->

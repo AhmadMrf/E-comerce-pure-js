@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../styles/variables.css" />
     <link rel="stylesheet" href="../styles/normalize-reset.css" />
     <link rel="stylesheet" href="../styles/main.css" />
-    <link rel="stylesheet" href="../styles/cart.css" />
+    <link rel="stylesheet" href="../styles/profile.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,7 +18,7 @@
       rel="stylesheet"
     />
     <script type="module" defer src="../scripts/main.js"></script>
-    <script type="module" defer src="../scripts/cart.js"></script>
+    <script type="module" defer src="../scripts/profile.js"></script>
   </head>
 
   <body data-theme="light">
@@ -79,6 +79,14 @@
               </span>
             </div>
 
+            <span class="user-info-icons-container button with-badge cart">
+              <a href="./cart.html">
+                <svg class="svg">
+                  <use href="../assets/icons/svg-icons.svg#icon-Buy"></use>
+                </svg>
+                <span class="hide badge cart-badge"></span>
+              </a>
+            </span>
             <span class="user-info-icons-container button with-badge favorite">
               <a href="./favorites.html">
                 <svg class="svg">
@@ -162,90 +170,12 @@
         </aside>
       </header>
 
-      <!--******** cart tags *********-->
+      <!--******** profile tags *********-->
       <!--******************************-->
 
-      <section class="cart-wrapper center">
-        <div class="cart-title">
-          <div class="title-info">
-            <h2 class="title">shopping cart</h2>
-            <span class="item-count-content"
-              >- <span class="item-count">-</span>
-            </span>
-          </div>
-          <div class="delete-cart-wrapper">
-            <svg class="trash svg">
-              <use href="../assets/icons/svg-icons.svg#icon-Trash"></use>
-            </svg>
-            <span>empty cart !</span>
-          </div>
-        </div>
-        <div class="cart-content">
-          <div class="cart-items-wrapper">
-            <!--<article class="cart-item">
-               <div class="item-info">
-                <div class="item-image-wrapper">
-                  <img src="../assets/images/Image13.png" alt="" />
-                </div>
-                <div class="item-info-container">
-                  <h4 class="name">jacket new edition</h4>
-                  <span class="category">men</span>
-                  <span class="price">$150</span>
-
-                  <div class="title favorite">
-                    <span>add to favorite</span>
-                    <svg class="heart svg">
-                      <use
-                        href="../assets/icons/svg-icons.svg#icon-Heart"
-                      ></use>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div class="item-buy-info">
-                <div class="change-count">
-                  <svg class="minus svg">
-                    <use href="../assets/icons/svg-icons.svg#icon-Minus"></use>
-                  </svg>
-                  <span>1</span>
-                  <svg class="plus svg">
-                    <use href="../assets/icons/svg-icons.svg#icon-Plus"></use>
-                  </svg>
-                </div>
-                <span class="total-item title"
-                  >subtotal : <span class="subtotal">$150</span></span
-                >
-
-                <svg class="trash svg">
-                  <use href="../assets/icons/svg-icons.svg#icon-Trash"></use>
-                </svg>
-              </div>
-            </article> -->
-          </div>
-          <div class="cart-total-wrapper">
-            <div class="cart-total-content">
-              <h4 class="title">summary</h4>
-              <div class="total-price-container">
-                <div class="total-discount">
-                  <span class="title">total discount : </span
-                  ><span class="total-discount-amount">$150</span>
-                </div>
-                <div class="total-price">
-                  <span class="title">total price : </span
-                  ><span class="total-price-amount">$850</span>
-                </div>
-              </div>
-              <div class="buttons">
-                <button class="button button-dark checkout">
-                  <a href="./checkout.html">login and checkout</a>
-                </button>
-                <button class="button button-dark add-new-product">
-                  <a href="./all-products.html">add new product</a>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+      <section class="profile center">
+        profile page
+        <button>sign out</button>
       </section>
       <!--******** footer tags *********-->
       <!--******************************-->
