@@ -98,7 +98,7 @@
             <span class="user-info-icons-container button user">
               <a href="./login.html">
                 <svg class="svg">
-                  <use href="../assets/icons/svg-icons.svg#icon-Add-user"></use>
+                  <use href="../assets/icons/svg-icons.svg#icon-Signin"></use>
                 </svg>
               </a>
             </span>
@@ -173,7 +173,151 @@
       <!--******** login tags *********-->
       <!--******************************-->
 
-      <section class="login center">login</section>
+      <section class="login-wrapper center">
+        <div class="form-content">
+          <form name="signin" class="form-control signin-wrapper">
+            <span></span>
+
+            <h2 class="title">sign in</h2>
+            <div class="inputs">
+              <div class="input email error">
+                <label for="email-signin">email</label>
+                <span></span>
+
+                <input
+                  name="email"
+                  id="email-signin"
+                  type="text"
+                  placeholder="email"
+                  class="title"
+                />
+              </div>
+              <div class="input password">
+                <label for="password-signin">password</label>
+                <span></span>
+
+                <input
+                  name="password"
+                  id="password-signin"
+                  type="password"
+                  placeholder="password"
+                  class="title"
+                />
+              </div>
+              <button name="submit" class="title">sign in</button>
+            </div>
+            <div class="extra-form-info">
+              <div class="remember">
+                <div class="input-wrapper">
+                  <input
+                    name="remember"
+                    checked
+                    type="checkbox"
+                    value="remember"
+                    id="remember"
+                  />
+                  <label for="remember">
+                    <svg class="svg checkbox">
+                      <use
+                        href="../assets/icons/svg-icons.svg#icon-Checkbox"
+                      ></use>
+                    </svg>
+                    <span class="title">remember me</span>
+                  </label>
+                </div>
+              </div>
+              <div class="forget">
+                <a class="title" href="#">forgot password?</a>
+              </div>
+            </div>
+            <div class="change-form">
+              <span>Not a member?</span>
+              <button type="button" class="title">sign up</button>
+            </div>
+          </form>
+          <form name="signup" class="form-control signup-wrapper">
+            <span></span>
+            <h2 class="title">sign up</h2>
+            <div class="inputs">
+              <div class="input username">
+                <label for="username-signup">user name</label>
+                <span></span>
+
+                <input
+                  name="username"
+                  id="username-signup"
+                  type="text"
+                  placeholder="user name"
+                  class="title"
+                />
+              </div>
+              <div class="input email">
+                <label for="email">email</label>
+                <span></span>
+                <input
+                  name="email"
+                  id="email"
+                  type="email"
+                  placeholder="email"
+                  class="title"
+                />
+              </div>
+              <div class="input password">
+                <label for="password-signup">password</label>
+                <span></span>
+
+                <input
+                  name="password"
+                  id="password-signup"
+                  type="password"
+                  placeholder="password"
+                  class="title"
+                />
+              </div>
+              <div class="input password">
+                <label for="password-confirm">confirm password</label>
+                <span></span>
+                <input
+                  name="password_confirm"
+                  id="password-confirm"
+                  type="password"
+                  placeholder="confirm password"
+                  class="title"
+                />
+              </div>
+              <div class="extra-form-info">
+                <div class="agreement">
+                  <div class="input-wrapper">
+                    <span></span>
+                    <input
+                      name="agreement"
+                      type="checkbox"
+                      value=""
+                      id="agreement"
+                    />
+                    <label for="agreement">
+                      <svg class="svg checkbox">
+                        <use
+                          href="../assets/icons/svg-icons.svg#icon-Checkbox"
+                        ></use>
+                      </svg>
+                      <span class="title"
+                        >i agree to the terms & conditions</span
+                      >
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <button name="submit" class="title">sign up</button>
+            </div>
+
+            <div class="change-form">
+              <span>already have account?</span>
+              <button type="button" class="title">sign in</button>
+            </div>
+          </form>
+        </div>
+      </section>
       <!--******** footer tags *********-->
       <!--******************************-->
       <footer class="center">

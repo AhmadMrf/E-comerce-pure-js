@@ -1,3 +1,168 @@
-body {
-  color: yellowgreen;
+.login-wrapper {
+  padding-top: 5.5rem;
+  margin-top: min(calc(1rem + 10vw), 7rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.form-content {
+  transition: height 0.3s;
+  min-width: min(95%, 25rem);
+  overflow-y: hidden;
+  border-radius: 0.3rem;
+  height: 26rem;
+}
+.form-content.signup {
+  height: 36rem;
+}
+.form-content .form-control:first-child {
+  transition: all 0.2s;
+  transform: translateY(0);
+}
+.form-content .form-control:last-child {
+  opacity: 0;
+  transition: all 0.5s;
+}
+.form-content.signup .form-control:first-child {
+  transform: translateY(-100%);
+}
+.form-content.signup .form-control:last-child {
+  opacity: 1;
+  transform: translateY(-100%);
+}
+
+/* forms */
+
+.form-control {
+  height: 100%;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.form-control h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.form-control label {
+  text-transform: capitalize;
+}
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.inputs input,
+.inputs button {
+  padding: 0.5rem;
+  border-radius: 0.2rem;
+}
+.inputs input {
+  color: var(--gray-1);
+  font-size: 0.9rem;
+  font-weight: 400;
+  caret-color: var(--main-font-color);
+  background-color: var(--search-box-color);
+  transition: background-color 0.7s;
+  border: 1px solid var(--main-color);
+  outline: none;
+}
+.inputs input:focus {
+  border-color: var(--white);
+}
+.inputs button {
+  margin-top: 0.5rem;
+  background-color: var(--secondary-color);
+  color: var(--white);
+  cursor: unset;
+}
+.inputs button.active {
+  background-color: var(--green-1);
+  cursor: pointer;
+}
+
+.change-form {
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.change-form button {
+  all: unset;
+  color: var(--main-font-color);
+  cursor: pointer;
+  padding: 0.2rem;
+}
+.change-form button:hover {
+  color: var(--main-font-hover);
+  border-bottom: 1px solid var(--main-font-hover);
+}
+
+.extra-form-info {
+  font-size: 0.8rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.remember .input-wrapper label {
+  cursor: pointer;
+}
+.extra-form-info input {
+  display: none;
+}
+.extra-form-info svg {
+  transition-duration: 0.2s;
+}
+.input-wrapper label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.input-wrapper label svg {
+  stroke-width: 0;
+}
+.input-wrapper input:checked ~ label svg {
+  stroke-width: 1.5;
+}
+.agreement .input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.error-validation,
+.error-sign {
+  transform: translatey(100%);
+  opacity: 0;
+  color: var(--red);
+  font-size: 0.7rem;
+  padding: 0.1rem;
+  animation: show-error 0.2s forwards;
+}
+.error-validation + input {
+  border-color: var(--red);
+}
+.error-validation + input:focus {
+  border-color: var(--red-opacity);
+}
+.error-sign {
+  font-size: 1rem;
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+  background-color: var(--red-opacity);
+  color: var(--white);
+  border: 1px solid var(--red);
+}
+@keyframes show-error {
+  to {
+    transform: translatey(0%);
+    opacity: 1;
+  }
 }
