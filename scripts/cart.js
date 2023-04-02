@@ -5,17 +5,27 @@ import { getLocalStorage } from "./utils/useLocalStorage.js";
 import { insertData } from "./utils/insertData.js";
 import { addEventListenerFn } from "./utils/addEventListenerFn.js";
 import { hideResetWrapper } from "./utils/hideResetWrapper.js";
-
+import { getUser } from "./manage-users/getUser.js";
 // ---------- selectors -----------
 const cartWrapper = document.querySelector(".cart-items-wrapper");
 const countCartItem = document.querySelector(".item-count");
 const totalPrice = document.querySelector(".total-price-amount");
 const totalDiscount = document.querySelector(".total-discount-amount");
-
+const checkoutButton = document.querySelector(".buttons .checkout");
 // ---------- insert local data to page --------------
 let cartData = getLocalStorage("products");
 let favoriteData = getLocalStorage("favorites");
+const isSignin = getUser();
 
+function checkSigninForcheckout() {
+  const href = isSignin ? "./checkout.html" : "./login.html?cart";
+  const text = isSignin ? "checkout" : "login to checkout";
+  checkoutButton.innerHTML = `
+  <a href="${href}">${text}</a>
+  `;
+}
+
+checkSigninForcheckout();
 function resetCart() {
   cartData = handleCart(null, "reset");
   cartWrapper.innerHTML = "";
