@@ -79,14 +79,6 @@
               </span>
             </div>
 
-            <span class="user-info-icons-container button with-badge cart">
-              <a href="./cart.html">
-                <svg class="svg">
-                  <use href="../assets/icons/svg-icons.svg#icon-Buy"></use>
-                </svg>
-                <span class="hide badge cart-badge"></span>
-              </a>
-            </span>
             <span class="user-info-icons-container button with-badge favorite">
               <a href="./favorites.html">
                 <svg class="svg">
@@ -97,7 +89,7 @@
             </span>
             <span class="user-info-icons-container button user">
               <svg class="svg">
-                <use href="../assets/icons/svg-icons.svg#icon-Add-user"></use>
+                <use href="../assets/icons/svg-icons.svg#icon-User"></use>
               </svg>
             </span>
           </div>
@@ -173,13 +165,14 @@
 
       <section class="checkout-wrapper center">
         <h2 class="title">checkout info :</h2>
-        <div class="checkout-content">
+        <form name="checkout" class="checkout-content">
           <div class="shipping-wrapper">
             <div class="checkout-indicator">
               <span class="indicator-number">1</span>
               <span class="indicator-title">shiping info</span>
             </div>
             <div class="shipping-content">
+              <span></span>
               <address class="shipping-address">
                 <label class="title" for="address">address:</label>
                 <textarea
@@ -272,7 +265,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </form>
         <div class="cart-summary">
           <div class="checkout-indicator">
             <span class="indicator-number">3</span>
@@ -281,36 +274,41 @@
           <div class="cart-total-content">
             <h4 class="title">cart summary</h4>
             <div class="total-price-container">
-              <div class="total-discount">
-                <span class="title">total discount : </span
-                ><span class="total-discount-amount">93.20</span>
+              <div class="price">
+                <span class="title">price : </span
+                ><span class="price-amount">0</span>
+              </div>
+              <div class="gift">
+                <span class="title">gift : </span
+                ><span class="gift-amount">0</span>
               </div>
               <div class="shipping-cost">
                 <span class="title">shiping cost : </span
-                ><span class="total-shipping-cost">5.00</span>
+                ><span class="total-shipping-cost">0</span>
               </div>
               <div class="total-price">
                 <span class="title">total price : </span
-                ><span class="total-price-amount">309.00</span>
+                ><span class="total-price-amount">0</span>
               </div>
             </div>
             <div class="buttons">
-              <div class="gift-code">
-                <label for="gift-code">
-                  <input
-                    class="title"
-                    type="text"
-                    id="gift-code"
-                    placeholder="enter your gift code"
-                  />
-                  <button class="button button-dark title add-gift">
-                    apply
-                  </button>
-                </label>
+              <div class="gift-container">
+                <span></span>
+                <div class="gift-code">
+                  <label for="gift-code">
+                    <input
+                      class="title"
+                      type="text"
+                      id="gift-code"
+                      placeholder="enter your gift code"
+                    />
+                    <button class="button button-dark title add-gift">
+                      apply
+                    </button>
+                  </label>
+                </div>
               </div>
-              <button class="button button-dark pay">
-                <a href="#">pay</a>
-              </button>
+              <button class="button button-dark pay">pay</button>
             </div>
           </div>
         </div>

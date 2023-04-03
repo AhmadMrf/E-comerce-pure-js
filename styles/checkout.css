@@ -144,6 +144,13 @@ h2 {
 .shipping-cost {
   color: var(--secondary-color);
 }
+.gift-container {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .gift-code {
   caret-color: var(--main-font-color);
   background-color: var(--search-box-color);
@@ -189,4 +196,42 @@ h2 {
 }
 .buttons .pay {
   min-width: 10rem;
+}
+
+.error-validation {
+  transform: translatey(100%);
+  opacity: 0;
+  color: var(--red);
+  font-size: 1rem;
+  padding: 0.1rem;
+  animation: show-error 0.2s forwards;
+}
+.success {
+  transform: translatey(100%);
+  opacity: 0;
+  color: var(--green-2);
+  font-size: 1rem;
+  padding: 0.1rem;
+  animation: show-error 0.2s forwards;
+}
+
+.error-validation + .shipping-address textarea {
+  border-color: var(--red);
+}
+.error-validation + .shipping-address textarea:focus {
+  border-color: var(--red-opacity);
+}
+
+.error-validation + .gift-code {
+  border-color: var(--red);
+}
+.success + .gift-code {
+  border-color: var(--green-2);
+}
+
+@keyframes show-error {
+  to {
+    transform: translatey(0%);
+    opacity: 1;
+  }
 }
