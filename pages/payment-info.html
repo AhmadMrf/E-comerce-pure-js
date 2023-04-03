@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>E-Commerce</title>
+
+    <link rel="stylesheet" href="../styles/variables.css" />
+    <link rel="stylesheet" href="../styles/normalize-reset.css" />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/payment-info.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script type="module" defer src="../scripts/main.js"></script>
+    <script type="module" defer src="../scripts/payment-info.js"></script>
+  </head>
+
+  <body data-theme="light">
+    <main>
+      <!--******** header tags *********-->
+      <!--******************************-->
+      <header>
+        <section class="center header-content">
+          <div class="header-logo-container">
+            <a href="../index.html"><span>Fashion</span><span>Era</span></a>
+          </div>
+          <nav class="header-navbar-container">
+            <ul class="header-nav-list">
+              <li class="nav-list-item">
+                <a href="../pages/all-products.html?category=men">Men</a>
+              </li>
+              <li class="nav-list-item">
+                <a href="../pages/all-products.html?category=women">Women</a>
+              </li>
+              <li class="nav-list-item">
+                <a href="../pages/all-products.html?category=kids">Kids</a>
+              </li>
+              <li class="nav-list-item new">
+                <a href="../pages/all-products.html?category=winter">Winter</a>
+              </li>
+              <li class="nav-list-item">
+                <a href="../pages/all-products.html?category=lifeStyle"
+                  >Lifestyle</a
+                >
+              </li>
+            </ul>
+          </nav>
+          <div class="header-search-container">
+            <div class="search-box">
+              <label for="product_name-header">
+                <input
+                  placeholder="search product name"
+                  type="text"
+                  name="product_name-header"
+                  id="product_name-header"
+                />
+                <svg class="svg button">
+                  <use href="./assets/icons/svg-icons.svg#icon-Close"></use>
+                </svg>
+              </label>
+            </div>
+            <div class="search-result"></div>
+          </div>
+          <div class="header-user-info-container">
+            <div class="toggle-theme header-toggle-theme button">
+              <span class="theme">
+                <svg class="svg light">
+                  <use href="../assets/icons/svg-icons.svg#icon-Light"></use>
+                </svg>
+                <svg class="svg dark">
+                  <use href="../assets/icons/svg-icons.svg#icon-Dark"></use>
+                </svg>
+              </span>
+            </div>
+
+            <span class="user-info-icons-container button with-badge favorite">
+              <a href="./favorites.html">
+                <svg class="svg">
+                  <use href="../assets/icons/svg-icons.svg#icon-Heart"></use>
+                </svg>
+                <span class="hide badge favorite-badge"></span>
+              </a>
+            </span>
+            <span class="user-info-icons-container button user">
+              <a href="./login.html">
+                <svg class="svg">
+                  <use href="../assets/icons/svg-icons.svg#icon-Signin"></use>
+                </svg>
+              </a>
+            </span>
+          </div>
+          <div class="header-menu-container">
+            <!-- add class 'active' to toggle icon -->
+            <span class="menu button">
+              <svg class="svg open">
+                <use href="../assets/icons/svg-icons.svg#icon-Menu"></use>
+              </svg>
+              <svg class="svg close">
+                <use href="../assets/icons/svg-icons.svg#icon-Close"></use>
+              </svg>
+            </span>
+          </div>
+        </section>
+
+        <!--********* sidebar tags*********-->
+
+        <aside class="sidebar-content">
+          <div class="sidebar-search-container">
+            <div class="search-box">
+              <label for="product_name-sidebar">
+                <input
+                  placeholder="search product name"
+                  type="text"
+                  name="product_name-sidebar"
+                  id="product_name-sidebar"
+                />
+                <svg class="svg button">
+                  <use href="./assets/icons/svg-icons.svg#icon-Close"></use>
+                </svg>
+              </label>
+            </div>
+            <div class="search-result"></div>
+          </div>
+          <div class="toggle-theme sidebar-toggle-theme button">
+            <span class="title"> theme</span>
+            <span class="theme">
+              <svg class="svg light">
+                <use href="../assets/icons/svg-icons.svg#icon-Light"></use>
+              </svg>
+              <svg class="svg dark">
+                <use href="../assets/icons/svg-icons.svg#icon-Dark"></use>
+              </svg>
+            </span>
+          </div>
+          <nav class="sidebar-navbar-container">
+            <ul class="sidebar-nav-list">
+              <li class="nav-list-item">
+                <a href="../pages/all-products.html?category=men">Men</a>
+              </li>
+              <li class="nav-list-item">
+                <a href="../pages/all-products.html?category=women">Women</a>
+              </li>
+              <li class="nav-list-item">
+                <a href="../pages/all-products.html?category=kids">Kids</a>
+              </li>
+              <li class="nav-list-item new">
+                <a href="../pages/all-products.html?category=winter">Winter</a>
+              </li>
+              <li class="nav-list-item">
+                <a href="../pages/all-products.html?category=lifeStyle"
+                  >Lifestyle</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </aside>
+      </header>
+
+      <!--******** payment-info tags *********-->
+      <!--******************************-->
+
+      <section class="payment-info center">
+        <div class="payment-info-container"></div>
+      </section>
+      <!--******** footer tags *********-->
+      <!--******************************-->
+      <footer class="center">
+        <div class="page-info">
+          <div class="footer-logo-container">
+            <a href="../index.html"><span>Fashion</span><span>Era</span></a>
+          </div>
+          <p>
+            There are many variations of passages of Lorem Ipsum available, but
+            the majority have suffered alteration in some, There are many
+            variations of passages of Lorem Ipsum available, but the majority
+            have suffered.
+          </p>
+        </div>
+        <div class="footer-links-wrapper">
+          <ul class="links">
+            <li class="title">help</li>
+            <li class="link"><a href="#">Privacy Policy</a></li>
+            <li class="link"><a href="#">Shipping & Delivery</a></li>
+            <li class="link"><a href="#">Refund Policy</a></li>
+            <li class="link"><a href="#">Track Your Order</a></li>
+          </ul>
+          <ul class="links">
+            <li class="title">Store</li>
+            <li class="link"><a href="#">Men Fashion</a></li>
+            <li class="link"><a href="#">Women Fashion</a></li>
+            <li class="link"><a href="#">Kids Fashion</a></li>
+            <li class="link"><a href="#">Other</a></li>
+          </ul>
+          <ul class="links">
+            <li class="title">Support</li>
+            <li class="link"><a href="#">Feedback</a></li>
+            <li class="link"><a href="#">Contact us</a></li>
+            <li class="link"><a href="#">Download app</a></li>
+            <li class="link"><a href="#">Terms & condition</a></li>
+          </ul>
+        </div>
+      </footer>
+    </main>
+  </body>
+</html>
