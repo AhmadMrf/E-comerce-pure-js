@@ -1,3 +1,5 @@
+import { getUser } from "./manage-users/getUser.js";
+
 const paymentInfoContainer = document.querySelector(".payment-info-container");
 const paymentDataJson = decodeURIComponent(location.search).slice(1);
 
@@ -27,8 +29,8 @@ if (!paymentDataJson || !isSignin) {
   <div class="payment">
   ${
     paymentMethod === "online"
-      ? `paid <span class="price">${totalPrice}$</span> online`
-      : `pay with cash <span class="price">${totalPrice}$</span>`
+      ? `paid <span class="price">${totalPrice.toFixed(2)}$</span> online`
+      : `pay with cash <span class="price">${totalPrice.toFixed(2)}$</span>`
   }
   </div>
   `;
