@@ -1,0 +1,22 @@
+.payment-info {
+  padding-top: 7.5rem;
+}
+.payment-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  align-items: center;
+  justify-content: center;
+}
+.address {
+  padding: 0.2rem;
+  border: 1px dashed var(--green-1);
+}
+.address:hover {
+  border-color: var(--green-2);
+}
+.price {
+  font-weight: 600;
+}

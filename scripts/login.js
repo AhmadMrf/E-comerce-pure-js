@@ -3,6 +3,7 @@ import { getUser } from "./manage-users/getUser.js";
 import { signin, signup } from "./manage-users/userStates.js";
 import { resetFormsInputs } from "./utils/resetFormsInputs.js";
 import { validateInput } from "./utils/validateInput.js";
+import { handleBadge } from "./utils/handleBadge.js";
 
 // constants
 const changeFormButtons = document.querySelectorAll(".change-form button");
@@ -193,3 +194,5 @@ addEventListenerFn(
   },
   "submit"
 );
+handleBadge("cart");
+handleBadge("favorite");

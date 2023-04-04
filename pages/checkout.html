@@ -77,14 +77,6 @@
               </span>
             </div>
 
-            <span class="user-info-icons-container button with-badge cart">
-              <a href="./cart.html">
-                <svg class="svg">
-                  <use href="../assets/icons/svg-icons.svg#icon-Buy"></use>
-                </svg>
-                <span class="hide badge cart-badge"></span>
-              </a>
-            </span>
             <span class="user-info-icons-container button with-badge favorite">
               <a href="./favorites.html">
                 <svg class="svg">
@@ -94,11 +86,9 @@
               </a>
             </span>
             <span class="user-info-icons-container button user">
-              <a href="./login.html">
-                <svg class="svg">
-                  <use href="../assets/icons/svg-icons.svg#icon-Signin"></use>
-                </svg>
-              </a>
+              <svg class="svg">
+                <use href="../assets/icons/svg-icons.svg#icon-User"></use>
+              </svg>
             </span>
           </div>
           <div class="header-menu-container">
@@ -169,7 +159,156 @@
       <!--******** checkout tags *********-->
       <!--******************************-->
 
-      <section class="checkout center">checkout</section>
+      <section class="checkout-wrapper center">
+        <h2 class="title">checkout info :</h2>
+        <form name="checkout" class="checkout-content">
+          <div class="shipping-wrapper">
+            <div class="checkout-indicator">
+              <span class="indicator-number">1</span>
+              <span class="indicator-title">shiping info</span>
+            </div>
+            <div class="shipping-content">
+              <span></span>
+              <address class="shipping-address">
+                <label class="title" for="address">address:</label>
+                <textarea
+                  name="address"
+                  id="address"
+                  placeholder="type your address"
+                ></textarea>
+              </address>
+              <div class="shipping-time-content">
+                <span class="title">shipping time:</span>
+                <div class="shipping-time">
+                  <div class="input-wrapper">
+                    <input
+                      checked="true"
+                      value="today"
+                      type="radio"
+                      name="time"
+                      id="time-today"
+                    />
+                    <label for="time-today">
+                      <svg class="svg radio">
+                        <use
+                          href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"
+                        ></use>
+                      </svg>
+                      <span>today</span>
+                    </label>
+                  </div>
+                  <div class="input-wrapper">
+                    <input
+                      value="tomorrow"
+                      type="radio"
+                      name="time"
+                      id="time-tomorrow"
+                    />
+                    <label for="time-tomorrow">
+                      <svg class="svg radio">
+                        <use
+                          href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"
+                        ></use>
+                      </svg>
+                      <span>tomorrow</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="payment-method-wrapper">
+            <div class="checkout-indicator">
+              <span class="indicator-number">2</span>
+              <span class="indicator-title">payment info</span>
+            </div>
+            <div class="payment-content">
+              <span class="title">payment method:</span>
+              <div class="payments">
+                <div class="input-wrapper">
+                  <input
+                    checked="true"
+                    value="online"
+                    type="radio"
+                    name="payment"
+                    id="payment-online"
+                  />
+                  <label for="payment-online">
+                    <svg class="svg radio">
+                      <use
+                        href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"
+                      ></use>
+                    </svg>
+                    <span>online</span>
+                  </label>
+                </div>
+                <div class="input-wrapper">
+                  <input
+                    value="cash"
+                    type="radio"
+                    name="payment"
+                    id="payment-cash"
+                  />
+                  <label for="payment-cash">
+                    <svg class="svg radio">
+                      <use
+                        href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"
+                      ></use>
+                    </svg>
+                    <span>cash</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <div class="cart-summary">
+          <div class="checkout-indicator">
+            <span class="indicator-number">3</span>
+            <span class="indicator-title">cart info</span>
+          </div>
+          <div class="cart-total-content">
+            <h4 class="title">cart summary</h4>
+            <div class="total-price-container">
+              <div class="price">
+                <span class="title">price : </span
+                ><span class="price-amount">0</span>
+              </div>
+              <div class="gift">
+                <span class="title">gift : </span
+                ><span class="gift-amount">0</span>
+              </div>
+              <div class="shipping-cost">
+                <span class="title">shiping cost : </span
+                ><span class="total-shipping-cost">0</span>
+              </div>
+              <div class="total-price">
+                <span class="title">total price : </span
+                ><span class="total-price-amount">0</span>
+              </div>
+            </div>
+            <div class="buttons">
+              <div class="gift-container">
+                <span></span>
+                <div class="gift-code">
+                  <label for="gift-code">
+                    <input
+                      class="title"
+                      type="text"
+                      id="gift-code"
+                      placeholder="enter your gift code"
+                    />
+                    <button class="button button-dark title add-gift">
+                      apply
+                    </button>
+                  </label>
+                </div>
+              </div>
+              <button class="button button-dark pay">pay</button>
+            </div>
+          </div>
+        </div>
+      </section>
       <!--******** footer tags *********-->
       <!--******************************-->
       <footer class="center">

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../styles/variables.css" />
     <link rel="stylesheet" href="../styles/normalize-reset.css" />
     <link rel="stylesheet" href="../styles/main.css" />
-    <link rel="stylesheet" href="../styles/cart.css" />
+    <link rel="stylesheet" href="../styles/payment-info.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,7 +18,7 @@
       rel="stylesheet"
     />
     <script type="module" defer src="../scripts/main.js"></script>
-    <script type="module" defer src="../scripts/cart.js"></script>
+    <script type="module" defer src="../scripts/payment-info.js"></script>
   </head>
 
   <body data-theme="light">
@@ -33,19 +33,21 @@
           <nav class="header-navbar-container">
             <ul class="header-nav-list">
               <li class="nav-list-item">
-                <a href="./all-products.html?categories=men">Men</a>
+                <a href="../pages/all-products.html?category=men">Men</a>
               </li>
               <li class="nav-list-item">
-                <a href="./all-products.html?categories=women">Women</a>
+                <a href="../pages/all-products.html?category=women">Women</a>
               </li>
               <li class="nav-list-item">
-                <a href="./all-products.html?categories=kids">Kids</a>
+                <a href="../pages/all-products.html?category=kids">Kids</a>
               </li>
               <li class="nav-list-item new">
-                <a href="./all-products.html?categories=winter">Winter</a>
+                <a href="../pages/all-products.html?category=winter">Winter</a>
               </li>
               <li class="nav-list-item">
-                <a href="./all-products.html?categories=lifeStyle">Lifestyle</a>
+                <a href="../pages/all-products.html?category=lifeStyle"
+                  >Lifestyle</a
+                >
               </li>
             </ul>
           </nav>
@@ -59,7 +61,7 @@
                   id="product_name-header"
                 />
                 <svg class="svg button">
-                  <use href="../assets/icons/svg-icons.svg#icon-Close"></use>
+                  <use href="./assets/icons/svg-icons.svg#icon-Close"></use>
                 </svg>
               </label>
             </div>
@@ -119,7 +121,7 @@
                   id="product_name-sidebar"
                 />
                 <svg class="svg button">
-                  <use href="../assets/icons/svg-icons.svg#icon-Close"></use>
+                  <use href="./assets/icons/svg-icons.svg#icon-Close"></use>
                 </svg>
               </label>
             </div>
@@ -139,109 +141,32 @@
           <nav class="sidebar-navbar-container">
             <ul class="sidebar-nav-list">
               <li class="nav-list-item">
-                <a href="./all-products.html?categories=men">Men</a>
+                <a href="../pages/all-products.html?category=men">Men</a>
               </li>
               <li class="nav-list-item">
-                <a href="./all-products.html?categories=women">Women</a>
+                <a href="../pages/all-products.html?category=women">Women</a>
               </li>
               <li class="nav-list-item">
-                <a href="./all-products.html?categories=kids">Kids</a>
+                <a href="../pages/all-products.html?category=kids">Kids</a>
               </li>
               <li class="nav-list-item new">
-                <a href="./all-products.html?categories=winter">Winter</a>
+                <a href="../pages/all-products.html?category=winter">Winter</a>
               </li>
               <li class="nav-list-item">
-                <a href="./all-products.html?categories=lifeStyle">Lifestyle</a>
+                <a href="../pages/all-products.html?category=lifeStyle"
+                  >Lifestyle</a
+                >
               </li>
             </ul>
           </nav>
         </aside>
       </header>
 
-      <!--******** cart tags *********-->
+      <!--******** payment-info tags *********-->
       <!--******************************-->
 
-      <section class="cart-wrapper center">
-        <div class="cart-title">
-          <div class="title-info">
-            <h2 class="title">shopping cart</h2>
-            <span class="item-count-content"
-              >- <span class="item-count">-</span>
-            </span>
-          </div>
-          <div class="delete-cart-wrapper">
-            <svg class="trash svg">
-              <use href="../assets/icons/svg-icons.svg#icon-Trash"></use>
-            </svg>
-            <span>empty cart !</span>
-          </div>
-        </div>
-        <div class="cart-content">
-          <div class="cart-items-wrapper">
-            <!--<article class="cart-item">
-               <div class="item-info">
-                <div class="item-image-wrapper">
-                  <img src="../assets/images/Image13.png" alt="" />
-                </div>
-                <div class="item-info-container">
-                  <h4 class="name">jacket new edition</h4>
-                  <span class="category">men</span>
-                  <span class="price">$150</span>
-
-                  <div class="title favorite">
-                    <span>add to favorite</span>
-                    <svg class="heart svg">
-                      <use
-                        href="../assets/icons/svg-icons.svg#icon-Heart"
-                      ></use>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              <div class="item-buy-info">
-                <div class="change-count">
-                  <svg class="minus svg">
-                    <use href="../assets/icons/svg-icons.svg#icon-Minus"></use>
-                  </svg>
-                  <span>1</span>
-                  <svg class="plus svg">
-                    <use href="../assets/icons/svg-icons.svg#icon-Plus"></use>
-                  </svg>
-                </div>
-                <span class="total-item title"
-                  >subtotal : <span class="subtotal">$150</span></span
-                >
-
-                <svg class="trash svg">
-                  <use href="../assets/icons/svg-icons.svg#icon-Trash"></use>
-                </svg>
-              </div>
-            </article> -->
-          </div>
-          <div class="cart-total-wrapper">
-            <div class="cart-total-content">
-              <h4 class="title">summary</h4>
-              <div class="total-price-container">
-                <div class="total-discount">
-                  <span class="title">total discount : </span
-                  ><span class="total-discount-amount">$150</span>
-                </div>
-                <div class="total-price">
-                  <span class="title">total price : </span
-                  ><span class="total-price-amount">$850</span>
-                </div>
-              </div>
-              <div class="buttons">
-                <button class="button button-dark checkout">
-                  <a href="./checkout.html">login and checkout</a>
-                </button>
-                <button class="button button-dark add-new-product">
-                  <a href="./all-products.html">add new product</a>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+      <section class="payment-info center">
+        <div class="payment-info-container"></div>
       </section>
       <!--******** footer tags *********-->
       <!--******************************-->
