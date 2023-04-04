@@ -58,19 +58,15 @@ function filterProducts(allProduct, filterName) {
 
   const favoritesButtons = [
     ...productsWrapper.querySelectorAll(".buttons-like"),
-    ...trendsWrapper.querySelectorAll(".buttons-like"),
   ];
   const notAddedToCartElement = [
     ...productsWrapper.querySelectorAll(".buttons-buy"),
-    ...trendsWrapper.querySelectorAll(".buttons-buy"),
   ];
   const addedToCartElementPlus = [
     ...productsWrapper.querySelectorAll(".change-count .plus"),
-    ...trendsWrapper.querySelectorAll(".change-count .plus"),
   ];
   const addedToCartElementMinus = [
     ...productsWrapper.querySelectorAll(".change-count .minus"),
-    ...trendsWrapper.querySelectorAll(".change-count .minus"),
   ];
 
   addEventListenerFn(favoritesButtons, (e) => {
