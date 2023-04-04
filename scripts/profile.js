@@ -4,12 +4,16 @@ import { setLocalStorage } from "./utils/useLocalStorage.js";
 
 const isSignin = getUser();
 if (!isSignin) {
-  location.href = "../index.html";
-}
-document.querySelector("button").addEventListener("click", () => {
-  localStorage.removeItem("activeUser");
   location.href = "./login.html";
-});
+} else {
+  document.querySelector(".profile-container").innerHTML = `
+  profile page
+  <button>sign out</button>`;
 
+  document.querySelector("button").addEventListener("click", () => {
+    localStorage.removeItem("activeUser");
+    location.href = "./login.html";
+  });
+}
 handleBadge("cart");
 handleBadge("favorite");
