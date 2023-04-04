@@ -17,6 +17,13 @@ let cartData = getLocalStorage("products");
 let favoriteData = getLocalStorage("favorites");
 const isSignin = getUser();
 
+function checkoutButtonState() {
+  checkoutButton.classList.toggle("disable", !cartData.length);
+  if (!cartData.length) {
+    checkoutButton.textContent = "checkout";
+  }
+}
+
 function checkSigninForcheckout() {
   const href = isSignin ? "./checkout.html" : "./login.html?cart";
   const text = isSignin ? "checkout" : "login to checkout";
@@ -25,7 +32,6 @@ function checkSigninForcheckout() {
   `;
 }
 
-checkSigninForcheckout();
 function resetCart() {
   cartData = handleCart(null, "reset");
   cartWrapper.innerHTML = "";
@@ -33,6 +39,7 @@ function resetCart() {
   calcTotalItem(totalPrice, "price");
   calcTotalItem(totalDiscount, "discount");
   hideResetWrapper(cartData, resetCartWrapper);
+  checkoutButtonState();
 }
 function toggleCartItem(productBtnsParent_withId, toggle) {
   const id = productBtnsParent_withId.dataset.product_id;
@@ -41,6 +48,7 @@ function toggleCartItem(productBtnsParent_withId, toggle) {
   cartData = handleCart(product, toggle);
   updateCartUi(productBtnsParent_withId, id);
   hideResetWrapper(cartData, resetCartWrapper);
+  checkoutButtonState();
 }
 function toggleFavoriteItem(productBtnsParent_withId) {
   const id = productBtnsParent_withId.dataset.product_id;
@@ -198,5 +206,8 @@ calcTotalItem(totalPrice, "price");
 calcTotalItem(totalDiscount, "discount");
 
 hideResetWrapper(cartData, resetCartWrapper);
+checkSigninForcheckout();
+checkoutButtonState();
+
 // ---------- cart and favorite badge  -------------
 handleBadge("favorite");

@@ -149,6 +149,11 @@
 .buttons .add-new-product {
   background-color: var(--secondary-color);
 }
+.checkout.disable,
+.checkout.disable a {
+  background-color: var(--secondary-color);
+  cursor: not-allowed;
+}
 
 /**************************************/
 /************ medium size *************/
