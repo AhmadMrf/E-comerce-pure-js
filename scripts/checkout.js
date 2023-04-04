@@ -1,6 +1,6 @@
 import { handleBadge } from "./utils/handleBadge.js";
 import { addEventListenerFn } from "./utils/addEventListenerFn.js";
-import { getLocalStorage } from "./utils/useLocalStorage.js";
+import { getLocalStorage, setLocalStorage } from "./utils/useLocalStorage.js";
 // constants
 const payButton = document.querySelector(".pay");
 const errorAddressTag = document.querySelector(
@@ -129,6 +129,7 @@ addEventListenerFn(payButton, () => {
     paymentInfo.paymentMethod = paymentMethod;
 
     const paymentData = encodeURIComponent(JSON.stringify(paymentInfo));
+    setLocalStorage("products", []);
     location.replace(`./payment-info.html?${paymentData}`);
   } else {
     errorHandle(
