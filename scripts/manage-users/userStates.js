@@ -1,5 +1,5 @@
 import { getLocalStorage, setLocalStorage } from "../utils/useLocalStorage.js";
-import { addUser } from "./adduser.js";
+import { addUser } from "./addUser.js";
 import { getUser } from "./getUser.js";
 
 export function signin(email, password, rememberMe) {
