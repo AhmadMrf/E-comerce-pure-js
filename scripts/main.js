@@ -166,8 +166,8 @@ addEventListenerFn(
     if (!searchState.searchStarted && !searchState.serachInputTuched) {
       searchState.serachInputTuched = true;
       try {
-        allProducts = await getDataFromAPI("products");
-        console.log(allProducts);
+        const { error, products } = await getDataFromAPI("products");
+        allProducts = products;
         handleSearch(searchState.value);
       } catch (err) {
         console.log(err);
