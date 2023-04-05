@@ -282,7 +282,7 @@ input:checked ~ label svg {
 }
 .inventory-filter .input-wrapper input:checked ~ label svg {
   stroke-width: 1.5;
-  --gray-2: red;
+  /* --stroke: red; */
 }
 
 /************ products wrapper styles *************/

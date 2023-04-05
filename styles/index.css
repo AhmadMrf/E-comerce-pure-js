@@ -182,6 +182,9 @@
   display: flex;
   gap: 0.5rem;
   padding-bottom: 1rem;
+  overflow-x: auto;
+  max-width: 100%;
+  margin: 0 auto;
 }
 .filters-wrapper button {
   background-color: inherit;
@@ -333,13 +336,17 @@
 }
 .brands-wrapper {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  /* flex-wrap: wrap;
+  justify-content: center; */
   gap: 1.5rem;
+  width: 100%;
+  overflow-x: auto;
+  scroll-snap-type: proximity;
 }
 .brands-wrapper li {
   flex: 0 0 calc(6rem + 3vw);
   aspect-ratio: 1.7;
+  scroll-snap-align: start;
 }
 .brands-wrapper li a {
   display: flex;
@@ -379,12 +386,13 @@
   padding-left: 2rem;
 }
 .review-info .image-wrapper {
-  min-width: 8rem;
+  width: 10rem;
   aspect-ratio: 1;
 }
 .review-info img {
   width: 100%;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
 }
 .review-info-content {
   display: flex;
@@ -434,7 +442,7 @@
   border-radius: 50%;
   display: grid;
   place-items: center;
-  padding: min(1.2rem, 0.4rem + 2vw);
+  padding: min(1rem, 0.2rem + 1.5vw);
 }
 .socials-wrapper {
   display: flex;
@@ -548,6 +556,9 @@ button.pre-loader {
   .review-info {
     flex-direction: row;
   }
+  .review-info .image-wrapper {
+    width: 25rem;
+  }
   .review-wrapper .arrow-key-wrapper {
     justify-content: flex-end;
   }
@@ -605,7 +616,7 @@ button.pre-loader {
 .arrow-key-wrapper svg:hover,
 .socials-wrapper .social:hover svg {
   transition: all 0.3s;
-  --gray-2: var(--yellow-1);
+  --stroke: var(--yellow-1);
 }
 .subscribe-container .search-box button:hover {
   background-color: var(--yellow-1-opacity);

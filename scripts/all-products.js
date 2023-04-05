@@ -198,11 +198,11 @@ function updateCartButtonUi(parent, id) {
   if (isAddedToCart) {
     element.children[1].outerHTML = `
     <div class="change-count">
-    <svg class="minus svg">
+    <svg class="minus pointer svg">
       <use href="../assets/icons/svg-icons.svg#icon-Minus"></use>
     </svg>
     <span>${isAddedToCart.quantity}</span>
-    <svg class="plus svg">
+    <svg class="plus pointer svg">
       <use href="../assets/icons/svg-icons.svg#icon-Plus"></use>
     </svg>
   </div>
@@ -271,11 +271,11 @@ function mapProduct(item = []) {
                     isAddedToCart
                       ? `
                     <div class="change-count">
-                    <svg class="minus svg">
+                    <svg class="minus pointer svg">
                       <use href="../assets/icons/svg-icons.svg#icon-Minus"></use>
                     </svg>
                     <span>${isAddedToCart.quantity}</span>
-                    <svg class="plus svg">
+                    <svg class="plus pointer svg">
                       <use href="../assets/icons/svg-icons.svg#icon-Plus"></use>
                     </svg>
                   </div>
@@ -328,7 +328,7 @@ function mapColor(item, index) {
   return `
   <div class="input-wrapper">
   <input name="colors" type="checkbox" value="${item}" id="color_${index}">
-  <label data-color="${item}" for="color_${index}">
+  <label class="pointer" data-color="${item}" for="color_${index}">
     <svg style="--fill:${item};" class="svg checkbox">
       <use href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"></use>
     </svg>
@@ -341,12 +341,12 @@ function mapCategory(item, index) {
   <div class="input-wrapper">
   <input name="categories" type="checkbox" value="${item}" id="cat_${index}" />
   <label data-category="${item}" for="cat_${index}">
-    <svg class="svg checkbox">
+    <svg class="svg pointer checkbox">
       <use
         href="../assets/icons/svg-icons.svg#icon-Checkbox"
       ></use>
     </svg>
-    <span>${item}</span>
+    <span class="pointer">${item}</span>
   </label>
 </div>
   `;
@@ -355,26 +355,26 @@ function mapPrice(item) {
   const { minPrice, maxPrice } = item;
   return `
   <label for="price_min">
-    <span>min</span>
+    <span class="pointer" >min</span>
     <input
       name="min_price"
       value="${minPrice}"
       placeholder="${minPrice}"
       type="number"
-      step="1"
+      step=".01"
       max="${maxPrice}"
       min="0"
       id="price_min"
     />
   </label>
   <label for="price_max">
-    <span>max</span>
+    <span class="pointer" >max</span>
     <input
       name="max_price"
       value="${maxPrice}"
       placeholder="${maxPrice}"
       type="number"
-      step="1"
+      step=".01"
       max="${maxPrice}"
       min="0"
       id="price_max"

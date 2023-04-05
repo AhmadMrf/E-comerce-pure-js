@@ -114,11 +114,11 @@ function updateCartButtonUi(parent, id) {
   if (isAddedToCart) {
     element.children[1].outerHTML = `
     <div class="change-count">
-    <svg class="minus svg">
+    <svg class="minus pointer svg">
       <use href="./assets/icons/svg-icons.svg#icon-Minus"></use>
     </svg>
     <span>${isAddedToCart.quantity}</span>
-    <svg class="plus svg">
+    <svg class="plus pointer svg">
       <use href="./assets/icons/svg-icons.svg#icon-Plus"></use>
     </svg>
   </div>
@@ -198,11 +198,11 @@ function mapProduct(item) {
                     isAddedToCart
                       ? `
                     <div class="change-count">
-                    <svg class="minus svg">
+                    <svg class="minus pointer svg">
                       <use href="./assets/icons/svg-icons.svg#icon-Minus"></use>
                     </svg>
                     <span>${isAddedToCart.quantity}</span>
-                    <svg class="plus svg">
+                    <svg class="plus pointer svg">
                       <use href="./assets/icons/svg-icons.svg#icon-Plus"></use>
                     </svg>
                   </div>

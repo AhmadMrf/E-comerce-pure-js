@@ -183,10 +183,12 @@
           <div class="products-sort-wrapper">
             <div class="product-sort">
               <span class="title">sort by : </span>
-              <select name="sort" id="sort">
-                <option value="h_price">highest price</option>
-                <option value="l_price">lowest price</option>
-                <option value="h_discount">highest discount</option>
+              <select class="pointer" name="sort" id="sort">
+                <option class="pointer" value="h_price">highest price</option>
+                <option class="pointer" value="l_price">lowest price</option>
+                <option class="pointer" value="h_discount">
+                  highest discount
+                </option>
               </select>
             </div>
 
@@ -207,7 +209,7 @@
             <span class="title">filters</span>
             <div class="reset-filter">
               <span class="title">reset</span>
-              <svg class="trash svg">
+              <svg class="trash pointer svg">
                 <use href="../assets/icons/svg-icons.svg#icon-Trash"></use>
               </svg>
             </div>
@@ -306,7 +308,7 @@
                     value="10"
                     placeholder="10"
                     type="number"
-                    step="1"
+                    step=".1"
                     max="10000"
                     min="10"
                     id="price-min"
@@ -318,7 +320,7 @@
                     value="10000"
                     placeholder="10000"
                     type="number"
-                    step="1"
+                    step=".1"
                     max="10000"
                     min="10"
                     id="price-max"
@@ -338,12 +340,12 @@
                     id="inventory-all"
                   />
                   <label for="inventory-all">
-                    <svg class="svg radio">
+                    <svg class="svg pointer radio">
                       <use
                         href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"
                       ></use>
                     </svg>
-                    <span>all products</span>
+                    <span class="pointer">all products</span>
                   </label>
                 </div>
                 <div class="input-wrapper">
@@ -354,12 +356,12 @@
                     id="inventory-yes"
                   />
                   <label for="inventory-yes">
-                    <svg class="svg radio">
+                    <svg class="svg pointer radio">
                       <use
                         href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"
                       ></use>
                     </svg>
-                    <span>in stock</span>
+                    <span class="pointer">in stock</span>
                   </label>
                 </div>
                 <div class="input-wrapper">
@@ -370,12 +372,12 @@
                     id="inventory-no"
                   />
                   <label for="inventory-no">
-                    <svg class="svg radio">
+                    <svg class="svg pointer radio">
                       <use
                         href="../assets/icons/svg-icons.svg#icon-Checkbox-circle"
                       ></use>
                     </svg>
-                    <span>out of stock</span>
+                    <span class="pointer">out of stock</span>
                   </label>
                 </div>
               </div>

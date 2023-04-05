@@ -124,11 +124,11 @@ function mapCartItem(item) {
   </div>
   <div class="item-buy-info">
     <div class="change-count">
-      <svg class="minus svg">
+      <svg class="minus pointer svg">
         <use href="../assets/icons/svg-icons.svg#icon-Minus"></use>
       </svg>
       <span>${item.quantity}</span>
-      <svg class="plus svg">
+      <svg class="plus pointer svg">
         <use href="../assets/icons/svg-icons.svg#icon-Plus"></use>
       </svg>
     </div>
@@ -136,7 +136,7 @@ function mapCartItem(item) {
       >subtotal : <span class="subtotal">$${subTotal.toFixed(2)}</span></span
     >
 
-    <svg class="trash svg">
+    <svg class="trash pointer svg">
       <use href="../assets/icons/svg-icons.svg#icon-Trash"></use>
     </svg>
   </div>
