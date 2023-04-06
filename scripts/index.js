@@ -10,6 +10,7 @@ import { handleBadge } from "./utils/handleBadge.js";
 import { createPreLoader } from "./utils/createPreLoader.js";
 import { insertData } from "./utils/insertData.js";
 import { addEventListenerFn } from "./utils/addEventListenerFn.js";
+import { getUser } from "./manage-users/getUser.js";
 import { setLocalStorage, getLocalStorage } from "./utils/useLocalStorage.js";
 import {
   PRODUCT_PRE_LOADER,
@@ -19,6 +20,7 @@ import {
 } from "../assets/data/template.js";
 
 // ---------- global data -----------
+const isSignin = getUser();
 let allProduct = undefined;
 let cartData = getLocalStorage("products");
 let favoriteData = getLocalStorage("favorites");
@@ -94,10 +96,13 @@ function toggleCartItem(productBtnsParent_withId, toggle = "plus") {
   handleBadge("cart");
 }
 function toggleFavoriteItem(productBtnsParent_withId) {
+  if (!isSignin) {
+    console.log("sign in for add to favorites");
+    return;
+  }
   const id = productBtnsParent_withId.dataset.product_id;
   const product = allProduct.find((productItem) => +productItem.id === +id);
   favoriteData = handleFavorites(product);
-
   updateFavoriteButtonUi(productsWrapper, id);
   updateFavoriteButtonUi(trendsWrapper, id);
 

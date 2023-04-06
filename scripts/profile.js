@@ -13,6 +13,8 @@ if (!isSignin) {
   document.querySelector("button").addEventListener("click", () => {
     localStorage.removeItem("activeUser");
     location.href = "./login.html";
+    setLocalStorage("favorites", []);
+    setLocalStorage("products", []);
   });
 }
 handleBadge("cart");

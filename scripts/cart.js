@@ -51,6 +51,10 @@ function toggleCartItem(productBtnsParent_withId, toggle) {
   checkoutButtonState();
 }
 function toggleFavoriteItem(productBtnsParent_withId) {
+  if (!isSignin) {
+    console.log("sign in for add to favorites");
+    return;
+  }
   const id = productBtnsParent_withId.dataset.product_id;
   const product = cartData.find((productItem) => +productItem.id === +id);
 
