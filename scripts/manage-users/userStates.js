@@ -1,3 +1,4 @@
+import { deleteCookie, setCookie } from "../utils/handleCookie.js";
 import { getLocalStorage, setLocalStorage } from "../utils/useLocalStorage.js";
 import { addUser } from "./addUser.js";
 import { getUser } from "./getUser.js";
@@ -10,6 +11,9 @@ export function signin(email, password, rememberMe) {
       user.password === password
   );
   if (activeUser) {
+    let maxAge = undefined;
+    rememberMe ? (maxAge = { "max-age": 604800 }) : null;
+    setCookie("logged-in", "yes", maxAge);
     setLocalStorage("activeUser", {
       username: activeUser.username,
       email: activeUser.email,
@@ -25,6 +29,7 @@ export function signup(email, password, username) {
     return { error: true, message: "email is already used" };
   } else {
     addUser({ email, password, username });
+    setCookie("logged-in", "yes");
     setLocalStorage("activeUser", {
       username: username,
       email: email,
@@ -33,5 +38,9 @@ export function signup(email, password, username) {
   }
 }
 export function signout() {
-  console.log("signout");
+  deleteCookie("logged-in");
+  localStorage.removeItem("activeUser");
+  setLocalStorage("favorites", []);
+  setLocalStorage("products", []);
+  location.href = "./login.html";
 }
