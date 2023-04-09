@@ -57,7 +57,6 @@
 
 .futures-container {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   gap: 0.5rem;
   padding: 1.5rem 0;
@@ -65,6 +64,9 @@
 .futures-container .future {
   flex-basis: calc(50% - 5vw);
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
   gap: 0.5rem;
   padding-bottom: 1rem;
 }
@@ -73,18 +75,21 @@
   align-items: center;
 }
 .future .icon svg {
-  width: calc(2em + 1vw);
-  height: calc(2em + 1vw);
+  width: calc(2em + 2vw);
+  height: calc(2em + 2vw);
 }
 .future .info {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: 0.3rem;
+  text-align: center;
+  font-size: min(1.5rem, calc(0.7rem + 0.6vw));
 }
 .future .future-details {
   color: var(--secondary-color);
-  font-size: 0.8rem;
+  font-size: 0.8em;
 }
 
 /************ collections styles **********/
@@ -581,9 +586,16 @@ button.pre-loader {
 
   /************ futures styles **********/
   /**************************************/
+  .futures-container .future {
+    flex-direction: row;
+    gap: 0.7rem;
+  }
+  .future .info {
+    align-items: flex-start;
+  }
   .future .icon svg {
-    width: calc(2em + 2vw);
-    height: calc(2em + 2vw);
+    width: calc(2em + 3vw);
+    height: calc(2em + 3vw);
   }
 
   /************ collections styles **********/
