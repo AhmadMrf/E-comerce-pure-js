@@ -32,11 +32,12 @@ const isIndex =
 
 // functions
 function userState() {
-  const href = isIndex ? "./pages/profile.html" : "./profile.html";
+  const href = isIndex ? "./pages/" : "./";
+  const iconHrefPath = isIndex ? "./" : "../";
   if (isSignin) {
-    userInfoState.innerHTML = `<a href="${href}"> 
+    userInfoState.innerHTML = `<a href="${href}profile.html"> 
       <svg class="svg">
-        <use href="../assets/icons/svg-icons.svg#icon-User"></use>
+        <use href="${iconHrefPath}assets/icons/svg-icons.svg#icon-User"></use>
       </svg>
     </a>`;
   }
