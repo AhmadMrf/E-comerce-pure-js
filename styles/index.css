@@ -339,14 +339,13 @@
   /* flex-wrap: wrap;
   justify-content: center; */
   gap: 1.5rem;
-  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
   overflow-x: auto;
-  scroll-snap-type: proximity;
 }
 .brands-wrapper li {
   flex: 0 0 calc(6rem + 3vw);
   aspect-ratio: 1.7;
-  scroll-snap-align: start;
 }
 .brands-wrapper li a {
   display: flex;
