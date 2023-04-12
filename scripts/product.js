@@ -13,6 +13,7 @@ import {
 } from "../assets/data/template.js";
 import { addEventListenerFn } from "./utils/addEventListenerFn.js";
 import { getUser } from "./manage-users/getUser.js";
+import { noFavorites } from "./manage-favorites/noFavorites.js";
 // ---------- cart and favorite badge  -------------
 handleBadge("favorite");
 handleBadge("cart");
@@ -48,7 +49,7 @@ function toggleCartItem(addToCartContent, toggle) {
 }
 function toggleFavoriteItem(favoriteWrapper) {
   if (!isSignin) {
-    console.log("sign in for add to favorites");
+    noFavorites(favoriteWrapper);
     return;
   }
   favoriteData = handleFavorites(product);

@@ -18,6 +18,7 @@ import {
   FILTER_BTN_PRE_LOADER,
   REVIEW_PRE_LOADER,
 } from "../assets/data/template.js";
+import { noFavorites } from "./manage-favorites/noFavorites.js";
 
 // ---------- global data -----------
 const isSignin = getUser();
@@ -97,7 +98,7 @@ function toggleCartItem(productBtnsParent_withId, toggle = "plus") {
 }
 function toggleFavoriteItem(productBtnsParent_withId) {
   if (!isSignin) {
-    console.log("sign in for add to favorites");
+    noFavorites(productBtnsParent_withId);
     return;
   }
   const id = productBtnsParent_withId.dataset.product_id;

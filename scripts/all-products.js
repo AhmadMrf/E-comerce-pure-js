@@ -18,6 +18,7 @@ import {
   ALL_PRODUCTS_NO_PRODUCT,
 } from "../assets/data/template.js";
 import { getUser } from "./manage-users/getUser.js";
+import { noFavorites } from "./manage-favorites/noFavorites.js";
 
 // slectors
 
@@ -105,7 +106,7 @@ function toggleCartItem(productBtnsParent_withId, toggle = "plus") {
 }
 function toggleFavoriteItem(productBtnsParent_withId) {
   if (!isSignin) {
-    console.log("sign in for add to favorites");
+    noFavorites(productBtnsParent_withId);
     return;
   }
   const id = productBtnsParent_withId.dataset.product_id;

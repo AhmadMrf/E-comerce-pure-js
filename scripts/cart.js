@@ -6,6 +6,7 @@ import { insertData } from "./utils/insertData.js";
 import { addEventListenerFn } from "./utils/addEventListenerFn.js";
 import { hideResetWrapper } from "./utils/hideResetWrapper.js";
 import { getUser } from "./manage-users/getUser.js";
+import { noFavorites } from "./manage-favorites/noFavorites.js";
 // ---------- selectors -----------
 const cartWrapper = document.querySelector(".cart-items-wrapper");
 const countCartItem = document.querySelector(".item-count");
@@ -52,7 +53,7 @@ function toggleCartItem(productBtnsParent_withId, toggle) {
 }
 function toggleFavoriteItem(productBtnsParent_withId) {
   if (!isSignin) {
-    console.log("sign in for add to favorites");
+    noFavorites(productBtnsParent_withId);
     return;
   }
   const id = productBtnsParent_withId.dataset.product_id;
