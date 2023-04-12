@@ -99,7 +99,7 @@ function toggleCartItem(productBtnsParent_withId, toggle = "plus") {
   const product = allProduct.find((productItem) => +productItem.id === +id);
 
   cartData = handleCart(product, toggle);
-
+  if (!product.count_in_stock) return;
   updateCartButtonUi(productsWrapper, id);
 
   handleBadge("cart");
@@ -251,6 +251,8 @@ function mapProduct(item = []) {
   const isAddedToFavorite = favoriteData.find(
     (favoriteItem) => favoriteItem.id == item.id
   );
+  const inStock = !!item.count_in_stock;
+
   const colors = item.colors
     .map(
       (item) => `<span style='background-color:${item};' class="color"></span>`
@@ -288,7 +290,9 @@ function mapProduct(item = []) {
                     
                     `
                       : `
-                  <button class="buttons-buy" type="button">
+                  <button class="buttons-buy ${
+                    inStock ? "" : "disabled"
+                  }" type="button">
                   <svg class="svg">
                     <use href="../assets/icons/svg-icons.svg#icon-Bag"></use>
                   </svg>

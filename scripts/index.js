@@ -90,7 +90,7 @@ function toggleCartItem(productBtnsParent_withId, toggle = "plus") {
   const product = allProduct.find((productItem) => +productItem.id === +id);
 
   cartData = handleCart(product, toggle);
-
+  if (!product.count_in_stock) return;
   updateCartButtonUi(productsWrapper, id);
   updateCartButtonUi(trendsWrapper, id);
 
@@ -112,7 +112,6 @@ function toggleFavoriteItem(productBtnsParent_withId) {
 
 function updateCartButtonUi(parent, id) {
   const isAddedToCart = cartData.find((cartItem) => cartItem.id == id);
-
   const element = parent.querySelector(`[data-product_id="${id}"]`);
 
   if (!element) return;
@@ -177,12 +176,14 @@ function mapProduct(item) {
   const isAddedToFavorite = favoriteData.find(
     (favoriteItem) => +favoriteItem.id === +item.id
   );
+  const inStock = !!item.count_in_stock;
   const colors = item.colors
     .map(
       (item) => `<span style='background-color:${item};' class="color"></span>`
     )
     .join("");
   const totalPrice = +item.price + (+item.price * item.discount) / 100;
+
   return `
       <article class="product swiper-slide">
               <div class="content">
@@ -199,28 +200,30 @@ function mapProduct(item) {
                       <use href="./assets/icons/svg-icons.svg#icon-Heart"></use>
                     </svg>
                   </button>
-
+                    
                   ${
                     isAddedToCart
                       ? `
-                    <div class="change-count">
-                    <svg class="minus pointer svg">
-                      <use href="./assets/icons/svg-icons.svg#icon-Minus"></use>
-                    </svg>
-                    <span>${isAddedToCart.quantity}</span>
-                    <svg class="plus pointer svg">
-                      <use href="./assets/icons/svg-icons.svg#icon-Plus"></use>
-                    </svg>
-                  </div>
-                    
-                    `
+                      <div class="change-count">
+                      <svg class="minus pointer svg">
+                        <use href="./assets/icons/svg-icons.svg#icon-Minus"></use>
+                      </svg>
+                      <span>${isAddedToCart.quantity}</span>
+                      <svg class="plus pointer svg">
+                        <use href="./assets/icons/svg-icons.svg#icon-Plus"></use>
+                      </svg>
+                      </div>
+
+                      `
                       : `
-                  <button class="buttons-buy" type="button">
-                  <svg class="svg">
-                    <use href="./assets/icons/svg-icons.svg#icon-Bag"></use>
-                  </svg>
-                </button>
-                  `
+                      <button class="buttons-buy ${
+                        inStock ? "" : "disabled"
+                      }" type="button">
+                      <svg class="svg">
+                      <use href="./assets/icons/svg-icons.svg#icon-Bag"></use>
+                      </svg>
+                      </button>
+                      `
                   }
 
                   

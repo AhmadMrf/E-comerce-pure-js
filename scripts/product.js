@@ -43,6 +43,7 @@ function imageSlider(e, wrapper) {
   }
 }
 function toggleCartItem(addToCartContent, toggle) {
+  if (!product.count_in_stock) return;
   cartData = handleCart(product, toggle);
   updateCartContentUi(addToCartContent);
   handleBadge("cart");
@@ -103,6 +104,7 @@ function mapSingleProduct(item) {
   const isAddedToFavorite = favoriteData.find(
     (favoriteItem) => +favoriteItem.id === +item.id
   );
+  const inStock = !!item.count_in_stock;
 
   const totalPrice = +item.price + (+item.price * item.discount) / 100;
 
@@ -162,7 +164,9 @@ function mapSingleProduct(item) {
       </div>
     `
         : `
-    <button class="button button-dark title">add to cart</button>
+    <button class="button button-dark title ${
+      inStock ? "" : "disabled"
+    }">add to cart</button>
     `
     }
     </div>

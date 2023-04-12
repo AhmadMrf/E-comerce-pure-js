@@ -148,6 +148,9 @@ p.descriptoin {
     transform: translateX(0);
   }
 }
+.disabled {
+  opacity: 0.5;
+}
 /************ header styles **********/
 /*************************************/
 
