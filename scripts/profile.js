@@ -1,4 +1,5 @@
 import { getUser } from "./manage-users/getUser.js";
+import { signout } from "./manage-users/userStates.js";
 import { handleBadge } from "./utils/handleBadge.js";
 import { setLocalStorage } from "./utils/useLocalStorage.js";
 
@@ -11,8 +12,7 @@ if (!isSignin) {
   <button>sign out</button>`;
 
   document.querySelector("button").addEventListener("click", () => {
-    localStorage.removeItem("activeUser");
-    location.href = "./login.html";
+    signout();
   });
 }
 handleBadge("cart");

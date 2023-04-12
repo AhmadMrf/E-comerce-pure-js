@@ -12,6 +12,8 @@ import {
   SINGLE_PRODUCT_PRE_LOADER,
 } from "../assets/data/template.js";
 import { addEventListenerFn } from "./utils/addEventListenerFn.js";
+import { getUser } from "./manage-users/getUser.js";
+import { noFavorites } from "./manage-favorites/noFavorites.js";
 // ---------- cart and favorite badge  -------------
 handleBadge("favorite");
 handleBadge("cart");
@@ -22,6 +24,7 @@ const singleProductWrapper = document.querySelector(".single-product");
 // ---------- get info from URL -----------
 const id = +location.hash.slice(1);
 // ----------- insert data ---------
+const isSignin = getUser();
 let cartData = getLocalStorage("products");
 let favoriteData = getLocalStorage("favorites");
 
@@ -45,6 +48,10 @@ function toggleCartItem(addToCartContent, toggle) {
   handleBadge("cart");
 }
 function toggleFavoriteItem(favoriteWrapper) {
+  if (!isSignin) {
+    noFavorites(favoriteWrapper);
+    return;
+  }
   favoriteData = handleFavorites(product);
   updateFavoriteUi(favoriteWrapper);
   handleBadge("favorites");

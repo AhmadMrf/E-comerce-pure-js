@@ -66,6 +66,7 @@
   color: var(--gray-1);
   font-size: 0.9rem;
   font-weight: 400;
+  text-transform: lowercase;
   caret-color: var(--main-font-color);
   background-color: var(--search-box-color);
   transition: background-color 0.7s;

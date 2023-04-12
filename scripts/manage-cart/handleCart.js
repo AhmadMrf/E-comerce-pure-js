@@ -9,7 +9,7 @@ function removeitem(id) {
   setLocalStorage("products", cartData);
   return cartData;
 }
-export function handleCart(product = {}, toggle) {
+export function handleCart(product = {}, toggle, count = 1) {
   let cartData = getLocalStorage("products");
   if (toggle === "reset") {
     cartData = resetCart();
@@ -22,12 +22,12 @@ export function handleCart(product = {}, toggle) {
       cartData.map((cartItem) => {
         if (+isInCart.id === +cartItem.id) {
           if (toggle === "plus") {
-            cartItem.quantity += 1;
+            cartItem.quantity += count;
             if (cartItem.quantity >= isInCart.count_in_stock) {
               cartItem.quantity = isInCart.count_in_stock;
             }
           } else {
-            cartItem.quantity -= 1;
+            cartItem.quantity -= count;
           }
         }
         return cartItem;
@@ -35,7 +35,7 @@ export function handleCart(product = {}, toggle) {
       if (isInCart.quantity <= 0) cartData = removeitem(isInCart.id);
     } else {
       if (+product.count_in_stock) {
-        const newCartProduct = { ...product, quantity: 1 };
+        const newCartProduct = { ...product, quantity: count };
         cartData = [...cartData, newCartProduct];
       }
     }

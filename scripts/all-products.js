@@ -17,6 +17,8 @@ import {
   BASE_URL,
   ALL_PRODUCTS_NO_PRODUCT,
 } from "../assets/data/template.js";
+import { getUser } from "./manage-users/getUser.js";
+import { noFavorites } from "./manage-favorites/noFavorites.js";
 
 // slectors
 
@@ -47,7 +49,7 @@ const sortSelect = document.querySelector("#sort");
 const searchParams = new URLSearchParams(location.search);
 
 // globals
-
+const isSignin = getUser();
 let favoriteData = getLocalStorage("favorites");
 let cartData = getLocalStorage("products");
 let initialFilter = undefined;
@@ -103,6 +105,10 @@ function toggleCartItem(productBtnsParent_withId, toggle = "plus") {
   handleBadge("cart");
 }
 function toggleFavoriteItem(productBtnsParent_withId) {
+  if (!isSignin) {
+    noFavorites(productBtnsParent_withId);
+    return;
+  }
   const id = productBtnsParent_withId.dataset.product_id;
   const product = allProduct.find((productItem) => +productItem.id === +id);
   favoriteData = handleFavorites(product);
