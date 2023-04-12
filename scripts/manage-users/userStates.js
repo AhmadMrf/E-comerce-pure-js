@@ -2,6 +2,8 @@ import { deleteCookie, setCookie } from "../utils/handleCookie.js";
 import { getLocalStorage, setLocalStorage } from "../utils/useLocalStorage.js";
 import { addUser } from "./addUser.js";
 import { getUser } from "./getUser.js";
+import { handleUserCartItem } from "./handleUserCartItem.js";
+import { handleUserFavoriteItem } from "./handleUserFavoriteItem.js";
 
 export function signin(email, password, rememberMe) {
   const users = getLocalStorage("users");
@@ -18,6 +20,8 @@ export function signin(email, password, rememberMe) {
       username: activeUser.username,
       email: activeUser.email,
     });
+    handleUserCartItem(activeUser, "signin");
+    handleUserFavoriteItem(activeUser, "signin");
     return { error: false, message: "signin done successfully" };
   } else {
     return { error: true, message: "email or password is incorrect" };
@@ -28,7 +32,7 @@ export function signup(email, password, username) {
   if (users.some((user) => user.email.toLowerCase() === email.toLowerCase())) {
     return { error: true, message: "email is already used" };
   } else {
-    addUser({ email, password, username });
+    addUser({ email, password, username, cart: [], favorites: [] });
     setCookie("logged-in", "yes");
     setLocalStorage("activeUser", {
       username: username,
@@ -38,6 +42,9 @@ export function signup(email, password, username) {
   }
 }
 export function signout() {
+  const isSignin = getUser();
+  handleUserCartItem(isSignin, "signout");
+  handleUserFavoriteItem(isSignin, "signout");
   deleteCookie("logged-in");
   localStorage.removeItem("activeUser");
   setLocalStorage("favorites", []);

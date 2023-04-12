@@ -1,5 +1,7 @@
 import { getDataFromAPI } from "./getDataFromAPI/getDataFromAPI.js";
 import { getUser } from "./manage-users/getUser.js";
+import { handleUserCartItem } from "./manage-users/handleUserCartItem.js";
+import { handleUserFavoriteItem } from "./manage-users/handleUserFavoriteItem.js";
 import { addEventListenerFn } from "./utils/addEventListenerFn.js";
 import { insertData } from "./utils/insertData.js";
 
@@ -21,7 +23,8 @@ let searchState = {
   value: "",
 };
 const isSignin = getUser();
-
+handleUserFavoriteItem(isSignin, "enter");
+handleUserCartItem(isSignin, "enter");
 //  *********  for github page  **********  //
 const isIndex =
   location.pathname === "/E-comerce-pure-js/index.html" ||
@@ -187,3 +190,8 @@ addEventListenerFn(
   "mousedown"
 );
 window.addEventListener("scroll", toggleHeaderHeight);
+window.addEventListener("beforeunload", () => {
+  const isSignin = getUser();
+  handleUserCartItem(isSignin, "exit");
+  handleUserFavoriteItem(isSignin, "exit");
+});
