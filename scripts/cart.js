@@ -12,7 +12,7 @@ const cartWrapper = document.querySelector(".cart-items-wrapper");
 const countCartItem = document.querySelector(".item-count");
 const totalPrice = document.querySelector(".total-price-amount");
 const totalDiscount = document.querySelector(".total-discount-amount");
-const checkoutButton = document.querySelector(".buttons .checkout");
+const checkoutButton = document.querySelector(".buttons .checkout-link");
 // ---------- insert local data to page --------------
 let cartData = getLocalStorage("products");
 let favoriteData = getLocalStorage("favorites");
@@ -29,7 +29,11 @@ function checkSigninForcheckout() {
   const href = isSignin ? "./checkout.html" : "./login.html?cart";
   const text = isSignin ? "checkout" : "login to checkout";
   checkoutButton.innerHTML = `
-  <a href="${href}">${text}</a>
+  <a href="${href}">
+  <button class="button button-dark checkout">
+  ${text}
+  </button>
+  </a>
   `;
 }
 
