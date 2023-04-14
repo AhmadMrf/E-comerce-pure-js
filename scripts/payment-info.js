@@ -6,7 +6,7 @@ const paymentDataJson = decodeURIComponent(location.search).slice(1);
 const isSignin = getUser();
 
 if (!paymentDataJson || !isSignin) {
-  location.href = "../index.html";
+  location.replace("../index.html");
 } else {
   let paymentData = undefined;
   try {

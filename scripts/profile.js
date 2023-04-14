@@ -5,7 +5,7 @@ import { setLocalStorage } from "./utils/useLocalStorage.js";
 
 const isSignin = getUser();
 if (!isSignin) {
-  location.href = "./login.html";
+  location.replace("./login.html");
 } else {
   document.querySelector(".profile-container").innerHTML = `
   profile page

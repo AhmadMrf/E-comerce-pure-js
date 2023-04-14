@@ -14,7 +14,7 @@ const isDirectedFromCheckoutPage = new URLSearchParams(location.search).has(
 );
 const isSignin = getUser();
 if (isSignin) {
-  location.href = "./profile.html";
+  location.replace("./profile.html");
 } else {
   const enteredUserInfo = {
     reset() {
@@ -129,9 +129,9 @@ if (isSignin) {
       signErrorHandle(forms["signin"], message);
     } else {
       if (isDirectedFromCheckoutPage) {
-        location.href = "./checkout.html";
+        location.replace("./checkout.html");
       } else {
-        location.href = "./profile.html";
+        location.replace("./profile.html");
       }
     }
   }
@@ -142,9 +142,9 @@ if (isSignin) {
       signErrorHandle(forms["signup"], message);
     } else {
       if (isDirectedFromCheckoutPage) {
-        location.href = "./checkout.html";
+        location.replace("./checkout.html");
       } else {
-        location.href = "./profile.html";
+        location.replace("./profile.html");
       }
     }
   }
