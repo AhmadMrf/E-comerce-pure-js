@@ -346,7 +346,7 @@ header .search-box input:placeholder-shown ~ svg {
   padding: 0.5rem;
   border-bottom: 1px solid var(--background-color);
 }
-.search-result article a {
+.search-result article div {
   display: flex;
   align-items: center;
   gap: 1rem;

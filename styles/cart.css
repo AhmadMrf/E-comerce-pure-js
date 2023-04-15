@@ -54,10 +54,12 @@
   display: flex;
   align-items: center;
   gap: calc(1rem + 5vw);
+  flex-basis: 75%;
 }
 
 .item-info .item-image-wrapper {
   height: 10rem;
+  flex-basis: 45%;
 }
 .item-image-wrapper img {
   width: 100%;
