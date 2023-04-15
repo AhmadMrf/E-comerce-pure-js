@@ -9,7 +9,6 @@ export function handleUserCartItem(isUser, state) {
 
   if (activeUser && state === "enter") {
     setLocalStorage("products", [...activeUser.cart]);
-    // setLocalStorage("favorites", activeUser.favorites);
   }
   if (activeUser && state === "signin") {
     let newCartItems = [];
@@ -18,11 +17,9 @@ export function handleUserCartItem(isUser, state) {
     }
 
     setLocalStorage("products", [...newCartItems]);
-    // setLocalStorage("favorites", activeUser.favorites);
   }
   if (activeUser && (state === "exit" || state === "signout")) {
     const cartItems = getLocalStorage("products");
-    // const favoritesItems = getLocalStorage("favorites");
     const updatedUser = { ...activeUser, cart: [...cartItems] };
     updateUser(updatedUser);
     if (state === "exit") setLocalStorage("products", []);
