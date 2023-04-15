@@ -363,9 +363,15 @@ header .search-box input:placeholder-shown ~ svg {
   aspect-ratio: 1;
 }
 
-.search-box:focus-within + .search-result {
+.active-search .search-box:focus-within + .search-result {
   padding: 0.5rem;
   max-height: 50vh;
+  border: 1px solid var(--main-color);
+  border-top: none;
+}
+.active-search .search-box:focus-within {
+  border-radius: 1.5rem 1.5rem 0 0;
+  border-bottom: none;
 }
 /* toggle header with scrolling */
 
@@ -420,13 +426,14 @@ footer .page-info p {
   .header-content {
     gap: 1rem;
   }
-  header.active-search:focus-within .header-search-container {
+
+  header.active-search .header-search-container {
     flex-basis: 95%;
   }
-  header.active-search:focus-within .header-search-container .search-box {
+  header.active-search .header-search-container .search-box {
     width: 95%;
   }
-  header.active-search:focus-within .header-user-info-container {
+  header.active-search .header-user-info-container {
     overflow: hidden;
     flex-basis: 0%;
   }

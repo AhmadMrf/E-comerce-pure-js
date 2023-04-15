@@ -183,6 +183,22 @@ addEventListenerFn(
   "input"
 );
 addEventListenerFn(
+  searchInputs,
+  (e) => {
+    header.classList.remove("active-search");
+  },
+  "blur"
+);
+addEventListenerFn(
+  searchInputs,
+  (e) => {
+    if (searchState.value.length) {
+      header.classList.add("active-search");
+    }
+  },
+  "focus"
+);
+addEventListenerFn(
   clearInputButtons,
   () => {
     handleSearch();
